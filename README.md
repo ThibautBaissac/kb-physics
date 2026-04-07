@@ -8,6 +8,8 @@ The LLM acts as a **compiler**: it reads raw sources (articles, papers, talks) a
 
 > "The tedious part of maintaining a knowledge base is not the reading or the thinking — it's the bookkeeping." — Andrej Karpathy
 
+![Visual Explorer](screenshot.png)
+
 ---
 
 ## Setup
