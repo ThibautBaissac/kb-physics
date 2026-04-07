@@ -3,7 +3,7 @@ import { TYPE_COLORS as BASE_TYPE_COLORS } from '../constants.js';
 
 const TYPE_COLORS = { ...BASE_TYPE_COLORS, article: '#c9d1d9' };
 
-export function renderTimeline(container, data) {
+export function renderTimeline(container, data, { selectedNodeId } = {}) {
   container.innerHTML = '';
 
   const rect = container.getBoundingClientRect();
@@ -126,6 +126,13 @@ export function renderTimeline(container, data) {
     .attr('opacity', 0.85)
     .attr('cursor', 'pointer');
 
+  // Rule 4: highlight selected node
+  let currentSelectedId = selectedNodeId || null;
+  dots
+    .attr('r', d => d.isArticle ? 6 : (d.id === currentSelectedId ? 7 : 4))
+    .attr('stroke', d => d.id === currentSelectedId ? '#fff' : (d.isArticle ? '#fff' : 'none'))
+    .attr('stroke-width', d => d.id === currentSelectedId ? 2 : (d.isArticle ? 1.5 : 0));
+
   // Tooltip on hover
   const tooltip = d3.select('#tooltip');
 
@@ -143,7 +150,10 @@ export function renderTimeline(container, data) {
   });
 
   dots.on('mouseleave', function (event, d) {
-    d3.select(this).attr('r', d.isArticle ? 6 : 4).attr('opacity', 0.85);
+    const isSelected = d.id === currentSelectedId;
+    d3.select(this)
+      .attr('r', d.isArticle ? 6 : (isSelected ? 7 : 4))
+      .attr('opacity', 0.85);
     tooltip.classed('visible', false);
   });
 
@@ -163,6 +173,14 @@ export function renderTimeline(container, data) {
           return typeOk && searchOk ? 0.85 : 0.05;
         });
     },
-    destroy() { container.innerHTML = ''; }
+    // Rule 4: external selection
+    setSelection(id) {
+      currentSelectedId = id;
+      dots
+        .attr('r', d => d.isArticle ? 6 : (d.id === id ? 7 : 4))
+        .attr('stroke', d => d.id === id ? '#fff' : (d.isArticle ? '#fff' : 'none'))
+        .attr('stroke-width', d => d.id === id ? 2 : (d.isArticle ? 1.5 : 0));
+    },
+    destroy() { container.innerHTML = ''; },
   };
 }

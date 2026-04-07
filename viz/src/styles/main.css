@@ -57,31 +57,56 @@ body {
 /* Toolbar */
 #toolbar {
   grid-column: 1 / -1;
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 16px;
   padding: 0 16px;
   background: var(--bg-surface);
   border-bottom: 1px solid var(--border);
   z-index: 10;
 }
 
-#toolbar h1 {
+.toolbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.toolbar-logo img {
+  display: block;
+  border-radius: 6px;
+}
+
+.toolbar-logo-text {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
   white-space: nowrap;
   color: var(--text-secondary);
 }
 
-#toolbar h1 span {
+.toolbar-logo-text strong {
+  font-weight: 600;
   color: var(--text-primary);
+}
+
+/* Truly centered tabs + filters block */
+#toolbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
 }
 
 #controls {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex: 1;
+  margin-left: auto;
 }
 
 .toolbar-btn {
@@ -106,9 +131,6 @@ body {
   color: var(--accent);
 }
 
-.toolbar-spacer {
-  flex: 1;
-}
 
 /* Search */
 #search-input {
@@ -230,7 +252,7 @@ body {
 /* Legend */
 .legend {
   position: absolute;
-  bottom: 16px;
+  bottom: 52px;
   left: 16px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
@@ -257,8 +279,8 @@ body {
 /* Stats badge */
 .stats-badge {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  bottom: 12px;
+  left: 16px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -745,6 +767,109 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
+}
+
+/* Rule 2: progressive disclosure legend toggle */
+.legend-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0;
+}
+
+.legend-toggle-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.legend-toggle-btn:hover {
+  background: var(--bg-hover);
+}
+
+/* Rule 3: Ask AI button in detail panel */
+.detail-ask-ai {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.detail-ask-ai:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Rule 3: chat context strip */
+#chat-context-strip {
+  padding: 5px 16px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Rule 4: selected row in table */
+.row--selected td {
+  background: var(--accent-dim) !important;
+}
+
+.row--selected {
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+/* Rule 10: artifact toolbar */
+.artifact-toolbar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 4px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+#viewer:hover .artifact-toolbar {
+  opacity: 1;
+}
+
+.artifact-toolbar-btn {
+  background: rgba(13, 17, 23, 0.85);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  backdrop-filter: blur(4px);
+}
+
+.artifact-toolbar-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
 }
 
 /* View tabs */

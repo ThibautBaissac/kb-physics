@@ -4,6 +4,17 @@ let currentChatId = null;
 let chatMessages = []; // { role: 'user'|'assistant', content: string }
 let activeQueryController = null;
 
+// Rule 3: pre-fill chat input from external callers
+export function prefillChat(text) {
+  const input = document.getElementById('chat-input');
+  if (!input) return;
+  input.value = text;
+  input.focus();
+  // auto-expand textarea
+  input.style.height = 'auto';
+  input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+}
+
 export function initChat() {
   const input = document.getElementById('chat-input');
   const sendBtn = document.getElementById('chat-send');

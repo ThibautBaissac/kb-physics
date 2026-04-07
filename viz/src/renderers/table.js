@@ -1,26 +1,26 @@
 import { TYPE_COLORS } from '../constants.js';
 
-export function renderTable(container, data) {
+export function renderTable(container, data, { selectedNodeId } = {}) {
   container.innerHTML = '';
 
-  // Build table data from KB data or artifact data
-  let columns, rows;
+  let columns, rowsWithMeta;
 
   if (data.columns && data.rows) {
-    // Artifact format
     columns = data.columns;
-    rows = data.rows.map(r => [...r]);
+    rowsWithMeta = data.rows.map(r => ({ row: [...r], id: null }));
   } else if (data.nodes) {
-    // KB graph data — build a comprehensive table
     columns = ['Title', 'Type', 'Evidence', 'Connections', 'Sources', 'Created'];
-    rows = data.nodes.map(n => [
-      n.title,
-      n.type,
-      n.evidence,
-      String(n.connections),
-      String(n.sources?.length || 0),
-      n.created_at,
-    ]);
+    rowsWithMeta = data.nodes.map(n => ({
+      id: n.id,
+      row: [
+        n.title,
+        n.type,
+        n.evidence,
+        String(n.connections),
+        String(n.sources?.length || 0),
+        n.created_at,
+      ],
+    }));
   } else {
     container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted)">No table data</div>';
     return { destroy() { container.innerHTML = ''; } };
@@ -30,17 +30,17 @@ export function renderTable(container, data) {
   let sortAsc = true;
   let currentActiveTypes = null;
   let currentSearchQuery = '';
+  let currentSelectedId = selectedNodeId || null;
   const typeColIdx = columns.indexOf('Type');
   const titleColIdx = columns.indexOf('Title');
 
   const wrapper = document.createElement('div');
   wrapper.style.cssText = 'height:100%;overflow:auto;padding:16px;';
 
-  // Filter row
   const filterRow = document.createElement('div');
   filterRow.style.cssText = 'display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;';
 
-  const filters = columns.map((col, i) => {
+  const filters = columns.map((col) => {
     const input = document.createElement('input');
     input.type = 'text';
     input.placeholder = `Filter ${col}...`;
@@ -64,7 +64,6 @@ export function renderTable(container, data) {
   const table = document.createElement('table');
   table.style.cssText = 'width:100%;border-collapse:collapse;font-size:13px;';
 
-  // Header
   const thead = document.createElement('thead');
   const headerRow = document.createElement('tr');
   columns.forEach((col, i) => {
@@ -90,7 +89,6 @@ export function renderTable(container, data) {
         sortAsc = true;
       }
       renderRows();
-      // Update sort indicator
       headerRow.querySelectorAll('th').forEach((h, j) => {
         h.textContent = columns[j] + (j === sortCol ? (sortAsc ? ' ↑' : ' ↓') : '');
       });
@@ -103,40 +101,48 @@ export function renderTable(container, data) {
   const tbody = document.createElement('tbody');
   table.appendChild(tbody);
 
+  // Rule 6: stats badge with live count
+  const statsEl = document.createElement('div');
+  statsEl.className = 'stats-badge';
+
   function renderRows() {
     const filterValues = filters.map(f => f.value.toLowerCase());
 
-    let filtered = rows.filter(row => {
-      // Per-column text filters
-      const colMatch = row.every((cell, i) => !filterValues[i] || cell.toLowerCase().includes(filterValues[i]));
+    const filtered = rowsWithMeta.filter(({ row }) => {
+      const colMatch = row.every((cell, i) => !filterValues[i] || (cell || '').toLowerCase().includes(filterValues[i]));
       if (!colMatch) return false;
-      // External type filter
       if (currentActiveTypes && typeColIdx >= 0 && !currentActiveTypes.has(row[typeColIdx])) return false;
-      // External search filter
-      if (currentSearchQuery && titleColIdx >= 0 && !row[titleColIdx].toLowerCase().includes(currentSearchQuery)) return false;
+      if (currentSearchQuery && titleColIdx >= 0 && !(row[titleColIdx] || '').toLowerCase().includes(currentSearchQuery)) return false;
       return true;
     });
 
     if (sortCol >= 0) {
       filtered.sort((a, b) => {
-        const va = a[sortCol];
-        const vb = b[sortCol];
-        // Try numeric sort
-        const na = parseFloat(va);
-        const nb = parseFloat(vb);
-        if (!isNaN(na) && !isNaN(nb)) {
-          return sortAsc ? na - nb : nb - na;
-        }
+        const va = a.row[sortCol] || '';
+        const vb = b.row[sortCol] || '';
+        const na = parseFloat(va), nb = parseFloat(vb);
+        if (!isNaN(na) && !isNaN(nb)) return sortAsc ? na - nb : nb - na;
         return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
       });
     }
 
     tbody.innerHTML = '';
-    for (const row of filtered) {
+    let selectedTr = null;
+
+    for (const { row, id } of filtered) {
       const tr = document.createElement('tr');
-      tr.style.cssText = 'border-bottom: 1px solid #21262d;';
-      tr.addEventListener('mouseenter', () => tr.style.background = '#161b22');
-      tr.addEventListener('mouseleave', () => tr.style.background = 'transparent');
+      const isSelected = id && id === currentSelectedId;
+      tr.style.cssText = `border-bottom: 1px solid #21262d;${isSelected ? 'background:#1f6feb22;' : ''}`;
+      if (isSelected) {
+        tr.classList.add('row--selected');
+        selectedTr = tr;
+      }
+      tr.addEventListener('mouseenter', () => {
+        if (!isSelected) tr.style.background = '#161b22';
+      });
+      tr.addEventListener('mouseleave', () => {
+        if (!isSelected) tr.style.background = 'transparent';
+      });
 
       for (let i = 0; i < row.length; i++) {
         const td = document.createElement('td');
@@ -152,23 +158,28 @@ export function renderTable(container, data) {
             color:${TYPE_COLORS[row[i]]};
           ">${row[i]}</span>`;
         } else {
-          td.textContent = row[i];
+          td.textContent = row[i] || '';
         }
         tr.appendChild(td);
       }
       tbody.appendChild(tr);
     }
+
+    // Rule 4: scroll selected row into view
+    if (selectedTr) {
+      requestAnimationFrame(() => selectedTr.scrollIntoView({ block: 'center', behavior: 'smooth' }));
+    }
+
+    // Rule 6: live count update
+    statsEl.textContent = `${filtered.length} of ${rowsWithMeta.length} rows`;
   }
 
   wrapper.appendChild(table);
   container.appendChild(wrapper);
-  renderRows();
+  statsEl.textContent = `${rowsWithMeta.length} rows / ${columns.length} columns`;
+  container.appendChild(statsEl);
 
-  // Stats
-  const stats = document.createElement('div');
-  stats.className = 'stats-badge';
-  stats.textContent = `${rows.length} rows / ${columns.length} columns`;
-  container.appendChild(stats);
+  renderRows();
 
   return {
     updateFilter(activeTypes, searchQuery) {
@@ -176,6 +187,11 @@ export function renderTable(container, data) {
       currentSearchQuery = (searchQuery || '').toLowerCase();
       renderRows();
     },
-    destroy() { container.innerHTML = ''; }
+    // Rule 4: external selection
+    setSelection(id) {
+      currentSelectedId = id;
+      renderRows();
+    },
+    destroy() { container.innerHTML = ''; },
   };
 }

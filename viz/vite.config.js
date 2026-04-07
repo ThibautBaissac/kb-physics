@@ -4,6 +4,7 @@ import fs from 'fs';
 
 export default defineConfig({
   root: 'src',
+  publicDir: '../public',
   server: {
     port: 5173,
     proxy: {
