@@ -42,7 +42,8 @@ Three layers with strict ownership:
 
 - **`kb/raw/`** — Immutable source material. Humans curate, LLM never modifies. Files named `YYYY-MM-DD-short-title.md` with YAML frontmatter (`title`, `description`, `created_at`, `source`, `type`; external sources also require `url`, `author`, `publication`).
 - **`kb/theories/`, `kb/concepts/`, `kb/people/`, `kb/experiments/`, `kb/open-questions/`** — Compiled wiki. LLM owns entirely. Every page has frontmatter (`title`, `description`, `type`, `evidence`, `created_at`, `updated_at`, `related`, `sources`) and backlinks via relative markdown links. The `related` field uses relative paths from `kb/` (not bare filenames). The `evidence` field is `primary`, `secondary`, or `community`.
-- **`kb/CLAUDE.md`** — The schema. Defines page format, page types, linking conventions, and operation procedures. **Read this before any KB operation.**
+- **`kb/CLAUDE.md`** — The authoritative schema. Defines page format, page types, evidence tiers, linking conventions, and operation procedures. **Read this before any KB operation.**
+- **`viz/`** — Optional visualization layer (Vite + D3 app). Generates an interactive knowledge graph from compiled wiki pages. Not part of KB operations — used for exploring the graph visually.
 
 Supporting files:
 - **`kb/index.md`** — Master index of all compiled pages. Read this first when navigating.

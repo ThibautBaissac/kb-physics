@@ -1,303 +1,307 @@
 # Physics Knowledge Base
 
-A personal LLM-maintained knowledge base about physics, cosmology, and quantum physics — following [Karpathy's LLM Knowledge Base architecture](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). No vector databases, no RAG infrastructure — just structured markdown compiled and maintained by an LLM.
+A personal LLM-maintained knowledge base about physics, cosmology, and quantum physics — following [Karpathy's LLM Knowledge Base architecture](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
 
-The LLM acts as a **compiler**, not a retriever. It reads raw source material (articles, papers, talks) and produces a structured, interlinked physics wiki. The wiki is a persistent, compounding artifact — cross-references are already there, contradictions have already been flagged.
+No vector databases, no RAG. Just structured markdown compiled and maintained by an LLM. **The architecture is domain-agnostic — [adapt it to any topic](#adapting-to-another-topic).**
+
+The LLM acts as a **compiler**: it reads raw sources (articles, papers, talks) and produces a structured, interlinked physics wiki. Cross-references are already there, contradictions have already been flagged.
 
 > "The tedious part of maintaining a knowledge base is not the reading or the thinking — it's the bookkeeping." — Andrej Karpathy
 
-## Why This Exists
+---
 
-- **Physics knowledge is scattered.** Across Quanta articles, arxiv papers, textbooks, YouTube lectures. This KB compiles it into one interlinked wiki.
-- **Context is lost between LLM conversations.** The LLM has persistent, structured context about physics topics, so each conversation builds on prior understanding.
-- **Traditional notes die.** They die because maintenance is tedious. The LLM handles all the bookkeeping — cross-references, indexes, summaries — at near-zero cost. You just curate what goes in.
+## Setup
 
-## How It Works
+This KB is operated entirely through [Claude Code](https://claude.ai/code) — Anthropic's CLI agent. The slash commands (`/kb:fetch`, `/kb:ingest`, etc.) and the auto-activating `/kb:query` skill all run inside Claude Code sessions.
 
-### Three Layers
+### Prerequisites
 
-| Layer | Owner | What it contains |
-|-------|-------|-----------------|
-| **Raw sources** (`kb/raw/`) | You curate | Immutable source documents — articles, papers, book excerpts, lecture transcripts |
-| **Compiled wiki** (`kb/theories/`, `kb/concepts/`, `kb/people/`, `kb/experiments/`, `kb/open-questions/`) | LLM maintains | Structured markdown pages — summaries, concept pages, theory pages, physicist profiles, all interlinked |
-| **Schema** (`kb/CLAUDE.md`) | You define | Configuration telling the LLM how the wiki is structured, what conventions to follow |
+| Tool | What for | Install |
+|------|----------|---------|
+| [Claude Code](https://claude.ai/code) | All KB operations (fetch, ingest, query, lint) | `npm install -g @anthropic-ai/claude-code` |
+| `pandoc` | Converting PDF/HTML/DOCX to markdown | `brew install pandoc` |
+| `python-pptx` | Converting PowerPoint slides | `pip install python-pptx` |
 
-### Five Operations
+Pandoc and python-pptx are only needed if you ingest non-markdown files via `convert.sh`.
 
+### Authentication
+
+Claude Code needs an API key or OAuth token. Set one of these in your environment:
+
+```bash
+# Option A: API key (personal use)
+export ANTHROPIC_API_KEY=sk-ant-...
+
+# Option B: OAuth token (team / managed auth)
+export CLAUDE_CODE_OAUTH_TOKEN=...
 ```
-  ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐
-  │  FETCH  │     │ INGEST  │     │  QUERY  │     │  LINT   │     │ COMPILE │
-  │         │     │         │     │         │     │         │     │         │
-  │ URL ──► │     │ Source   │     │ Ask a   │     │ Health  │     │ Generate│
-  │ raw +   │     │ ──► Wiki │     │ question│     │ check   │     │ outputs │
-  │ wiki    │     │ pages   │     │ get an  │     │ find    │     │ guides, │
-  │ pages   │     │ + index │     │ answer  │     │ issues  │     │ tables  │
-  └─────────┘     └─────────┘     └─────────┘     └─────────┘     └─────────┘
+
+The Visual Explorer's agent backend (`viz/server/`) reads from a `.env` file at the repo root — create one with your key if you plan to use the chat feature:
+
+```bash
+# .env (git-ignored)
+ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-| Operation | What happens | When to use |
-|-----------|-------------|-------------|
-| **Fetch** | LLM fetches an article from a URL, creates a raw source file, and ingests it in one step. | You find an interesting article online |
-| **Ingest** | LLM reads a raw source, writes summaries, creates/updates concept and theory pages, adds cross-references, updates index and log. One source typically touches **10-15 wiki pages**. | A new paper, article, or lecture transcript is added manually |
-| **Query** | LLM reads the index, navigates to relevant pages, synthesizes an answer with citations. Substantial answers get filed back as new wiki pages. | You want to understand a topic or connection |
-| **Lint** | LLM scans for contradictions, stale content, orphan pages, missing concepts, broken links. Can auto-fix safe issues. | Periodically, or when the KB grows |
-| **Compile** | LLM generates derived artifacts from wiki content — topic overviews, concept maps, comparison tables, timelines. | On demand |
+### First run
+
+```bash
+git clone <this-repo> && cd kb-physics
+claude    # opens Claude Code in this directory — slash commands are ready
+```
+
+---
 
 ## Quick Start
 
-### 1. Fetch an article (easiest)
+**Fetch an article** (one step — fetches, saves, and ingests):
 
 ```
-/kb:fetch https://www.quantamagazine.org/are-strings-still-our-best-hope-for-a-theory-of-everything-20260323/
+/kb:fetch https://www.some-article.com/
 ```
 
-This fetches the article, creates a raw source file, and ingests it into the wiki — all in one step.
-
-### 2. Add a source manually
-
-**Markdown** — drop it into the appropriate `kb/raw/` subdirectory with frontmatter:
-
-```yaml
----
-title: "Bootstrap Arguments for String Theory"
-description: Recent bootstrap research suggesting string theory emerges uniquely from certain assumptions
-created_at: 2026-03-23
-source: external
-type: article
-url: https://www.quantamagazine.org/...
-author: Natalie Wolchover
-publication: Quanta Magazine
----
-```
-
-**Any other format** (PDF, DOCX, PPTX, HTML) — convert first:
+**Add a source manually**, then ingest it:
 
 ```bash
-./kb/scripts/convert.sh ~/Downloads/paper.pdf papers
-```
-
-### 3. Ingest
-
-```
+# Markdown: drop into kb/raw/articles/ with frontmatter, then:
 /kb:ingest kb/raw/articles/2026-03-23-bootstrap-string-theory.md
+
+# PDF, DOCX, PPTX, HTML: convert first, then ingest:
+./kb/scripts/convert.sh ~/Downloads/paper.pdf papers
+/kb:ingest kb/raw/papers/2026-03-23-paper.md
 ```
 
-### 4. Query
+**Batch-fetch** multiple articles at once:
+
+```bash
+./kb/scripts/batch-fetch.sh urls.txt                    # one URL per line
+./kb/scripts/batch-fetch.sh "https://url1" "https://url2"
+```
+
+**Ask a question** (cites wiki pages, optionally files the answer):
 
 ```
 /kb:query What is the bootstrap approach to string theory?
 ```
 
-### 5. Lint
+**Health check** the KB:
 
 ```
-/kb:lint              # Full KB health check
-/kb:lint fix          # Auto-fix safe issues
+/kb:lint          # report issues
+/kb:lint fix      # auto-fix safe ones
 ```
+
+---
+
+## How It Works
+
+### You curate. The LLM compiles.
+
+You decide what goes in. The LLM does all the bookkeeping — summaries, cross-references, indexes, evidence tiers.
+
+| Layer | Owner | Contents |
+|-------|-------|----------|
+| **Raw sources** (`kb/raw/`) | You | Immutable source documents — articles, papers, book excerpts, talks |
+| **Compiled wiki** (`kb/theories/`, `concepts/`, `people/`, `experiments/`, `open-questions/`) | LLM | Interlinked markdown pages with frontmatter, backlinks, and source citations |
+| **Schema** (`kb/CLAUDE.md`) | You | Conventions the LLM follows — page format, evidence tiers, linking rules |
+
+### Operations
+
+| Operation | Command | What happens |
+|-----------|---------|-------------|
+| **Fetch** | `/kb:fetch <url>` | URL → raw source → wiki pages (all-in-one) |
+| **Ingest** | `/kb:ingest <path>` | Raw source → summaries, concept/theory/people pages, index, log. One source typically touches **10-15 pages**. |
+| **Query** | `/kb:query <question>` | Navigates KB, synthesizes cited answer, optionally files as a new page |
+| **Lint** | `/kb:lint [fix]` | Finds contradictions, orphans, stale content, broken links. `fix` auto-repairs safe issues. |
+
+`/kb:query` also auto-activates when you ask physics questions without invoking it.
+
+---
 
 ## Directory Structure
 
 ```
-.
-├── .claude/
-│   ├── commands/kb/        # Slash commands (run from repo root)
-│   │   ├── fetch.md        #   /kb:fetch  — URL → raw source → wiki pages
-│   │   ├── ingest.md       #   /kb:ingest — raw source → wiki pages
-│   │   └── lint.md         #   /kb:lint   — health check + auto-fix
-│   └── skills/
-│       └── kb-query/       # Skill (auto-activates on physics questions)
-│           └── SKILL.md    #   /kb:query  — answer with citations
+kb/
+├── CLAUDE.md              # Schema — the authoritative reference for all conventions
+├── index.md               # Master index of all compiled pages
+├── log.md                 # Append-only activity log
 │
-├── kb/
-│   ├── CLAUDE.md           # Schema — conventions, page formats, operations
-│   ├── index.md            # Master index of all compiled pages
-│   ├── log.md              # Append-only activity log
-│   │
-│   ├── raw/                # Source material (human-curated, immutable)
-│   │   ├── _originals/     #   Local cache of non-markdown originals (git-ignored)
-│   │   ├── articles/       #   Science journalism (Quanta, Nature News, etc.)
-│   │   ├── papers/         #   Arxiv preprints, peer-reviewed papers, lecture notes
-│   │   ├── books/          #   Book chapters, textbook excerpts
-│   │   └── talks/          #   Conference talks, lectures, interviews
-│   │
-│   ├── scripts/
-│   │   └── convert.sh      # Format conversion (PDF, DOCX, PPTX, etc. to markdown)
-│   │
-│   ├── theories/           # Compiled: physics theories and frameworks
-│   ├── concepts/           # Compiled: cross-cutting physics concepts
-│   ├── people/             # Compiled: physicists and their contributions
-│   ├── experiments/        # Compiled: experiments, observatories, instruments
-│   └── open-questions/     # Compiled: unsolved problems and active debates
+├── raw/                   # Source material (immutable once added)
+│   ├── articles/          #   Science journalism (Quanta, Nature News, ...)
+│   ├── papers/            #   Arxiv, peer-reviewed, lecture notes
+│   ├── books/             #   Book chapters, textbook excerpts
+│   ├── talks/             #   Conference talks, lectures, interviews
+│   └── _originals/        #   Non-markdown originals (git-ignored)
 │
-├── viz/                    # Visual Explorer (interactive web app)
-│   ├── start.sh            #   Start servers (Vite + Express)
-│   ├── stop.sh             #   Stop servers
-│   ├── server/
-│   │   ├── index.ts        #   Express API + Claude agent proxy
-│   │   ├── kb-parser.ts    #   KB → JSON graph data
-│   │   └── agent-prompt.md #   System prompt for the KB agent
-│   ├── src/
-│   │   ├── index.html      #   App shell
-│   │   ├── main.js         #   Entry point + artifact router
-│   │   ├── chat.js         #   Chat panel UI
-│   │   └── renderers/      #   D3 visualization renderers
-│   │       ├── graph.js    #     Force-directed graph
-│   │       ├── timeline.js #     Temporal axis
-│   │       ├── diagram.js  #     Concept maps / trees
-│   │       └── table.js    #     Sortable tables
-│   └── artifacts/          #   Agent-generated visualizations (JSON)
+├── theories/              # Compiled: physics theories and frameworks
+├── concepts/              # Compiled: cross-cutting concepts and principles
+├── people/                # Compiled: physicists and contributions
+├── experiments/           # Compiled: experiments, observatories, instruments
+├── open-questions/        # Compiled: unsolved problems, active debates
 │
-├── README.md
-└── .gitignore
+└── scripts/
+    ├── convert.sh         # PDF/DOCX/PPTX/HTML → markdown
+    └── batch-fetch.sh     # Fetch multiple URLs in one go
+
+viz/                       # Visual Explorer (optional, see below)
 ```
 
-## Slash Commands & Skills
+---
 
-Operations are slash commands (`.claude/commands/kb/`) and skills (`.claude/skills/`).
+## Raw Source Format
 
-| Command | Usage | What it does |
-|---------|-------|-------------|
-| `/kb:fetch` | `/kb:fetch https://www.quantamagazine.org/...` | Fetches article, creates raw source, ingests into wiki |
-| `/kb:ingest` | `/kb:ingest kb/raw/articles/2026-03-23-doc.md` | Reads source, creates/updates wiki pages, updates index and log |
-| `/kb:query` | `/kb:query What is quantum entanglement?` | Navigates the KB, synthesizes an answer with citations, optionally files it as a new page |
-| `/kb:lint` | `/kb:lint` or `/kb:lint fix` | Checks for contradictions, orphans, stale content, missing descriptions, broken links |
-
-`/kb:query` is a **skill** — it also auto-activates when you ask physics questions without explicitly invoking it.
-
-## Frontmatter Reference
-
-### Raw sources (`kb/raw/`)
+Every file in `kb/raw/` is markdown with YAML frontmatter:
 
 ```yaml
 ---
-title: "Article or Paper Title"                  # Required
-description: One-line summary for LLM scanning  # Required
-created_at: 2026-03-23                           # Required — publication date
-source: external                                 # Required — origin
-type: article                                    # Required — matches subdirectory
-url: https://...                                 # Required — original URL
-author: Author Name                              # Required
-publication: Quanta Magazine                     # Required
-original: _originals/paper.pdf                   # Optional — non-markdown original
+title: "Article Title"
+description: One-line summary
+created_at: 2026-03-23        # publication date, not today
+source: external
+type: article                  # matches subdirectory: article, paper, book, talk
+url: https://...
+author: Author Name
+publication: Quanta Magazine
 ---
+
+Full article text here...
 ```
 
-### Compiled wiki pages
-
-```yaml
----
-title: String Theory                                       # Required
-description: Framework proposing 1D strings as fundamental # Required
-type: theory                                               # Required — see page types
-evidence: secondary                                        # Required — evidence tier
-created_at: 2026-04-06                                     # Required
-updated_at: 2026-04-06                                     # Required
-related: [concepts/supersymmetry.md, people/witten.md]     # Optional — relative from kb/
-sources: [2026-03-23-bootstrap-string-theory]               # Required — raw source filenames
----
-```
-
-**Page types:**
-
-| Type | Purpose | Location |
-|------|---------|----------|
-| `concept` | Cross-cutting physics concept | `kb/concepts/` |
-| `theory` | Physics theory or framework | `kb/theories/` |
-| `person` | Physicist and their contributions | `kb/people/` |
-| `experiment` | Experiment, observatory, or instrument | `kb/experiments/` |
-| `summary` | Summary of a raw source | any compiled folder |
-| `open-question` | Unsolved problem or active debate | `kb/open-questions/` |
-| `principle` | Fundamental principle or law | `kb/concepts/` |
-| `overview` | High-level orientation page | any compiled folder |
-
-**Evidence tiers:**
-
-| Tier | Meaning | Example |
-|------|---------|---------|
-| `primary` | Peer-reviewed papers, textbooks, arxiv preprints | Nature Physics paper, Weinberg's QFT textbook |
-| `secondary` | Science journalism summarizing primary research | Quanta Magazine, Nature News |
-| `community` | Blog posts, YouTube, Reddit, popular science | PBS Space Time, Sabine Hossenfelder's blog |
-
-## Converting Non-Markdown Sources
-
-`kb/scripts/convert.sh` converts files to markdown and caches the original locally (git-ignored).
+For non-markdown files, convert first:
 
 ```bash
-./kb/scripts/convert.sh <input-file> [category]
-# category: articles | papers | books | talks (default: articles)
+./kb/scripts/convert.sh <file> [category]
+# categories: articles (default), papers, books, talks
+# requires: pandoc (PDF/HTML/DOCX), python-pptx (PPTX)
 ```
 
-| Format | Extension | Converter |
-|--------|-----------|-----------|
-| PDF | `.pdf` | pandoc / pdftotext / LLM-native fallback |
-| HTML | `.html` `.htm` | pandoc |
-| Word | `.docx` | pandoc |
-| PowerPoint | `.pptx` | python-pptx (text + speaker notes) |
-| CSV | `.csv` | Built-in (markdown table) |
-| JSON | `.json` | Built-in (fenced code block) |
-| Plain text | `.txt` | Built-in |
-| Markdown | `.md` | Built-in (adds frontmatter if missing) |
-| Images | `.png` `.jpg` `.gif` `.webp` `.svg` | Stub (LLM reads via vision during ingestion) |
-
-**Prerequisites:** `brew install pandoc` for PDF/HTML/DOCX. `pip install python-pptx` for slides.
+---
 
 ## Rules
 
-1. **`kb/raw/` is immutable.** Once a source is added, never modify it. It's the historical record.
-2. **The LLM owns everything else in `kb/`.** Don't manually edit compiled pages — they'll be overwritten on the next ingest or lint pass.
-3. **You curate, the LLM compiles.** You decide what goes in. The LLM does the bookkeeping.
-4. **Every claim traces to a source.** Compiled pages link back to raw sources. No source links = needs a lint pass.
-5. **All links are relative.** Use `[Link Text](../path/to/page.md)`. No orphan pages.
+1. **`kb/raw/` is immutable.** Never modify a source after adding it.
+2. **The LLM owns everything else in `kb/`.** Don't hand-edit compiled pages — they get overwritten on next ingest or lint.
+3. **Every claim traces to a source.** No source links = needs a lint pass.
+4. **All links are relative.** `[Text](../path/to/page.md)` — no orphan pages.
+5. **`kb/CLAUDE.md` is the schema.** Page format, evidence tiers, linking conventions — all defined there.
+
+---
 
 ## Visual Explorer
 
-An interactive web app for exploring the KB visually. Built with Vite, D3.js, and Claude Agent SDK.
-
-### Setup
+An interactive web app for exploring the KB as a graph. Built with Vite, D3.js, and a Claude agent backend.
 
 ```bash
-cd viz
-npm install
+cd viz && npm install       # first time only
+./viz/start.sh              # starts Vite (:5173) + API (:3001)
+open http://localhost:5173
+./viz/stop.sh               # when done
 ```
 
-### Start
-
-```bash
-./viz/start.sh        # Starts Vite (:5173) + API server (:3001)
-```
-
-Open [http://localhost:5173](http://localhost:5173).
-
-### Stop
-
-```bash
-./viz/stop.sh
-```
-
-### Four Views
+**Four views:**
 
 | View | What it shows |
 |------|---------------|
-| **Graph** | Force-directed network of all KB pages, colored by type, sized by connections. Hover highlights neighbors. |
-| **Timeline** | Temporal axis of source articles and compiled pages. |
-| **Diagram** | Concept maps and hierarchy trees (generated by the agent). |
-| **Table** | Sortable, filterable table of all KB pages with metadata. |
+| **Graph** | Force-directed network of all pages, colored by type, sized by connections |
+| **Timeline** | Temporal axis of sources and compiled pages |
+| **Diagram** | Concept maps and hierarchy trees (agent-generated) |
+| **Table** | Sortable, filterable list of all pages with metadata |
 
-### Chat + Agent
+The built-in **Chat** panel sends questions to a Claude agent that reads the KB and can generate visual artifacts rendered live in the browser.
 
-Click **Chat** to open the built-in chat panel. Questions are sent to a Claude agent that reads the KB and can generate visual artifacts (graph subsets, timelines, comparison tables) that appear automatically in the browser.
+---
 
-You can also generate artifacts from Claude Code in the terminal — any JSON written to `viz/artifacts/` is hot-reloaded in the browser.
+## Adapting to Another Topic
 
-### Architecture
+The architecture is domain-agnostic. You can fork this repo and repurpose it for any knowledge domain (biology, history, law, etc.). Here's how to clean it up.
 
+### 1. Clear the content
+
+Remove all physics-specific content but keep the directory structure and tooling:
+
+```bash
+# Delete compiled wiki pages
+rm kb/theories/* kb/concepts/* kb/people/* kb/experiments/* kb/open-questions/*
+
+# Delete raw sources (keep the directories)
+rm -rf kb/raw/articles/* kb/raw/papers/* kb/raw/books/* kb/raw/talks/*
+
+# Delete viz artifacts and chat history
+rm -f viz/artifacts/*.json viz/chats/*.json
 ```
-Browser (Vite + D3)  ←→  Express API (:3001)  ←→  Claude CLI  ←→  kb/
-     ↑                         ↓
-     └── viz/artifacts/*.json (HMR)
+
+Reset the index and log to empty shells:
+
+```markdown
+<!-- kb/index.md -->
+# Knowledge Base Index
+
+## Theories
+
+## Concepts
+
+## People
+
+## Experiments
+
+## Open Questions
 ```
+
+```markdown
+<!-- kb/log.md -->
+# Activity Log
+```
+
+### 2. Rename directories (optional)
+
+The folder names `theories/`, `concepts/`, `people/`, `experiments/`, `open-questions/` work for many domains. But if your domain calls for different categories (e.g. `case-law/`, `species/`, `events/`), rename them. Then update references in these files:
+
+| File | What to change |
+|------|----------------|
+| `kb/CLAUDE.md` | Directory tree, page types table, operations, index format |
+| `kb/index.md` | Section headings to match new directories |
+| `.claude/commands/kb/ingest.md` | Step 3 — the list of page types to create/update |
+| `.claude/commands/kb/lint.md` | Steps 1-2 — directories to scan and issue types |
+| `.claude/skills/kb-query/SKILL.md` | Description and step 1 |
+
+### 3. Update the domain references
+
+Search-and-replace the physics-specific language across configuration files:
+
+| File | What to change |
+|------|----------------|
+| `kb/CLAUDE.md` | Opening line ("physics, cosmology, and quantum physics"), evidence tier examples, page type descriptions |
+| `.claude/commands/kb/ingest.md` | "physics concepts", "physics theory" → your domain terms |
+| `.claude/skills/kb-query/SKILL.md` | "physics question" → your domain |
+| `viz/server/agent-prompt.md` | "physics knowledge base assistant", directory descriptions, example content |
+| `CLAUDE.md` | "physics, cosmology, and quantum physics" in the intro |
+| `README.md` | Everything |
+
+### 4. Adjust evidence tiers (optional)
+
+The default tiers (`primary`, `secondary`, `community`) map to academic publishing norms. If your domain has different trust hierarchies, redefine them in `kb/CLAUDE.md`. For example, a legal KB might use `statute`, `case-law`, `commentary`.
+
+### 5. Adjust raw source categories (optional)
+
+The default categories (`articles/`, `papers/`, `books/`, `talks/`) cover academic and journalism sources. If your domain has different source types (e.g. `filings/`, `transcripts/`, `datasets/`), rename the directories under `kb/raw/` and update:
+
+- `kb/CLAUDE.md` — the raw sources section
+- `.claude/commands/kb/fetch.md` — step 2 (category detection)
+- `kb/scripts/convert.sh` — the `VALID_CATEGORIES` variable
+
+### 6. Start fresh
+
+```bash
+claude
+/kb:fetch https://your-first-source.com/article
+```
+
+The slash commands, skill auto-activation, lint, batch-fetch, and the Visual Explorer all work unchanged — they operate on the structure, not the domain.
+
+---
 
 ## Credits
 
-- Architecture: [Andrej Karpathy's LLM Knowledge Bases](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) (April 2026)
-- Tooling: [Claude Code](https://claude.ai/claude-code) slash commands for standardized operations
+- Architecture: [Andrej Karpathy's LLM Knowledge Bases](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- Tooling: [Claude Code](https://claude.ai/code) slash commands and skills
+- Visual Explorer agent: [Claude Agent SDK](https://www.npmjs.com/package/@anthropic-ai/claude-agent-sdk)
