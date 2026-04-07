@@ -9,6 +9,7 @@ description: >-
 argument-hint: "<your question>"
 allowed-tools: Read, Write, Edit, Glob, Grep
 effort: medium
+context: fork
 ---
 
 Answer a question against the knowledge base. The question is: $ARGUMENTS
