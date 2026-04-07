@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KB Physics Explorer</title>
+  <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+  <div id="app">
+    <header id="toolbar">
+      <h1>KB <span>Physics</span></h1>
+
+      <div id="controls">
+        <div class="view-tabs">
+          <button class="view-tab active" data-view="graph">Graph</button>
+          <button class="view-tab" data-view="timeline">Timeline</button>
+          <button class="view-tab" data-view="diagram">Diagram</button>
+          <button class="view-tab" data-view="table">Table</button>
+        </div>
+
+        <div class="type-filters" id="type-filters"></div>
+
+        <div class="toolbar-spacer"></div>
+
+        <input type="text" id="search-input" placeholder="Search nodes...">
+
+        <button class="toolbar-btn" id="btn-sidebar">Artifacts</button>
+        <button class="toolbar-btn" id="btn-chat">Chat</button>
+      </div>
+    </header>
+
+    <aside id="sidebar">
+      <div class="sidebar-header">Saved Artifacts</div>
+      <div id="artifact-list"></div>
+    </aside>
+
+    <main id="viewer"></main>
+
+    <aside id="chat-panel">
+      <div class="chat-header">
+        <span>Ask the KB</span>
+        <button class="toolbar-btn" id="btn-chat-close">x</button>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input-area">
+        <textarea id="chat-input" placeholder="Ask a question about physics..." rows="1"></textarea>
+        <button id="chat-send">Send</button>
+      </div>
+    </aside>
+  </div>
+
+  <div class="tooltip" id="tooltip">
+    <div class="tooltip-title"></div>
+    <div class="tooltip-desc"></div>
+    <span class="tooltip-type"></span>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

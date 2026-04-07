@@ -1,2 +1,12 @@
+.env
 .DS_Store
 kb/raw/_originals/
+
+# Viz app
+viz/node_modules/
+viz/dist/
+viz/src/data/kb-graph.json
+viz/artifacts/*.json
+!viz/artifacts/.gitkeep
+viz/.server.pid
+viz/.vite.pid
