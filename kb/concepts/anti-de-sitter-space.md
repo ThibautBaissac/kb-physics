@@ -5,8 +5,8 @@ type: concept
 evidence: secondary
 created_at: 2026-04-07
 updated_at: 2026-04-07
-related: [concepts/de-sitter-space.md, concepts/cosmological-constant.md, concepts/holography.md, theories/string-theory.md]
-sources: [2026-03-30-de-sitter-space-quantum-mechanics.md]
+related: [concepts/de-sitter-space.md, concepts/cosmological-constant.md, concepts/holography.md, concepts/island-formula.md, theories/string-theory.md]
+sources: [2026-03-30-de-sitter-space-quantum-mechanics.md, 2025-11-19-observer-free-universe-paradox.md]
 ---
 
 # Anti-de Sitter Space
@@ -38,3 +38,4 @@ While AdS space does not describe our universe (which has a positive cosmologica
 ## Sources
 
 - [In Expanding de Sitter Space, Quantum Mechanics Gets Even More Elusive](../raw/articles/2026-03-30-de-sitter-space-quantum-mechanics.md)
+- [Cosmic Paradox Reveals the Awful Consequence of an Observer-Free Universe](../raw/articles/2025-11-19-observer-free-universe-paradox.md)

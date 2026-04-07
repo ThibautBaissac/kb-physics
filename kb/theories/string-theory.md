@@ -5,8 +5,8 @@ type: theory
 evidence: secondary
 created_at: 2026-04-06
 updated_at: 2026-04-07
-related: [concepts/supersymmetry.md, concepts/scattering-amplitudes.md, concepts/string-landscape.md, concepts/extra-dimensions.md, concepts/uv-completion.md, concepts/bootstrap-method.md, concepts/black-hole-entropy.md, concepts/de-sitter-space.md, concepts/holography.md, concepts/compactification.md, open-questions/testability-of-string-theory.md, open-questions/quantum-gravity-in-de-sitter-space.md, theories/quantum-field-theory.md]
-sources: [2026-03-23-strings-theory-of-everything.md, 2026-03-30-de-sitter-space-quantum-mechanics.md, 2026-01-14-string-theory-dark-energy.md]
+related: [concepts/supersymmetry.md, concepts/scattering-amplitudes.md, concepts/string-landscape.md, concepts/extra-dimensions.md, concepts/uv-completion.md, concepts/bootstrap-method.md, concepts/black-hole-entropy.md, concepts/de-sitter-space.md, concepts/holography.md, concepts/compactification.md, open-questions/testability-of-string-theory.md, open-questions/quantum-gravity-in-de-sitter-space.md, theories/quantum-field-theory.md, theories/quadratic-gravity.md]
+sources: [2026-03-23-strings-theory-of-everything.md, 2026-03-30-de-sitter-space-quantum-mechanics.md, 2026-01-14-string-theory-dark-energy.md, 2025-11-17-ghost-theory-quantum-gravity-comeback.md]
 ---
 
 # String Theory
@@ -47,6 +47,10 @@ The theory faces two central objections:
 
 [Pedro Vieira](../people/pedro-vieira.md) noted that extended objects — lines, surfaces — naturally arise within [quantum field theory](../theories/quantum-field-theory.md), suggesting the boundary between string theory and field theory may be less sharp than traditionally assumed.
 
+## Quadratic Gravity as Alternative
+
+[Quadratic gravity](../theories/quadratic-gravity.md) presents a competing approach to quantum gravity that stays entirely within [quantum field theory](../theories/quantum-field-theory.md). Interest in quadratic gravity has grown as string theory failed to deliver promised breakthroughs and superpartners failed to materialize at the LHC. If quadratic gravity's spacetime continuum holds to arbitrary scales, it would undermine the widespread belief — supported by string theory and black hole physics — that spacetime unravels into stranger substructure at submicroscopic scales.
+
 ## The De Sitter Problem
 
 A major challenge has been formulating string theory in [de Sitter space](../concepts/de-sitter-space.md) — the expanding geometry that most resembles our universe. The best-understood string theory models describe universes with negative or zero energy ([anti-de Sitter](../concepts/anti-de-sitter-space.md) or flat), while our universe has positive dark energy.
@@ -64,3 +68,4 @@ See also [quantum gravity in de Sitter space](../open-questions/quantum-gravity-
 - [Are Strings Still Our Best Hope for a Theory of Everything?](../raw/articles/2026-03-23-strings-theory-of-everything.md)
 - [In Expanding de Sitter Space, Quantum Mechanics Gets Even More Elusive](../raw/articles/2026-03-30-de-sitter-space-quantum-mechanics.md)
 - [String Theory Can Now Describe a Universe That Has Dark Energy](../raw/articles/2026-01-14-string-theory-dark-energy.md)
+- [Old 'Ghost' Theory of Quantum Gravity Makes a Comeback](../raw/articles/2025-11-17-ghost-theory-quantum-gravity-comeback.md)

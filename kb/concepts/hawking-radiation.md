@@ -5,8 +5,8 @@ type: concept
 evidence: secondary
 created_at: 2026-04-07
 updated_at: 2026-04-07
-related: [concepts/primordial-black-holes.md, concepts/black-hole-entropy.md, experiments/km3net-neutrino-detection.md]
-sources: [2026-01-23-monster-neutrino-primordial-black-holes.md]
+related: [concepts/primordial-black-holes.md, concepts/black-hole-entropy.md, experiments/km3net-neutrino-detection.md, open-questions/supermassive-black-hole-origins.md, concepts/no-hair-theorem.md, open-questions/black-hole-information-paradox.md]
+sources: [2026-01-23-monster-neutrino-primordial-black-holes.md, 2025-09-12-naked-black-hole-rewrites-universe.md, 2025-08-27-no-hair-black-holes.md]
 ---
 
 # Hawking Radiation
@@ -31,6 +31,13 @@ Hawking radiation has never been directly observed from astrophysical black hole
 
 Dan Hooper (Wisconsin-Madison) is skeptical: "I would bet an awful lot of money that it has nothing to do with primordial black holes," arguing that exploding black holes would be easily detectable if they existed. Bernard Carr, who developed the theory with Hawking 50 years ago, is more hopeful: "This could be evidence for black hole explosions."
 
+## Information Paradox Connection
+
+Hawking radiation sits at the center of the [black hole information paradox](../open-questions/black-hole-information-paradox.md). If the outgoing radiation is truly thermal and featureless (as Hawking's original calculation suggests), then when a black hole fully evaporates, all information about what fell in is destroyed — violating quantum mechanics. The [no-hair theorem](../concepts/no-hair-theorem.md) compounds this: if black holes carry no distinguishing features, there is no obvious mechanism by which information could escape.
+
+Proposed resolutions — firewalls, fuzzballs, holography — all modify either the nature of the horizon or the character of Hawking radiation to allow information to escape. Gravitational wave tests of the no-hair conjecture (constraining horizon-scale structure to within 40 km as of 2025) provide empirical guidance on which alternatives remain viable.
+
 ## Sources
 
 - [Monster Neutrino Could Be a Messenger of Ancient Black Holes](../raw/articles/2026-01-23-monster-neutrino-primordial-black-holes.md)
+- [Astrophysicists Find No 'Hair' on Black Holes](../raw/articles/2025-08-27-no-hair-black-holes.md)

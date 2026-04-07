@@ -5,8 +5,8 @@ type: concept
 evidence: secondary
 created_at: 2026-04-07
 updated_at: 2026-04-07
-related: [concepts/black-hole-entropy.md, concepts/de-sitter-space.md, concepts/anti-de-sitter-space.md, open-questions/quantum-gravity-in-de-sitter-space.md, theories/string-theory.md]
-sources: [2026-03-30-de-sitter-space-quantum-mechanics.md]
+related: [concepts/black-hole-entropy.md, concepts/de-sitter-space.md, concepts/anti-de-sitter-space.md, concepts/island-formula.md, concepts/hilbert-space.md, open-questions/quantum-gravity-in-de-sitter-space.md, theories/string-theory.md]
+sources: [2026-03-30-de-sitter-space-quantum-mechanics.md, 2025-11-19-observer-free-universe-paradox.md]
 ---
 
 # Holography
@@ -25,6 +25,10 @@ The most developed realization of holography is the AdS/CFT correspondence, whic
 
 Anti-de Sitter space is especially amenable to holography because it has a well-defined conformal boundary where quantum fluctuations vanish, enabling precise calculations.
 
+## Island Formula
+
+In 2019, [Juan Maldacena](../people/juan-maldacena.md) and colleagues developed the [island formula](../concepts/island-formula.md), which tracks regions within black holes and helped explain how they release information. When applied to closed universes — spacetimes without boundaries — the formula reveals they have one-dimensional [Hilbert spaces](../concepts/hilbert-space.md) containing zero information, a paradox that may require observer-dependent boundaries to resolve.
+
 ## The De Sitter Challenge
 
 Physicists hope to extend holography to [de Sitter space](../concepts/de-sitter-space.md), but face a fundamental obstacle: de Sitter space has no single accessible boundary. Instead, it has multiple observer-dependent [cosmological horizons](../concepts/cosmological-horizon.md).
@@ -38,3 +42,4 @@ See [Quantum Gravity in de Sitter Space](../open-questions/quantum-gravity-in-de
 ## Sources
 
 - [In Expanding de Sitter Space, Quantum Mechanics Gets Even More Elusive](../raw/articles/2026-03-30-de-sitter-space-quantum-mechanics.md)
+- [Cosmic Paradox Reveals the Awful Consequence of an Observer-Free Universe](../raw/articles/2025-11-19-observer-free-universe-paradox.md)

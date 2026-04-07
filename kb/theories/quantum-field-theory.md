@@ -5,8 +5,8 @@ type: theory
 evidence: secondary
 created_at: 2026-04-06
 updated_at: 2026-04-07
-related: [theories/string-theory.md, concepts/supersymmetry.md, concepts/scattering-amplitudes.md, concepts/uv-completion.md, concepts/de-sitter-space.md, concepts/anti-de-sitter-space.md]
-sources: [2026-03-23-strings-theory-of-everything.md, 2026-03-30-de-sitter-space-quantum-mechanics.md]
+related: [theories/string-theory.md, theories/quadratic-gravity.md, concepts/supersymmetry.md, concepts/scattering-amplitudes.md, concepts/uv-completion.md, concepts/renormalization.md, concepts/de-sitter-space.md, concepts/anti-de-sitter-space.md, concepts/quantum-simulation.md, concepts/quantum-chromodynamics.md, concepts/qudits.md]
+sources: [2026-03-23-strings-theory-of-everything.md, 2026-03-30-de-sitter-space-quantum-mechanics.md, 2025-11-17-ghost-theory-quantum-gravity-comeback.md, 2025-09-05-analog-vs-digital-quantum-simulation.md]
 ---
 
 # Quantum Field Theory
@@ -33,7 +33,19 @@ Quantum field theory faces profound difficulties in [de Sitter space](../concept
 
 These problems are central to the open question of [quantum gravity in de Sitter space](../open-questions/quantum-gravity-in-de-sitter-space.md).
 
+## Renormalization and Gravity
+
+A central challenge of QFT is [renormalization](../concepts/renormalization.md) — the procedure for absorbing infinite sums over field ripples into measurable constants. Electromagnetism is renormalizable: small ripples have limited impact. Gravity (general relativity) is non-renormalizable: the tinier the spacetime ripples, the more they matter, resisting any blurring.
+
+[Quadratic gravity](../theories/quadratic-gravity.md) resolves this by adding curvature-squared terms to Einstein's equation, making gravity behave more like electromagnetism. It is the unique renormalizable QFT of gravity, though it introduces [ghost particles](../concepts/ghost-particles.md) — negative-energy excitations whose physical consistency remains debated.
+
+## Quantum Simulation of QFTs
+
+Simulating the real-time behavior of quantum fields is one of the key motivations for building quantum computers. Classical computers fail because [entanglement](../concepts/quantum-entanglement.md) between field excitations causes exponential growth in computational complexity. [Quantum simulation](../concepts/quantum-simulation.md) approaches — using digital [qudit](../concepts/qudits.md) computers or analog cold-atom systems — have achieved 2D simulations of quantum electrodynamics (2025). The ultimate goal is simulating [quantum chromodynamics](../concepts/quantum-chromodynamics.md) to understand the strong force in extreme conditions.
+
 ## Sources
 
 - [Are Strings Still Our Best Hope for a Theory of Everything?](../raw/articles/2026-03-23-strings-theory-of-everything.md)
 - [In Expanding de Sitter Space, Quantum Mechanics Gets Even More Elusive](../raw/articles/2026-03-30-de-sitter-space-quantum-mechanics.md)
+- [Old 'Ghost' Theory of Quantum Gravity Makes a Comeback](../raw/articles/2025-11-17-ghost-theory-quantum-gravity-comeback.md)
+- [Analog vs. Digital: The Race Is On To Simulate Our Quantum Universe](../raw/articles/2025-09-05-analog-vs-digital-quantum-simulation.md)

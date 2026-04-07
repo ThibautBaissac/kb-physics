@@ -5,8 +5,8 @@ type: experiment
 evidence: secondary
 created_at: 2026-04-07
 updated_at: 2026-04-07
-related: [theories/standard-model.md, concepts/hierarchy-problem.md, concepts/scattering-amplitudes.md, experiments/future-colliders.md, open-questions/beyond-standard-model.md]
-sources: [2026-01-26-particle-physics-dead-dying-hard.md]
+related: [theories/standard-model.md, concepts/hierarchy-problem.md, concepts/scattering-amplitudes.md, concepts/magic-states.md, concepts/toponium.md, concepts/quantum-entanglement.md, experiments/future-colliders.md, open-questions/beyond-standard-model.md]
+sources: [2026-01-26-particle-physics-dead-dying-hard.md, 2025-11-25-magic-at-lhc.md]
 ---
 
 # Large Hadron Collider
@@ -33,10 +33,24 @@ The LHC continues running and will for at least another decade. Recent improveme
 
 Michelangelo Mangano (CERN): "The fact that it's not giving positive results does not mean we are stuck, dead, or wasting our time."
 
+## Quantum Information at the LHC (2023–2025)
+
+Seventeen years after startup, the LHC has opened a new frontier: using particle collisions to study quantum information. Ninety million times a year, proton collisions produce top quark and anti-top quark pairs — the heaviest known elementary particles — that are [quantum entangled](../concepts/quantum-entanglement.md). Because top quarks decay before combining with other quarks, their quantum states can be directly recorded.
+
+Key milestones:
+- **2023:** ATLAS measured [entanglement](../concepts/quantum-entanglement.md) between top and anti-top quarks for the first time
+- **2025:** CMS detected [magic states](../concepts/magic-states.md) in entangled top quark pairs — the first detection of quantum magic in particle physics, demonstrating [contextuality](../concepts/contextuality.md) in collider data
+- **2025:** CMS (March) and ATLAS (July) discovered [toponium](../concepts/toponium.md), a top-antitop bound state predicted in 1990 but considered too subtle for LHC detection — an unexpected spin-off of quantum information measurements
+
+[Alan Barr](../people/alan-barr.md) (Oxford) frames this as treating "the process of colliding things together and forming new particles as a quantum processor." [Regina Demina](../people/regina-demina.md) (Rochester) described it as "like a gold rush right now."
+
+Open questions include whether entanglement persists through top quark decay, and whether the [Page-Wootters mechanism](../concepts/page-wootters-mechanism.md) — emergent time from entanglement — could be demonstrated with elementary particles.
+
 ## Legacy
 
-The LHC confirmed the Standard Model with exquisite precision but produced no evidence of new physics, triggering a decade-long crisis. This has motivated proposals for [future colliders](../experiments/future-colliders.md) and a shift toward amplitude-based theoretical approaches.
+The LHC confirmed the Standard Model with exquisite precision but produced no evidence of new physics, triggering a decade-long crisis. This has motivated proposals for [future colliders](../experiments/future-colliders.md), a shift toward amplitude-based theoretical approaches, and most recently, a convergence with quantum information theory.
 
 ## Sources
 
 - [Is Particle Physics Dead, Dying, or Just Hard?](../raw/articles/2026-01-26-particle-physics-dead-dying-hard.md)
+- [Particle Physicists Detect 'Magic' at the Large Hadron Collider](../raw/articles/2025-11-25-magic-at-lhc.md)

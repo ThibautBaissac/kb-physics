@@ -5,8 +5,8 @@ type: open-question
 evidence: secondary
 created_at: 2026-04-07
 updated_at: 2026-04-07
-related: [concepts/de-sitter-space.md, concepts/anti-de-sitter-space.md, concepts/holography.md, concepts/cosmological-horizon.md, theories/quantum-field-theory.md, theories/string-theory.md, open-questions/testability-of-string-theory.md, open-questions/measurement-problem.md]
-sources: [2026-03-30-de-sitter-space-quantum-mechanics.md]
+related: [concepts/de-sitter-space.md, concepts/anti-de-sitter-space.md, concepts/holography.md, concepts/cosmological-horizon.md, concepts/hilbert-space.md, concepts/island-formula.md, theories/quantum-field-theory.md, theories/string-theory.md, open-questions/testability-of-string-theory.md, open-questions/measurement-problem.md]
+sources: [2026-03-30-de-sitter-space-quantum-mechanics.md, 2025-11-19-observer-free-universe-paradox.md]
 ---
 
 # Quantum Gravity in de Sitter Space
@@ -27,9 +27,13 @@ In flat space and [anti-de Sitter space](../concepts/anti-de-sitter-space.md), p
 
 5. **Particle instability:** Even massless photons can be composed of massive particles in de Sitter space (Penedones & [Loparco](../people/manuel-loparco.md), 2025), implying particles can spontaneously decay and re-form.
 
-6. **The empty Hilbert space puzzle:** When [Tom Hartman](../people/tom-hartman.md) (Stanford) applies holographic methods to de Sitter space, the result suggests it "wants to not have any states in it" — contradicting the particle-filled universe we observe.
+6. **The empty Hilbert space puzzle:** When [Tom Hartman](../people/tom-hartman.md) (Stanford) applies holographic methods to de Sitter space, the result suggests it "wants to not have any states in it" — contradicting the particle-filled universe we observe. This connects directly to [Maldacena](../people/juan-maldacena.md)'s 2019 [island formula](../concepts/island-formula.md) result showing closed universes have one-dimensional [Hilbert spaces](../concepts/hilbert-space.md).
 
 ## Current Approaches
+
+### Observer-Dependent Boundaries
+
+[Edgar Shaghoulian](../people/edgar-shaghoulian.md) (UC Santa Cruz) proposed that introducing an observer into a closed universe restores its informational complexity, analogous to how subdivisions enlarge Hilbert spaces in topological field theories. [Ying Zhao](../people/ying-zhao.md), [Daniel Harlow](../people/daniel-harlow.md), and Usatyuk (MIT, 2025) formalized this: the observer introduces a boundary around itself, expanding the Hilbert space. If correct, this implies observer-independent descriptions of closed universes may be impossible — a fundamental shift from physics' traditional pursuit of an objective "view from nowhere."
 
 ### Black Hole Warm-Up
 
@@ -55,3 +59,4 @@ The problem remains wide open, but researchers express growing optimism. Hartman
 ## Sources
 
 - [In Expanding de Sitter Space, Quantum Mechanics Gets Even More Elusive](../raw/articles/2026-03-30-de-sitter-space-quantum-mechanics.md)
+- [Cosmic Paradox Reveals the Awful Consequence of an Observer-Free Universe](../raw/articles/2025-11-19-observer-free-universe-paradox.md)

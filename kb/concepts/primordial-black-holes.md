@@ -5,8 +5,8 @@ type: concept
 evidence: secondary
 created_at: 2026-04-07
 updated_at: 2026-04-07
-related: [concepts/hawking-radiation.md, concepts/black-hole-entropy.md, concepts/cosmic-inflation.md, theories/standard-model.md, experiments/km3net-neutrino-detection.md, open-questions/beyond-standard-model.md]
-sources: [2026-01-23-monster-neutrino-primordial-black-holes.md]
+related: [concepts/hawking-radiation.md, concepts/black-hole-entropy.md, concepts/cosmic-inflation.md, theories/standard-model.md, experiments/km3net-neutrino-detection.md, experiments/james-webb-space-telescope.md, open-questions/beyond-standard-model.md, open-questions/supermassive-black-hole-origins.md]
+sources: [2026-01-23-monster-neutrino-primordial-black-holes.md, 2025-09-12-naked-black-hole-rewrites-universe.md]
 ---
 
 # Primordial Black Holes
@@ -41,6 +41,13 @@ A PBH completing its evaporation produces a dramatic final explosion, releasing 
 - **Mars orbital wobbles:** Kaiser proposes spacecraft around Mars could detect gravitational perturbations from nearby PBHs
 - **Exotic particle searches:** Dark photons and dark electrons could slow Hawking radiation, meaning more PBHs may be evaporating today — Andrea Thamm and colleagues estimate a ">90% chance" of spotting such evaporation within ten years
 
+## Connection to Early Supermassive Black Holes
+
+The [James Webb Space Telescope](../experiments/james-webb-space-telescope.md) discovery of QSO1 — a 50-million-solar-mass black hole without a galaxy at 750 million years after the Big Bang — has renewed interest in PBHs as seeds for supermassive black holes. Hawking's 1971 proposal that the Big Bang created black holes from density fluctuations is one of several competing explanations for QSO1's existence — see [Supermassive Black Hole Origins](../open-questions/supermassive-black-hole-origins.md).
+
+[Priyamvada Natarajan](../people/priyamvada-natarajan.md) (Yale) argues PBHs likely represent only a tiny fraction of dark matter but acknowledges their potential role in seeding early cosmic structures.
+
 ## Sources
 
 - [Monster Neutrino Could Be a Messenger of Ancient Black Holes](../raw/articles/2026-01-23-monster-neutrino-primordial-black-holes.md)
+- [A Single, 'Naked' Black Hole Rewrites the History of the Universe](../raw/articles/2025-09-12-naked-black-hole-rewrites-universe.md)
