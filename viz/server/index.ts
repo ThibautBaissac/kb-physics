@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { readdir, readFile } from 'fs/promises';
+import { readdir, readFile, writeFile, unlink } from 'fs/promises';
 import { join, resolve } from 'path';
 import { existsSync, readFileSync } from 'fs';
 import { query } from '@anthropic-ai/claude-agent-sdk';
@@ -9,6 +9,7 @@ const __dirname = import.meta.dirname;
 const KB_PATH = resolve(__dirname, '../../kb');
 const ARTIFACTS_PATH = resolve(__dirname, '../artifacts');
 const AGENT_PROMPT_PATH = resolve(__dirname, 'agent-prompt.md');
+const CHATS_PATH = resolve(__dirname, '../chats');
 
 // Load .env from project root
 const envPath = resolve(__dirname, '../../.env');
@@ -67,7 +68,7 @@ app.post('/api/query', async (req, res) => {
 
   try {
     const stream = query({
-      prompt: `${systemPrompt}\n\n---\n\nUser question: ${prompt}`,
+      prompt,
       options: {
         abortController,
         cwd: KB_PATH,
@@ -75,7 +76,7 @@ app.post('/api/query', async (req, res) => {
         allowedTools: ['Read', 'Glob', 'Grep', 'Write'],
         permissionMode: 'acceptEdits',
         model: 'claude-sonnet-4-5-20250929',
-        maxTurns: 15,
+        maxTurns: 50,
         systemPrompt: {
           type: 'preset',
           preset: 'claude_code',
@@ -85,14 +86,38 @@ app.post('/api/query', async (req, res) => {
     });
 
     for await (const message of stream) {
-      if (message.type === 'assistant' && message.message?.content) {
-        for (const block of message.message.content) {
-          if ('text' in block && block.text) {
-            res.write(`data: ${JSON.stringify({ type: 'text', content: block.text })}\n\n`);
+      if (message.type === 'assistant') {
+        const content = (message as any).message?.content;
+        if (Array.isArray(content)) {
+          for (const block of content) {
+            if (block.type === 'text' && block.text) {
+              res.write(`data: ${JSON.stringify({ type: 'text', content: block.text })}\n\n`);
+            } else if (block.type === 'tool_use') {
+              const name = block.name || '';
+              const input = block.input || {};
+              let detail = '';
+              if (name === 'Read' && input.file_path) detail = input.file_path.replace(/.*\/kb\//, 'kb/');
+              else if (name === 'Glob' && input.pattern) detail = input.pattern;
+              else if (name === 'Grep' && input.pattern) detail = `"${input.pattern}"`;
+              else if (name === 'Write' && input.file_path) detail = input.file_path.replace(/.*\/viz\//, 'viz/');
+              res.write(`data: ${JSON.stringify({ type: 'tool', tool: name, detail })}\n\n`);
+            }
           }
         }
-      } else if (message.type === 'result' && 'result' in message && message.result) {
-        res.write(`data: ${JSON.stringify({ type: 'text', content: message.result })}\n\n`);
+      } else if (message.type === 'result') {
+        const result = (message as any).result;
+        const subtype = (message as any).subtype;
+        const errors = (message as any).errors;
+        if (result) {
+          res.write(`data: ${JSON.stringify({ type: 'text', content: result })}\n\n`);
+        }
+        if (subtype === 'error_max_turns') {
+          res.write(`data: ${JSON.stringify({ type: 'error', content: 'Agent reached max turns limit. The task may be too complex for a single query. Try a more specific question.' })}\n\n`);
+        }
+        if (errors?.length) {
+          console.error('[result errors]', errors);
+          res.write(`data: ${JSON.stringify({ type: 'error', content: errors.join('\n') })}\n\n`);
+        }
       }
     }
   } catch (err: any) {
@@ -155,11 +180,65 @@ app.delete('/api/artifacts/:filename', async (req, res) => {
       res.status(403).json({ error: 'Forbidden' });
       return;
     }
-    const { unlink } = await import('fs/promises');
     await unlink(filePath);
     res.json({ deleted: req.params.filename });
   } catch {
     res.status(404).json({ error: 'Artifact not found' });
+  }
+});
+
+// GET /api/chats — list all saved chats (metadata only)
+app.get('/api/chats', async (_req, res) => {
+  try {
+    const files = await readdir(CHATS_PATH);
+    const chats = [];
+    for (const f of files.filter(f => f.endsWith('.json'))) {
+      try {
+        const raw = await readFile(join(CHATS_PATH, f), 'utf-8');
+        const chat = JSON.parse(raw);
+        chats.push({
+          id: chat.id,
+          title: chat.title,
+          created: chat.created,
+          messageCount: chat.messages?.length || 0,
+        });
+      } catch { /* skip */ }
+    }
+    chats.sort((a, b) => (b.created || '').localeCompare(a.created || ''));
+    res.json(chats);
+  } catch {
+    res.json([]);
+  }
+});
+
+// GET /api/chats/:id — get full chat
+app.get('/api/chats/:id', async (req, res) => {
+  try {
+    const content = await readFile(join(CHATS_PATH, `${req.params.id}.json`), 'utf-8');
+    res.json(JSON.parse(content));
+  } catch {
+    res.status(404).json({ error: 'Chat not found' });
+  }
+});
+
+// PUT /api/chats/:id — save/update a chat
+app.put('/api/chats/:id', async (req, res) => {
+  try {
+    const filePath = join(CHATS_PATH, `${req.params.id}.json`);
+    await writeFile(filePath, JSON.stringify(req.body, null, 2));
+    res.json({ saved: req.params.id });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// DELETE /api/chats/:id — delete a chat
+app.delete('/api/chats/:id', async (req, res) => {
+  try {
+    await unlink(join(CHATS_PATH, `${req.params.id}.json`));
+    res.json({ deleted: req.params.id });
+  } catch {
+    res.status(404).json({ error: 'Chat not found' });
   }
 });
 

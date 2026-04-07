@@ -495,6 +495,132 @@ body {
   color: var(--text-secondary);
 }
 
+/* Agent status indicator */
+.agent-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.agent-spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.agent-status-text {
+  flex: 1;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.agent-elapsed {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+}
+
+.agent-tool-log {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.agent-tool-entry {
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 1px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.7;
+}
+
+.agent-tool-entry:last-child {
+  opacity: 1;
+  color: var(--text-secondary);
+}
+
+/* Chat list (history) */
+.chat-list {
+  border-bottom: 1px solid var(--border);
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.chat-list-empty {
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.chat-list-item {
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.chat-list-item:hover {
+  background: var(--bg-hover);
+}
+
+.chat-list-item.active {
+  background: var(--accent-dim);
+  border-left: 2px solid var(--accent);
+}
+
+.chat-list-title {
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-list-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.chat-list-delete {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0 2px;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.chat-list-item:hover .chat-list-delete {
+  opacity: 1;
+}
+
+.chat-list-delete:hover {
+  color: #ff6b6b;
+}
+
 .chat-input-area {
   padding: 12px 16px;
   border-top: 1px solid var(--border);

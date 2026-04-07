@@ -10,3 +10,5 @@ viz/artifacts/*.json
 !viz/artifacts/.gitkeep
 viz/.server.pid
 viz/.vite.pid
+viz/chats/*.json
+!viz/chats/.gitkeep
