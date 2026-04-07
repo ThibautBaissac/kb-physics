@@ -26,6 +26,16 @@ Convert non-markdown files before ingesting:
 # requires: pandoc (PDF/HTML/DOCX), python-pptx (slides)
 ```
 
+Batch-fetch multiple articles at once:
+```bash
+# From a file (one URL per line, # comments and blank lines ignored):
+./kb/scripts/batch-fetch.sh urls.txt
+
+# From arguments:
+./kb/scripts/batch-fetch.sh "https://url1" "https://url2" "https://url3"
+```
+Each URL runs `/kb:fetch` in its own non-interactive Claude session (`claude -p`), auto-confirming ingestion. Prints progress and a pass/fail summary at the end.
+
 ## Architecture
 
 Three layers with strict ownership:
