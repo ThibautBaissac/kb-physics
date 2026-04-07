@@ -8,7 +8,7 @@ A personal LLM-maintained knowledge base about physics, cosmology, and quantum p
 
 ## Commands
 
-All operations are slash commands defined in `.claude/commands/kb/`:
+Operations are slash commands (`.claude/commands/kb/`) and skills (`.claude/skills/`):
 
 | Command | Usage | Purpose |
 |---------|-------|---------|
@@ -16,6 +16,8 @@ All operations are slash commands defined in `.claude/commands/kb/`:
 | `/kb:ingest` | `/kb:ingest kb/raw/articles/2026-04-06-doc.md` | 7-step process: read source, create/update wiki pages, update index + log |
 | `/kb:query` | `/kb:query What is the holographic principle?` | Navigate KB, synthesize answer with citations, optionally file as new page |
 | `/kb:lint` | `/kb:lint` or `/kb:lint fix` | Health check: contradictions, orphans, stale content, broken links |
+
+`/kb:query` is a skill (`.claude/skills/kb-query/`) — it auto-activates when you ask physics questions.
 
 Convert non-markdown files before ingesting:
 ```bash

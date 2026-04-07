@@ -100,11 +100,13 @@ publication: Quanta Magazine
 ```
 .
 ├── .claude/
-│   └── commands/kb/        # Slash commands (run from repo root)
-│       ├── fetch.md        #   /kb:fetch  — URL → raw source → wiki pages
-│       ├── ingest.md       #   /kb:ingest — raw source → wiki pages
-│       ├── query.md        #   /kb:query  — answer with citations
-│       └── lint.md         #   /kb:lint   — health check + auto-fix
+│   ├── commands/kb/        # Slash commands (run from repo root)
+│   │   ├── fetch.md        #   /kb:fetch  — URL → raw source → wiki pages
+│   │   ├── ingest.md       #   /kb:ingest — raw source → wiki pages
+│   │   └── lint.md         #   /kb:lint   — health check + auto-fix
+│   └── skills/
+│       └── kb-query/       # Skill (auto-activates on physics questions)
+│           └── SKILL.md    #   /kb:query  — answer with citations
 │
 ├── kb/
 │   ├── CLAUDE.md           # Schema — conventions, page formats, operations
@@ -131,9 +133,9 @@ publication: Quanta Magazine
 └── .gitignore
 ```
 
-## Slash Commands
+## Slash Commands & Skills
 
-All operations are standardized as Claude Code slash commands in `.claude/commands/kb/`.
+Operations are slash commands (`.claude/commands/kb/`) and skills (`.claude/skills/`).
 
 | Command | Usage | What it does |
 |---------|-------|-------------|
@@ -141,6 +143,8 @@ All operations are standardized as Claude Code slash commands in `.claude/comman
 | `/kb:ingest` | `/kb:ingest kb/raw/articles/2026-03-23-doc.md` | Reads source, creates/updates wiki pages, updates index and log |
 | `/kb:query` | `/kb:query What is quantum entanglement?` | Navigates the KB, synthesizes an answer with citations, optionally files it as a new page |
 | `/kb:lint` | `/kb:lint` or `/kb:lint fix` | Checks for contradictions, orphans, stale content, missing descriptions, broken links |
+
+`/kb:query` is a **skill** — it also auto-activates when you ask physics questions without explicitly invoking it.
 
 ## Frontmatter Reference
 

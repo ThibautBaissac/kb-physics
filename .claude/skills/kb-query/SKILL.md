@@ -1,5 +1,11 @@
 ---
-description: Answer a question from the KB with citations, optionally filing the answer as a new page
+name: kb-query
+description: >-
+  Answer a question from the KB with citations, optionally filing the answer as a new page.
+  Use when the user asks a physics question, wants to query the knowledge base,
+  or asks about topics covered in the KB (theories, concepts, people, experiments, open questions).
+  WHEN NOT: Ingesting new sources (use kb:ingest), fetching articles (use kb:fetch),
+  or health-checking the KB (use kb:lint).
 argument-hint: "<your question>"
 allowed-tools: Read, Write, Edit, Glob, Grep
 effort: medium
