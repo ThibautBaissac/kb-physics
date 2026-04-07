@@ -1,10 +1,7 @@
 import { renderGraph } from './renderers/graph.js';
 import { renderTimeline } from './renderers/timeline.js';
-import { renderDiagram } from './renderers/diagram.js';
 import { renderTable } from './renderers/table.js';
 import { initChat } from './chat.js';
-
-const RENDERERS = { graph: renderGraph, timeline: renderTimeline, diagram: renderDiagram, table: renderTable };
 const TYPE_COLORS = {
   theory: '#ff6b6b',
   concept: '#4ecdc4',
@@ -237,18 +234,29 @@ async function loadArtifacts() {
 }
 
 function displayArtifact(artifact) {
-  const renderer = RENDERERS[artifact.type];
-  if (!renderer) return;
-
   if (currentRenderer?.destroy) currentRenderer.destroy();
   const viewer = document.getElementById('viewer');
+  viewer.innerHTML = '';
 
-  // Switch view tab
-  document.querySelectorAll('.view-tab').forEach(t => {
-    t.classList.toggle('active', t.dataset.view === artifact.type);
-  });
-  currentView = artifact.type;
-  currentRenderer = renderer(viewer, artifact.data || artifact);
+  if (artifact.html) {
+    // HTML artifact — render in sandboxed iframe
+    const iframe = document.createElement('iframe');
+    iframe.className = 'artifact-iframe';
+    iframe.sandbox = 'allow-scripts';
+    iframe.srcdoc = artifact.html;
+    viewer.appendChild(iframe);
+  } else if (artifact.data) {
+    // Legacy JSON artifact — try to render as table fallback
+    const pre = document.createElement('pre');
+    pre.style.cssText = 'padding:20px;color:var(--text-secondary);font-size:12px;overflow:auto;height:100%';
+    pre.textContent = JSON.stringify(artifact.data, null, 2);
+    viewer.appendChild(pre);
+  }
+
+  // Deactivate view tabs
+  document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+  currentView = 'artifact';
+  currentRenderer = { destroy() { viewer.innerHTML = ''; } };
 }
 
 // View tab clicks
