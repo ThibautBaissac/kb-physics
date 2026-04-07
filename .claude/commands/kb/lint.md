@@ -50,9 +50,14 @@ Scan for each of these issue types:
 ### Source metadata gaps
 - Are there raw sources missing required fields (`url`, `author`, `publication`)?
 
-### Missing concepts
-- Are there terms frequently referenced across pages that don't have their own concept page in `kb/concepts/`?
-- Are there raw sources that were never ingested (present in `kb/raw/` but not referenced in any page's `sources` frontmatter)?
+### Category gaps
+Scan for named entities referenced across 2+ compiled pages that lack their own dedicated page:
+- **Missing theory pages**: Named physics theories or frameworks referenced 2+ times but no `kb/theories/` page exists (e.g., "Loop Quantum Gravity" mentioned in 5 concept pages but no theory page)
+- **Missing experiment pages**: Named experiments, observatories, or instruments referenced 2+ times but no `kb/experiments/` page exists
+- **Missing concept pages**: Terms frequently cross-referenced but no `kb/concepts/` page exists
+- **Missing people pages**: Named physicists mentioned 2+ times but no `kb/people/` page exists
+- **Missing overview pages**: 4+ pages sharing a common parent theme with no hub linking them (e.g., multiple QM interpretation pages but no "Interpretations of Quantum Mechanics" overview)
+- **Uningested sources**: Raw sources present in `kb/raw/` but not referenced in any compiled page's `sources` frontmatter
 
 ### Broken links
 - Do all relative markdown links point to files that actually exist?
@@ -92,8 +97,12 @@ Print a structured report:
 ### Source Metadata Gaps (X found)
 - <raw source path> — missing: <list of missing fields>
 
-### Missing Concepts (X found)
-- "<term>" — referenced in <page paths> but no concept page exists
+### Category Gaps (X found)
+- Missing theory: "<name>" — referenced in <page paths>, no `kb/theories/` page
+- Missing experiment: "<name>" — referenced in <page paths>, no `kb/experiments/` page
+- Missing concept: "<term>" — referenced in <page paths>, no `kb/concepts/` page
+- Missing person: "<name>" — referenced in <page paths>, no `kb/people/` page
+- Missing overview: "<theme>" — 4+ pages share this theme with no hub (e.g., <page paths>)
 
 ### Uningested Sources (X found)
 - <raw source path> — not referenced by any compiled page
@@ -109,7 +118,7 @@ Print a structured report:
 - Critical (contradictions, near-duplicates): X
 - Trust (missing evidence tiers, source metadata gaps): X
 - Maintenance (orphans, stale, broken links, missing descriptions, related format): X
-- Gaps (missing concepts, uningested sources): X
+- Gaps (missing theories/experiments/concepts/people/overviews, uningested sources): X
 ```
 
 ## Step 4: Fix (if requested)
@@ -125,7 +134,7 @@ Then automatically fix:
 - Add orphan pages to `kb/index.md`
 - Remove index entries for deleted pages
 - Fix broken links where the target can be inferred
-- Create stub concept pages for missing concepts
+- Create stub pages for all category gaps: concept stubs in `kb/concepts/`, theory stubs in `kb/theories/`, experiment stubs in `kb/experiments/`, people stubs in `kb/people/`. Stubs must have valid frontmatter (title, description, type, evidence, created_at, updated_at, related, sources) and a single paragraph summarizing what the page should cover — marked with a `<!-- stub: needs enrichment via kb:ingest -->` comment so future ingestions know to expand them
 - Update `updated_at` on pages you touch
 - Generate `description` for pages that are missing one
 - Add missing `evidence` fields (infer from source type — raw articles → `secondary`, raw papers → `primary`, raw talks → `community`)

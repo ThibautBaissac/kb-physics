@@ -35,14 +35,34 @@ Based on the source content, determine:
 - **Open question pages**: Does this source discuss unsolved problems or active debates in physics? Check `kb/open-questions/`.
 - **Existing pages**: Which existing pages need backlinks or content updates to reflect this new source?
 
-### Page-splitting criteria
+### Page creation criteria by category
 
-Create a **separate concept page** only when at least one of these is true:
-- The concept is already referenced by 2+ existing pages in the KB
-- The concept is a distinct, reusable idea likely to be referenced by future sources (not just a detail of this one source)
-- The concept would need more than 2 paragraphs to explain properly
+Apply these thresholds independently for each category. Prefer fewer, richer pages over many thin stubs — when in doubt, keep a topic as a section in the summary page and only extract it once the threshold is clearly met.
 
-If a topic is only relevant within the context of this single source, keep it as a section in the summary page instead. Prefer fewer, richer pages over many thin stubs.
+**Concept page** (`kb/concepts/`) — create when at least one is true:
+- The concept is already referenced by 2+ existing KB pages
+- The concept is a distinct, reusable idea likely to appear in future sources
+- It would need more than 2 paragraphs to explain properly
+
+**Theory page** (`kb/theories/`) — create when at least one is true:
+- A named physics theory or framework is a central topic of this source
+- The theory is referenced in 2+ existing KB pages but has no dedicated theory page yet
+- The theory has distinct predictions, assumptions, or open problems worth tracking separately
+
+**Experiment page** (`kb/experiments/`) — create when at least one is true:
+- A named experiment, observatory, detector, or instrument is a central topic of this source
+- The experiment is referenced in 2+ existing KB pages but has no dedicated experiment page yet
+- The experiment has a distinct status (ongoing, proposed, completed) and unique scientific goals
+
+**People page** (`kb/people/`) — create when at least one is true:
+- A physicist is a named contributor to results described in this source
+- They are referenced in 2+ existing KB pages but have no dedicated people page yet
+
+**Overview page** (`kb/concepts/` or `kb/theories/`) — create when:
+- 4+ existing pages share a common parent theme with no hub linking them (e.g., multiple QM interpretation pages with no "Interpretations of Quantum Mechanics" overview)
+
+**Open question page** (`kb/open-questions/`) — create when:
+- The source explicitly frames an unsolved problem or active scientific debate as a distinct research frontier
 
 ### Near-duplicate check
 
