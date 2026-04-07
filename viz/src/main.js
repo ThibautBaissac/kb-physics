@@ -133,6 +133,38 @@ function initSearch() {
   });
 }
 
+// Chat panel resize
+function initChatResize() {
+  const handle = document.getElementById('chat-resize');
+  const app = document.getElementById('app');
+  let dragging = false;
+
+  handle.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    dragging = true;
+    handle.classList.add('dragging');
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!dragging) return;
+    const appRect = app.getBoundingClientRect();
+    const newWidth = Math.max(280, Math.min(appRect.width * 0.7, appRect.right - e.clientX));
+    app.style.setProperty('--chat-width', newWidth + 'px');
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    handle.classList.remove('dragging');
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+    // Re-render graph after resize
+    if (currentView === 'graph') switchView('graph');
+  });
+}
+
 // Sidebar & Chat toggles
 function initToggles() {
   document.getElementById('btn-sidebar').addEventListener('click', () => {
@@ -233,6 +265,7 @@ async function init() {
   initTypeFilters();
   initSearch();
   initToggles();
+  initChatResize();
   initViewTabs();
   initChat();
   loadArtifacts();

@@ -170,6 +170,7 @@ body {
   position: relative;
   overflow: hidden;
   background: var(--bg-primary);
+  min-height: 0;
 }
 
 #viewer svg {
@@ -265,6 +266,7 @@ body {
   border-right: 1px solid var(--border);
   overflow-y: auto;
   display: none;
+  min-height: 0;
 }
 
 #app.sidebar-open #sidebar {
@@ -324,6 +326,26 @@ body {
   border-left: 1px solid var(--border);
   display: none;
   flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.chat-resize-handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 30;
+  background: transparent;
+  transition: background 0.15s;
+}
+
+.chat-resize-handle:hover,
+.chat-resize-handle.dragging {
+  background: var(--accent);
 }
 
 #app.chat-open #chat-panel {
@@ -347,6 +369,7 @@ body {
   flex: 1;
   overflow-y: auto;
   padding: 16px;
+  min-height: 0;
 }
 
 .chat-msg {
@@ -374,7 +397,81 @@ body {
   border: 1px solid var(--border);
   padding: 8px 12px;
   border-radius: 12px 12px 12px 2px;
-  max-width: 85%;
+  max-width: 100%;
+}
+
+/* Markdown inside chat bubbles */
+.chat-msg.assistant .chat-bubble h1,
+.chat-msg.assistant .chat-bubble h2,
+.chat-msg.assistant .chat-bubble h3,
+.chat-msg.assistant .chat-bubble h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 10px 0 4px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 3px;
+}
+
+.chat-msg.assistant .chat-bubble h1:first-child,
+.chat-msg.assistant .chat-bubble h2:first-child,
+.chat-msg.assistant .chat-bubble h3:first-child {
+  margin-top: 0;
+}
+
+.chat-msg.assistant .chat-bubble p {
+  margin: 6px 0;
+}
+
+.chat-msg.assistant .chat-bubble ul,
+.chat-msg.assistant .chat-bubble ol {
+  margin: 4px 0;
+  padding-left: 18px;
+}
+
+.chat-msg.assistant .chat-bubble li {
+  margin: 2px 0;
+}
+
+.chat-msg.assistant .chat-bubble strong {
+  color: var(--text-primary);
+}
+
+.chat-msg.assistant .chat-bubble a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.chat-msg.assistant .chat-bubble a:hover {
+  text-decoration: underline;
+}
+
+.chat-msg.assistant .chat-bubble code {
+  background: var(--bg-primary);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.chat-msg.assistant .chat-bubble pre {
+  background: var(--bg-primary);
+  padding: 8px 10px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 6px 0;
+}
+
+.chat-msg.assistant .chat-bubble pre code {
+  padding: 0;
+  background: none;
+}
+
+.chat-msg.assistant .chat-bubble blockquote {
+  border-left: 2px solid var(--accent);
+  margin: 6px 0;
+  padding-left: 10px;
+  color: var(--text-secondary);
 }
 
 .chat-input-area {

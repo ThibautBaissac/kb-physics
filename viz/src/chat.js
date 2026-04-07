@@ -1,3 +1,11 @@
+import { marked } from 'marked';
+
+// Configure marked for safe, clean output
+marked.setOptions({
+  breaks: true,
+  gfm: true,
+});
+
 export function initChat() {
   const input = document.getElementById('chat-input');
   const sendBtn = document.getElementById('chat-send');
@@ -14,6 +22,7 @@ export function initChat() {
     appendMessage('user', prompt);
     const assistantEl = appendMessage('assistant', '');
     const bubble = assistantEl.querySelector('.chat-bubble');
+    let rawText = '';
 
     try {
       const res = await fetch('/api/query', {
@@ -45,11 +54,17 @@ export function initChat() {
           try {
             const data = JSON.parse(line.slice(6));
             if (data.type === 'text') {
-              bubble.textContent += data.content;
+              rawText += data.content;
+              bubble.innerHTML = marked.parse(rawText);
               messages.scrollTop = messages.scrollHeight;
             }
           } catch { /* skip malformed lines */ }
         }
+      }
+
+      // Final render pass
+      if (rawText) {
+        bubble.innerHTML = marked.parse(rawText);
       }
     } catch (err) {
       bubble.textContent = `Connection error: ${err.message}. Is the server running?`;
@@ -63,7 +78,14 @@ export function initChat() {
   function appendMessage(role, text) {
     const div = document.createElement('div');
     div.className = `chat-msg ${role}`;
-    div.innerHTML = `<div class="chat-bubble">${escapeHtml(text)}</div>`;
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-bubble';
+    if (role === 'user') {
+      bubble.textContent = text;
+    } else {
+      bubble.innerHTML = text ? marked.parse(text) : '';
+    }
+    div.appendChild(bubble);
     messages.appendChild(div);
     messages.scrollTop = messages.scrollHeight;
     return div;
@@ -76,10 +98,4 @@ export function initChat() {
       sendQuery();
     }
   });
-}
-
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
 }
