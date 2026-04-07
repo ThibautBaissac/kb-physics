@@ -1,10 +1,4 @@
-const TYPE_COLORS = {
-  theory: '#ff6b6b',
-  concept: '#4ecdc4',
-  person: '#45b7d1',
-  experiment: '#7ee787',
-  'open-question': '#feca57',
-};
+import { TYPE_COLORS } from '../constants.js';
 
 export function renderTable(container, data) {
   container.innerHTML = '';
@@ -34,6 +28,10 @@ export function renderTable(container, data) {
 
   let sortCol = -1;
   let sortAsc = true;
+  let currentActiveTypes = null;
+  let currentSearchQuery = '';
+  const typeColIdx = columns.indexOf('Type');
+  const titleColIdx = columns.indexOf('Title');
 
   const wrapper = document.createElement('div');
   wrapper.style.cssText = 'height:100%;overflow:auto;padding:16px;';
@@ -108,9 +106,16 @@ export function renderTable(container, data) {
   function renderRows() {
     const filterValues = filters.map(f => f.value.toLowerCase());
 
-    let filtered = rows.filter(row =>
-      row.every((cell, i) => !filterValues[i] || cell.toLowerCase().includes(filterValues[i]))
-    );
+    let filtered = rows.filter(row => {
+      // Per-column text filters
+      const colMatch = row.every((cell, i) => !filterValues[i] || cell.toLowerCase().includes(filterValues[i]));
+      if (!colMatch) return false;
+      // External type filter
+      if (currentActiveTypes && typeColIdx >= 0 && !currentActiveTypes.has(row[typeColIdx])) return false;
+      // External search filter
+      if (currentSearchQuery && titleColIdx >= 0 && !row[titleColIdx].toLowerCase().includes(currentSearchQuery)) return false;
+      return true;
+    });
 
     if (sortCol >= 0) {
       filtered.sort((a, b) => {
@@ -167,12 +172,9 @@ export function renderTable(container, data) {
 
   return {
     updateFilter(activeTypes, searchQuery) {
-      // Apply type filter to table if it has a Type column
-      const typeColIdx = columns.indexOf('Type');
-      if (typeColIdx >= 0) {
-        filters[typeColIdx].value = '';
-        renderRows();
-      }
+      currentActiveTypes = activeTypes;
+      currentSearchQuery = (searchQuery || '').toLowerCase();
+      renderRows();
     },
     destroy() { container.innerHTML = ''; }
   };

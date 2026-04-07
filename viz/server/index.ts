@@ -1,9 +1,29 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import { readdir, readFile, writeFile, unlink } from 'fs/promises';
 import { join, resolve } from 'path';
-import { existsSync, readFileSync } from 'fs';
+import { existsSync } from 'fs';
 import { query } from '@anthropic-ai/claude-agent-sdk';
+
+// Minimal types for the SDK stream messages we consume.
+// Importing from the SDK fails tsc due to missing peer dep types
+// (@anthropic-ai/sdk, @modelcontextprotocol/sdk).
+interface ContentBlockText { type: 'text'; text: string }
+interface ContentBlockToolUse { type: 'tool_use'; name: string; input: Record<string, string> }
+interface SDKAssistantMessage {
+  type: 'assistant';
+  message: { content: Array<ContentBlockText | ContentBlockToolUse> };
+}
+interface SDKResultMessageSuccess {
+  type: 'result'; subtype: 'success'; result: string;
+}
+interface SDKResultMessageError {
+  type: 'result'; subtype: 'error_during_execution' | 'error_max_turns' | 'error_max_budget_usd'; errors: string[];
+}
+type SDKResultMessage = SDKResultMessageSuccess | SDKResultMessageError;
+
+dotenv.config({ path: resolve(import.meta.dirname, '../../.env') });
 
 const __dirname = import.meta.dirname;
 const KB_PATH = resolve(__dirname, '../../kb');
@@ -11,32 +31,16 @@ const ARTIFACTS_PATH = resolve(__dirname, '../artifacts');
 const AGENT_PROMPT_PATH = resolve(__dirname, 'agent-prompt.md');
 const CHATS_PATH = resolve(__dirname, '../chats');
 
-// Load .env from project root
-const envPath = resolve(__dirname, '../../.env');
-if (existsSync(envPath)) {
-  const envKeys: string[] = [];
-  for (const rawLine of readFileSync(envPath, 'utf-8').split('\n')) {
-    let trimmed = rawLine.replace(/\r$/, '').trim();
-    if (!trimmed || trimmed.startsWith('#')) continue;
-    // Handle "export KEY=VALUE" syntax
-    if (trimmed.startsWith('export ')) trimmed = trimmed.slice(7).trim();
-    const eqIdx = trimmed.indexOf('=');
-    if (eqIdx === -1) continue;
-    const key = trimmed.slice(0, eqIdx).trim();
-    const val = trimmed.slice(eqIdx + 1).trim().replace(/^["']|["']$/g, '');
-    if (key && val) {
-      process.env[key] = val;
-      envKeys.push(key);
-    }
-  }
-  console.log(`Loaded .env (${envKeys.length} vars: ${envKeys.join(', ')})`);
-} else {
-  console.log(`No .env found at ${envPath}`);
-}
-
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+/** Resolve a user-supplied filename/id within a base directory, rejecting traversal. */
+function safePath(base: string, untrusted: string, ext = '.json'): string | null {
+  const resolved = resolve(base, untrusted.endsWith(ext) ? untrusted : untrusted + ext);
+  if (!resolved.startsWith(base + '/') && resolved !== base) return null;
+  return resolved;
+}
 
 // POST /api/query — send a prompt to the Claude Agent SDK
 app.post('/api/query', async (req, res) => {
@@ -87,14 +91,15 @@ app.post('/api/query', async (req, res) => {
 
     for await (const message of stream) {
       if (message.type === 'assistant') {
-        const content = (message as any).message?.content;
+        const assistantMsg = message as SDKAssistantMessage;
+        const content = assistantMsg.message?.content;
         if (Array.isArray(content)) {
           for (const block of content) {
             if (block.type === 'text' && block.text) {
               res.write(`data: ${JSON.stringify({ type: 'text', content: block.text })}\n\n`);
             } else if (block.type === 'tool_use') {
               const name = block.name || '';
-              const input = block.input || {};
+              const input = (block.input || {}) as Record<string, string>;
               let detail = '';
               if (name === 'Read' && input.file_path) detail = input.file_path.replace(/.*\/kb\//, 'kb/');
               else if (name === 'Glob' && input.pattern) detail = input.pattern;
@@ -105,18 +110,16 @@ app.post('/api/query', async (req, res) => {
           }
         }
       } else if (message.type === 'result') {
-        const result = (message as any).result;
-        const subtype = (message as any).subtype;
-        const errors = (message as any).errors;
-        if (result) {
-          res.write(`data: ${JSON.stringify({ type: 'text', content: result })}\n\n`);
+        const resultMsg = message as SDKResultMessage;
+        if (resultMsg.subtype === 'success' && resultMsg.result) {
+          res.write(`data: ${JSON.stringify({ type: 'text', content: resultMsg.result })}\n\n`);
         }
-        if (subtype === 'error_max_turns') {
+        if (resultMsg.subtype === 'error_max_turns') {
           res.write(`data: ${JSON.stringify({ type: 'error', content: 'Agent reached max turns limit. The task may be too complex for a single query. Try a more specific question.' })}\n\n`);
         }
-        if (errors?.length) {
-          console.error('[result errors]', errors);
-          res.write(`data: ${JSON.stringify({ type: 'error', content: errors.join('\n') })}\n\n`);
+        if ('errors' in resultMsg && resultMsg.errors?.length) {
+          console.error('[result errors]', resultMsg.errors);
+          res.write(`data: ${JSON.stringify({ type: 'error', content: resultMsg.errors.join('\n') })}\n\n`);
         }
       }
     }
@@ -163,8 +166,9 @@ app.get('/api/artifacts', async (_req, res) => {
 
 // GET /api/artifacts/:filename — get full artifact
 app.get('/api/artifacts/:filename', async (req, res) => {
+  const filePath = safePath(ARTIFACTS_PATH, req.params.filename);
+  if (!filePath) { res.status(403).json({ error: 'Forbidden' }); return; }
   try {
-    const filePath = join(ARTIFACTS_PATH, req.params.filename);
     const content = await readFile(filePath, 'utf-8');
     res.json(JSON.parse(content));
   } catch {
@@ -174,12 +178,9 @@ app.get('/api/artifacts/:filename', async (req, res) => {
 
 // DELETE /api/artifacts/:filename — delete an artifact
 app.delete('/api/artifacts/:filename', async (req, res) => {
+  const filePath = safePath(ARTIFACTS_PATH, req.params.filename);
+  if (!filePath) { res.status(403).json({ error: 'Forbidden' }); return; }
   try {
-    const filePath = join(ARTIFACTS_PATH, req.params.filename);
-    if (!filePath.startsWith(ARTIFACTS_PATH) || !filePath.endsWith('.json')) {
-      res.status(403).json({ error: 'Forbidden' });
-      return;
-    }
     await unlink(filePath);
     res.json({ deleted: req.params.filename });
   } catch {
@@ -213,8 +214,10 @@ app.get('/api/chats', async (_req, res) => {
 
 // GET /api/chats/:id — get full chat
 app.get('/api/chats/:id', async (req, res) => {
+  const filePath = safePath(CHATS_PATH, req.params.id);
+  if (!filePath) { res.status(403).json({ error: 'Forbidden' }); return; }
   try {
-    const content = await readFile(join(CHATS_PATH, `${req.params.id}.json`), 'utf-8');
+    const content = await readFile(filePath, 'utf-8');
     res.json(JSON.parse(content));
   } catch {
     res.status(404).json({ error: 'Chat not found' });
@@ -223,8 +226,9 @@ app.get('/api/chats/:id', async (req, res) => {
 
 // PUT /api/chats/:id — save/update a chat
 app.put('/api/chats/:id', async (req, res) => {
+  const filePath = safePath(CHATS_PATH, req.params.id);
+  if (!filePath) { res.status(403).json({ error: 'Forbidden' }); return; }
   try {
-    const filePath = join(CHATS_PATH, `${req.params.id}.json`);
     await writeFile(filePath, JSON.stringify(req.body, null, 2));
     res.json({ saved: req.params.id });
   } catch (err: any) {
@@ -234,8 +238,10 @@ app.put('/api/chats/:id', async (req, res) => {
 
 // DELETE /api/chats/:id — delete a chat
 app.delete('/api/chats/:id', async (req, res) => {
+  const filePath = safePath(CHATS_PATH, req.params.id);
+  if (!filePath) { res.status(403).json({ error: 'Forbidden' }); return; }
   try {
-    await unlink(join(CHATS_PATH, `${req.params.id}.json`));
+    await unlink(filePath);
     res.json({ deleted: req.params.id });
   } catch {
     res.status(404).json({ error: 'Chat not found' });

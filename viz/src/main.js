@@ -2,13 +2,7 @@ import { renderGraph } from './renderers/graph.js';
 import { renderTimeline } from './renderers/timeline.js';
 import { renderTable } from './renderers/table.js';
 import { initChat } from './chat.js';
-const TYPE_COLORS = {
-  theory: '#ff6b6b',
-  concept: '#4ecdc4',
-  person: '#45b7d1',
-  experiment: '#7ee787',
-  'open-question': '#feca57',
-};
+import { TYPE_COLORS, escapeHtml } from './constants.js';
 
 let kbData = null;
 let currentView = 'graph';
@@ -48,17 +42,23 @@ function showDetail(event, d) {
     document.getElementById('viewer').appendChild(panel);
   }
 
+  const safeTitle = escapeHtml(d.title);
+  const safeDesc = escapeHtml(d.description || 'No description available.');
+  const safeType = escapeHtml(d.type);
+  const safeEvidence = d.evidence ? escapeHtml(d.evidence) : '';
+  const safeSources = d.sources?.length ? escapeHtml(d.sources.join(', ')) : '';
+
   panel.innerHTML = `
     <button class="detail-close" onclick="this.parentElement.classList.remove('open')">&times;</button>
-    <h2>${d.title}</h2>
+    <h2>${safeTitle}</h2>
     <div class="detail-meta">
-      <span class="artifact-badge" style="background:${TYPE_COLORS[d.type]}33;color:${TYPE_COLORS[d.type]}">${d.type}</span>
-      ${d.evidence ? `<span style="color:var(--text-muted)">evidence: ${d.evidence}</span>` : ''}
+      <span class="artifact-badge" style="background:${TYPE_COLORS[d.type]}33;color:${TYPE_COLORS[d.type]}">${safeType}</span>
+      ${safeEvidence ? `<span style="color:var(--text-muted)">evidence: ${safeEvidence}</span>` : ''}
     </div>
     <div class="detail-body">
-      <p>${d.description || 'No description available.'}</p>
+      <p>${safeDesc}</p>
       ${d.connections ? `<p style="margin-top:12px;color:var(--text-muted)">${d.connections} connections</p>` : ''}
-      ${d.sources?.length ? `<p style="margin-top:8px;color:var(--text-muted)">Sources: ${d.sources.join(', ')}</p>` : ''}
+      ${safeSources ? `<p style="margin-top:8px;color:var(--text-muted)">Sources: ${safeSources}</p>` : ''}
     </div>
   `;
 
@@ -157,8 +157,6 @@ function initChatResize() {
     handle.classList.remove('dragging');
     document.body.style.cursor = '';
     document.body.style.userSelect = '';
-    // Re-render graph after resize
-    if (currentView === 'graph') switchView('graph');
   });
 }
 
@@ -166,28 +164,39 @@ function initChatResize() {
 function initToggles() {
   document.getElementById('btn-sidebar').addEventListener('click', () => {
     document.getElementById('app').classList.toggle('sidebar-open');
-    // Resize viewer after layout change
-    setTimeout(() => {
-      if (currentView === 'graph') switchView('graph');
-    }, 50);
   });
 
   document.getElementById('btn-chat').addEventListener('click', () => {
     document.getElementById('app').classList.toggle('chat-open');
-    setTimeout(() => {
-      if (currentView === 'graph') switchView('graph');
-    }, 50);
   });
 
   document.getElementById('btn-chat-close').addEventListener('click', () => {
     document.getElementById('app').classList.remove('chat-open');
-    setTimeout(() => {
-      if (currentView === 'graph') switchView('graph');
-    }, 50);
   });
 }
 
-// Sidebar artifacts
+// Sidebar artifacts — bind click delegation once
+function initArtifactList() {
+  const list = document.getElementById('artifact-list');
+  list.addEventListener('click', async (e) => {
+    // Handle delete
+    const deleteBtn = e.target.closest('.artifact-delete');
+    if (deleteBtn) {
+      e.stopPropagation();
+      const filename = deleteBtn.dataset.filename;
+      const res = await fetch(`/api/artifacts/${filename}`, { method: 'DELETE' });
+      if (res.ok) loadArtifacts();
+      return;
+    }
+    // Handle load
+    const item = e.target.closest('.artifact-item');
+    if (!item) return;
+    const res = await fetch(`/api/artifacts/${item.dataset.filename}`);
+    const artifact = await res.json();
+    displayArtifact(artifact);
+  });
+}
+
 async function loadArtifacts() {
   try {
     const res = await fetch('/api/artifacts');
@@ -208,26 +217,6 @@ async function loadArtifacts() {
         <div class="artifact-meta">${a.created || ''} ${a.query ? '— ' + escapeHtml(a.query.slice(0, 50)) : ''}</div>
       </div>
     `).join('');
-
-    list.addEventListener('click', async (e) => {
-      // Handle delete
-      const deleteBtn = e.target.closest('.artifact-delete');
-      if (deleteBtn) {
-        e.stopPropagation();
-        const filename = deleteBtn.dataset.filename;
-        const res = await fetch(`/api/artifacts/${filename}`, { method: 'DELETE' });
-        if (res.ok) {
-          loadArtifacts();
-        }
-        return;
-      }
-      // Handle load
-      const item = e.target.closest('.artifact-item');
-      if (!item) return;
-      const res = await fetch(`/api/artifacts/${item.dataset.filename}`);
-      const artifact = await res.json();
-      displayArtifact(artifact);
-    });
   } catch {
     // Server not running, that's fine
   }
@@ -280,8 +269,17 @@ if (import.meta.hot) {
 
 // Init
 async function init() {
-  const res = await fetch('/data/kb-graph.json');
-  kbData = await res.json();
+  try {
+    const res = await fetch('/data/kb-graph.json');
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    kbData = await res.json();
+  } catch (err) {
+    document.getElementById('viewer').innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);flex-direction:column;gap:8px">
+        <p>Failed to load KB graph data.</p>
+        <p style="font-size:12px">Run <code>npm run parse</code> first. (${err.message})</p>
+      </div>`;
+  }
 
   initTypeFilters();
   initSearch();
@@ -289,15 +287,10 @@ async function init() {
   initChatResize();
   initViewTabs();
   initChat();
+  initArtifactList();
   loadArtifacts();
 
   switchView('graph');
-}
-
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
 }
 
 init();

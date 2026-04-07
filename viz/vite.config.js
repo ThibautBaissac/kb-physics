@@ -18,15 +18,20 @@ export default defineConfig({
       name: 'artifact-watcher',
       configureServer(server) {
         const artifactsDir = path.resolve(__dirname, 'artifacts');
-        fs.watch(artifactsDir, (eventType, filename) => {
-          if (filename && filename.endsWith('.json')) {
-            server.ws.send({
-              type: 'custom',
-              event: 'artifact-changed',
-              data: { filename, eventType }
-            });
-          }
-        });
+        try {
+          if (!fs.existsSync(artifactsDir)) fs.mkdirSync(artifactsDir, { recursive: true });
+          fs.watch(artifactsDir, (eventType, filename) => {
+            if (filename && filename.endsWith('.json')) {
+              server.ws.send({
+                type: 'custom',
+                event: 'artifact-changed',
+                data: { filename, eventType }
+              });
+            }
+          });
+        } catch (err) {
+          console.warn('[artifact-watcher] Could not watch artifacts dir:', err.message);
+        }
       }
     }
   ]

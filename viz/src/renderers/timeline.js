@@ -1,13 +1,7 @@
 import * as d3 from 'd3';
+import { TYPE_COLORS as BASE_TYPE_COLORS } from '../constants.js';
 
-const TYPE_COLORS = {
-  theory: '#ff6b6b',
-  concept: '#4ecdc4',
-  person: '#45b7d1',
-  experiment: '#7ee787',
-  'open-question': '#feca57',
-  article: '#c9d1d9',
-};
+const TYPE_COLORS = { ...BASE_TYPE_COLORS, article: '#c9d1d9' };
 
 export function renderTimeline(container, data) {
   container.innerHTML = '';

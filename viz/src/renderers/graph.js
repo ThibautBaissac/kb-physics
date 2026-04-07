@@ -1,12 +1,5 @@
 import * as d3 from 'd3';
-
-const TYPE_COLORS = {
-  theory: '#ff6b6b',
-  concept: '#4ecdc4',
-  person: '#45b7d1',
-  experiment: '#7ee787',
-  'open-question': '#feca57',
-};
+import { TYPE_COLORS } from '../constants.js';
 
 function nodeRadius(d) {
   return 5 + Math.sqrt(d.connections) * 3;
@@ -177,6 +170,15 @@ export function renderGraph(container, data, { onNodeClick, onNodeHover, onNodeL
   stats.textContent = `${nodes.length} nodes / ${edges.length} edges`;
   container.appendChild(stats);
 
+  // Auto-resize SVG when container changes size
+  const resizeObserver = new ResizeObserver((entries) => {
+    const { width: newW, height: newH } = entries[0].contentRect;
+    if (newW > 0 && newH > 0) {
+      svg.attr('width', newW).attr('height', newH);
+    }
+  });
+  resizeObserver.observe(container);
+
   // Return controls for external filtering
   return {
     simulation,
@@ -204,6 +206,7 @@ export function renderGraph(container, data, { onNodeClick, onNodeHover, onNodeL
         });
     },
     destroy() {
+      resizeObserver.disconnect();
       simulation.stop();
       container.innerHTML = '';
     }

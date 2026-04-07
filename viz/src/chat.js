@@ -1,9 +1,8 @@
-import { marked } from 'marked';
-
-marked.setOptions({ breaks: true, gfm: true });
+import { escapeHtml, renderMarkdown } from './constants.js';
 
 let currentChatId = null;
 let chatMessages = []; // { role: 'user'|'assistant', content: string }
+let activeQueryController = null;
 
 export function initChat() {
   const input = document.getElementById('chat-input');
@@ -16,6 +15,11 @@ export function initChat() {
   async function sendQuery() {
     const prompt = input.value.trim();
     if (!prompt) return;
+
+    // Abort any in-flight query
+    if (activeQueryController) activeQueryController.abort();
+    activeQueryController = new AbortController();
+    const { signal } = activeQueryController;
 
     input.value = '';
     input.disabled = true;
@@ -68,6 +72,7 @@ export function initChat() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt }),
+        signal,
       });
 
       if (!res.ok) {
@@ -99,7 +104,7 @@ export function initChat() {
             if (data.type === 'text') {
               rawText += data.content;
               assistantBubble.style.display = '';
-              assistantBubble.innerHTML = marked.parse(rawText);
+              assistantBubble.innerHTML = renderMarkdown(rawText);
               statusTextEl.textContent = 'Writing...';
               messagesEl.scrollTop = messagesEl.scrollHeight;
             } else if (data.type === 'error') {
@@ -125,7 +130,7 @@ export function initChat() {
 
       if (rawText) {
         assistantBubble.style.display = '';
-        assistantBubble.innerHTML = marked.parse(rawText);
+        assistantBubble.innerHTML = renderMarkdown(rawText);
         chatMessages.push({ role: 'assistant', content: rawText });
         await saveChat();
         loadChatList();
@@ -136,9 +141,12 @@ export function initChat() {
     } catch (err) {
       clearInterval(timerInterval);
       statusBar.remove();
-      assistantBubble.style.display = '';
-      assistantBubble.textContent = `Connection error: ${err.message}`;
+      if (err.name !== 'AbortError') {
+        assistantBubble.style.display = '';
+        assistantBubble.textContent = `Connection error: ${err.message}`;
+      }
     } finally {
+      activeQueryController = null;
       input.disabled = false;
       sendBtn.disabled = false;
       input.focus();
@@ -146,21 +154,7 @@ export function initChat() {
   }
 
   function renderMessages() {
-    messagesEl.innerHTML = '';
-    for (const msg of chatMessages) {
-      const div = document.createElement('div');
-      div.className = `chat-msg ${msg.role}`;
-      const bubble = document.createElement('div');
-      bubble.className = 'chat-bubble';
-      if (msg.role === 'user') {
-        bubble.textContent = msg.content;
-      } else {
-        bubble.innerHTML = marked.parse(msg.content);
-      }
-      div.appendChild(bubble);
-      messagesEl.appendChild(div);
-    }
-    messagesEl.scrollTop = messagesEl.scrollHeight;
+    renderChatMessages();
   }
 
   sendBtn.addEventListener('click', sendQuery);
@@ -252,13 +246,13 @@ async function loadChatList() {
       const chat = await res.json();
       currentChatId = chat.id;
       chatMessages = chat.messages || [];
-      renderMessagesFromData();
+      renderChatMessages();
       hideChatList();
     };
   } catch { /* server not running */ }
 }
 
-function renderMessagesFromData() {
+function renderChatMessages() {
   const messagesEl = document.getElementById('chat-messages');
   messagesEl.innerHTML = '';
   for (const msg of chatMessages) {
@@ -269,7 +263,7 @@ function renderMessagesFromData() {
     if (msg.role === 'user') {
       bubble.textContent = msg.content;
     } else {
-      bubble.innerHTML = marked.parse(msg.content);
+      bubble.innerHTML = renderMarkdown(msg.content);
     }
     div.appendChild(bubble);
     messagesEl.appendChild(div);
@@ -304,8 +298,3 @@ async function saveChat() {
   });
 }
 
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
-}
