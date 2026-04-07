@@ -21,7 +21,7 @@ De Sitter found that an empty universe with a cosmological constant can take one
 - **Negative** cosmological constant: negatively curved [anti-de Sitter space](../concepts/anti-de-sitter-space.md) (contracting)
 - **Zero** cosmological constant: flat Minkowski space (static)
 
-In de Sitter space, two otherwise stationary objects move apart over time — like dots on an inflating balloon. Space expands at an exponential rate, creating a [cosmological horizon](../concepts/cosmological-horizon.md) beyond which communication is impossible. As Monica Pate (NYU) describes: "It's expanding so fast that there are parts of space-time which, if you wait forever, you will never be able to see."
+In de Sitter space, two otherwise stationary objects move apart over time — like dots on an inflating balloon. Space expands at an exponential rate, creating a [cosmological horizon](../concepts/cosmological-horizon.md) beyond which communication is impossible. As [Monica Pate](../people/monica-pate.md) (NYU) describes: "It's expanding so fast that there are parts of space-time which, if you wait forever, you will never be able to see."
 
 ## Relevance to Our Universe
 

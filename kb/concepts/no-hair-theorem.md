@@ -5,7 +5,7 @@ type: concept
 evidence: secondary
 created_at: 2026-04-07
 updated_at: 2026-04-07
-related: [concepts/black-hole-entropy.md, concepts/hawking-radiation.md, open-questions/black-hole-information-paradox.md, experiments/gravitational-wave-detectors.md, theories/string-theory.md]
+related: [concepts/black-hole-entropy.md, concepts/hawking-radiation.md, open-questions/black-hole-information-paradox.md, experiments/gravitational-wave-detectors.md, theories/string-theory.md, people/niayesh-afshordi.md]
 sources: [2025-08-27-no-hair-black-holes.md]
 ---
 
@@ -50,7 +50,7 @@ Next-generation detectors will push this to scales far smaller than 40 km:
 - **Cosmic Explorer**: US counterpart with comparable sensitivity.
 - Detection of deviations at the scale of a football field's length is achievable.
 
-Maenaut: "It's possible that we will confirm Einstein's theory of general relativity to five decimal places, and that would be great, but it's also possible that we come across something that we didn't expect."
+Maenaut: "It's possible that we will confirm Einstein's theory of general relativity to five decimal places, and that would be great, but it's also possible that we come across something that we didn't expect." [Niayesh Afshordi](../people/niayesh-afshordi.md) (University of Waterloo) agrees: "I think it's a worthwhile exercise to go and test that."
 
 ## Connection to Black Hole Thermodynamics
 

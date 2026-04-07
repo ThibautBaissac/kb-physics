@@ -5,7 +5,7 @@ type: concept
 evidence: secondary
 created_at: 2026-04-07
 updated_at: 2026-04-07
-related: [concepts/wave-function.md, concepts/holography.md, open-questions/quantum-gravity-in-de-sitter-space.md, open-questions/measurement-problem.md]
+related: [concepts/wave-function.md, concepts/holography.md, open-questions/quantum-gravity-in-de-sitter-space.md, open-questions/measurement-problem.md, people/rob-myers.md]
 sources: [2025-11-19-observer-free-universe-paradox.md]
 ---
 
@@ -21,7 +21,7 @@ In 2019, [Juan Maldacena](../people/juan-maldacena.md) applied the [island formu
 
 [Edgar Shaghoulian](../people/edgar-shaghoulian.md) (UC Santa Cruz) found this paradoxical: "On my desk there are an infinite number of states." The result persisted across different theoretical models. [Henry Maxfield and Donald Marolf examined baby universes and found the same one-dimensional result.
 
-This "empty Hilbert space" puzzle is a central challenge in [quantum gravity in de Sitter space](../open-questions/quantum-gravity-in-de-sitter-space.md). The resolution may require introducing an observer, whose presence expands the Hilbert space and restores the complexity we observe.
+As [Rob Myers](../people/rob-myers.md) (Perimeter Institute) notes: "We look around, and certainly the world seems more complex than that." This "empty Hilbert space" puzzle is a central challenge in [quantum gravity in de Sitter space](../open-questions/quantum-gravity-in-de-sitter-space.md). The resolution may require introducing an observer, whose presence expands the Hilbert space and restores the complexity we observe.
 
 ## Observers and Hilbert Space Enlargement
 

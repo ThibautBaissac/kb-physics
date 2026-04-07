@@ -15,6 +15,7 @@ Master index of all compiled wiki pages. Read this first when answering queries.
 - [Quantum Field Theory](theories/quantum-field-theory.md) — Theoretical framework combining quantum mechanics and special relativity
 - [Standard Model](theories/standard-model.md) — The 25-particle framework governing elementary particles; complete since Higgs discovery but with major gaps
 - [Quadratic Gravity](theories/quadratic-gravity.md) — Unique renormalizable QFT of gravity; adds curvature-squared terms, introduces ghost particles, staging a comeback
+- [General Relativity](theories/general-relativity.md) — Einstein's 1915 theory describing gravity as spacetime curvature; foundation for cosmology and black hole physics
 
 ## Concepts
 
@@ -61,6 +62,12 @@ Master index of all compiled wiki pages. Read this first when answering queries.
 - [QBism](concepts/qbism.md) — Interpretation treating the quantum state as a personal probability catalog for an agent, not an objective reality; quantum mechanics as "a user's manual for the world"
 - [Relational Quantum Mechanics](concepts/relational-quantum-mechanics.md) — Rovelli's interpretation where quantum states exist only relative to interactions between systems; no absolute observer-independent description
 - [Bell's Theorem](concepts/bells-theorem.md) — Proof that no local hidden-variable theory matches quantum predictions; experimentally confirmed, ruling out local realism
+- [Black Hole Physics](concepts/black-hole-physics.md) — Overview hub linking thermodynamics, quantum properties, and observational science of black holes
+- [Copenhagen Interpretation](concepts/copenhagen-interpretation.md) — Standard textbook interpretation: wave function collapse upon measurement, no deeper explanation
+- [Dark Energy](concepts/dark-energy.md) — Mysterious force driving accelerating expansion; ~68% of the universe's energy content
+- [Dark Matter](concepts/dark-matter.md) — Invisible mass comprising ~27% of the universe; detected gravitationally but never directly observed
+- [Interpretations of Quantum Mechanics](concepts/interpretations-of-quantum-mechanics.md) — Overview of competing frameworks: Copenhagen, Many-Worlds, QBism, Relational QM, Quantum Darwinism
+- [Many-Worlds Interpretation](concepts/many-worlds-interpretation.md) — Everett's interpretation: every quantum measurement branches the universe, all outcomes realized
 
 ## People
 
@@ -123,6 +130,7 @@ Master index of all compiled wiki pages. Read this first when answering queries.
 - [Chris Fuchs](people/chris-fuchs.md) — Creator of QBism; interprets quantum mechanics as a user's manual for agents navigating the world
 - [Carlo Rovelli](people/carlo-rovelli.md) — Relational quantum mechanics and loop quantum gravity; properties exist only relative to interactions
 - [John Bell](people/john-bell.md) — Derived Bell's theorem (1964) proving no local hidden-variable theory can match quantum predictions
+- [Stephen Hawking](people/stephen-hawking.md) — British physicist (1942–2018); Hawking radiation, black hole thermodynamics, primordial black holes
 
 ## Experiments
 

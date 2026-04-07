@@ -8,6 +8,14 @@ created_at: 2026-04-06
 
 Append-only, reverse chronological record of all KB operations.
 
+## [2026-04-07] lint | KB Health Check
+Scope: full KB with fix
+Issues found: 11 (0 contradictions, 3 orphans, 0 stale, 0 missing descriptions, 0 near-duplicates, 0 evidence tier issues, 0 related format issues, 0 source metadata gaps, 8 category gaps, 0 uningested sources, 0 broken links, 0 index issues)
+Issues fixed: 11
+Orphans fixed: people/monica-pate.md, people/niayesh-afshordi.md, people/rob-myers.md (added inline links from relevant pages)
+Stubs created: theories/general-relativity.md, concepts/many-worlds-interpretation.md, concepts/copenhagen-interpretation.md, concepts/dark-matter.md, concepts/dark-energy.md, people/stephen-hawking.md, concepts/interpretations-of-quantum-mechanics.md (overview), concepts/black-hole-physics.md (overview)
+Pages updated: concepts/de-sitter-space.md, concepts/no-hair-theorem.md, concepts/hilbert-space.md, index.md
+
 ## [2026-04-07] fetch | 'It's a Mess': A Brain-Bending Trip to Quantum Theory's 100th Birthday Party
 Fetched from https://www.quantamagazine.org/its-a-mess-a-brain-bending-trip-to-quantum-theorys-100th-birthday-party-20250808/
 Raw source: `kb/raw/articles/2025-08-08-quantum-theory-100th-birthday.md`
