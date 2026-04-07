@@ -147,6 +147,22 @@ app.get('/api/artifacts/:filename', async (req, res) => {
   }
 });
 
+// DELETE /api/artifacts/:filename — delete an artifact
+app.delete('/api/artifacts/:filename', async (req, res) => {
+  try {
+    const filePath = join(ARTIFACTS_PATH, req.params.filename);
+    if (!filePath.startsWith(ARTIFACTS_PATH) || !filePath.endsWith('.json')) {
+      res.status(403).json({ error: 'Forbidden' });
+      return;
+    }
+    const { unlink } = await import('fs/promises');
+    await unlink(filePath);
+    res.json({ deleted: req.params.filename });
+  } catch {
+    res.status(404).json({ error: 'Artifact not found' });
+  }
+});
+
 // GET /api/page/:path — get raw page content from KB
 app.get('/api/page/*path', async (req, res) => {
   try {

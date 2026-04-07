@@ -205,13 +205,26 @@ async function loadArtifacts() {
       <div class="artifact-item" data-filename="${a.filename}">
         <div class="artifact-title">
           <span class="artifact-badge" style="background:var(--accent-dim);color:var(--accent)">${a.type}</span>
-          ${a.title}
+          ${escapeHtml(a.title || a.filename)}
+          <button class="artifact-delete" data-filename="${a.filename}" title="Delete artifact">&times;</button>
         </div>
-        <div class="artifact-meta">${a.created || ''} ${a.query ? '— ' + a.query.slice(0, 50) : ''}</div>
+        <div class="artifact-meta">${a.created || ''} ${a.query ? '— ' + escapeHtml(a.query.slice(0, 50)) : ''}</div>
       </div>
     `).join('');
 
     list.addEventListener('click', async (e) => {
+      // Handle delete
+      const deleteBtn = e.target.closest('.artifact-delete');
+      if (deleteBtn) {
+        e.stopPropagation();
+        const filename = deleteBtn.dataset.filename;
+        const res = await fetch(`/api/artifacts/${filename}`, { method: 'DELETE' });
+        if (res.ok) {
+          loadArtifacts();
+        }
+        return;
+      }
+      // Handle load
       const item = e.target.closest('.artifact-item');
       if (!item) return;
       const res = await fetch(`/api/artifacts/${item.dataset.filename}`);
@@ -271,6 +284,12 @@ async function init() {
   loadArtifacts();
 
   switchView('graph');
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
 }
 
 init();
