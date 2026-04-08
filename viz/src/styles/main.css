@@ -1455,3 +1455,54 @@ body {
   color: var(--text-primary);
   background: var(--bg-elevated);
 }
+
+/* Responsive: small desktop / 13" screens */
+@media (max-width: 1440px) {
+  :root {
+    --sidebar-width: 220px;
+    --chat-width: 320px;
+    --reader-width: 50vw;
+  }
+
+  .toolbar-logo-text {
+    display: none;
+  }
+
+  #toolbar-center {
+    position: static;
+    transform: none;
+    margin-left: 12px;
+  }
+
+  #search-input {
+    width: 160px;
+  }
+
+  .detail-panel {
+    width: 340px;
+  }
+
+  .palette {
+    max-width: 90vw;
+  }
+}
+
+@media (max-width: 1280px) {
+  :root {
+    --sidebar-width: 200px;
+    --chat-width: 280px;
+    --reader-width: 45vw;
+  }
+
+  #search-input {
+    width: 140px;
+  }
+
+  .type-count {
+    display: none;
+  }
+
+  .detail-panel {
+    width: 300px;
+  }
+}
