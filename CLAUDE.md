@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-A personal LLM-maintained knowledge base about physics, cosmology, and quantum physics — following Karpathy's architecture. No code to build or test — the repo is structured markdown compiled and maintained by an LLM via slash commands. The LLM acts as a **compiler**: it reads raw sources (articles, papers, talks) and produces a structured, interlinked physics wiki.
+A personal LLM-maintained knowledge base about physics, cosmology, and quantum physics — following Karpathy's architecture. The repo is structured markdown compiled and maintained by an LLM via slash commands. The LLM acts as a **compiler**: it reads raw sources (articles, papers, talks) and produces a structured, interlinked physics wiki.
 
 ## Commands
 
@@ -59,6 +59,8 @@ npm run dev      # dev server (Vite + Express + file watcher)
 npm run build    # parse KB + production build
 npm run parse    # regenerate src/data/kb-graph.json from KB
 npm run server   # Express API only
+npm test         # run tests (Vitest + Supertest)
+npm run test:watch  # watch mode
 ```
 
 ## Key Rules

@@ -37,7 +37,7 @@ interface RawArticle {
   category: string;
 }
 
-function formatDate(val: unknown): string {
+export function formatDate(val: unknown): string {
   if (!val) return '';
   if (val instanceof Date) return val.toISOString().slice(0, 10);
   const s = String(val);

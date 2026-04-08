@@ -200,6 +200,14 @@ open http://localhost:5173
 ./viz/stop.sh               # when done
 ```
 
+**Tests** (Vitest + Supertest):
+
+```bash
+cd viz
+npm test              # single run
+npm run test:watch    # watch mode
+```
+
 **Four views:**
 
 | View | What it shows |

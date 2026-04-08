@@ -14,6 +14,11 @@ export default defineConfig({
   build: {
     outDir: '../dist'
   },
+  test: {
+    root: '.',
+    include: ['test/**/*.test.ts'],
+    teardownTimeout: 1000,
+  },
   plugins: [
     {
       name: 'artifact-watcher',
