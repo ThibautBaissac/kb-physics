@@ -153,25 +153,31 @@ function parseRawArticles(): RawArticle[] {
   return articles.sort((a, b) => a.created_at.localeCompare(b.created_at));
 }
 
-// Run
-const { nodes, edges } = parseWikiPages();
-const articles = parseRawArticles();
+// Exported so the server can re-parse after ingestion without spawning a subprocess.
+export function parseAndWriteKBGraph(): void {
+  const { nodes, edges } = parseWikiPages();
+  const articles = parseRawArticles();
 
-const output = {
-  nodes,
-  edges,
-  articles,
-  metadata: {
-    generated_at: new Date().toISOString(),
-    node_count: nodes.length,
-    edge_count: edges.length,
-    article_count: articles.length,
-  },
-};
+  const output = {
+    nodes,
+    edges,
+    articles,
+    metadata: {
+      generated_at: new Date().toISOString(),
+      node_count: nodes.length,
+      edge_count: edges.length,
+      article_count: articles.length,
+    },
+  };
 
-// Ensure output directory exists
-fs.mkdirSync(path.dirname(OUTPUT), { recursive: true });
-fs.writeFileSync(OUTPUT, JSON.stringify(output, null, 2));
+  fs.mkdirSync(path.dirname(OUTPUT), { recursive: true });
+  fs.writeFileSync(OUTPUT, JSON.stringify(output, null, 2));
 
-console.log(`KB parsed: ${nodes.length} nodes, ${edges.length} edges, ${articles.length} articles`);
-console.log(`Written to: ${OUTPUT}`);
+  console.log(`KB parsed: ${nodes.length} nodes, ${edges.length} edges, ${articles.length} articles`);
+  console.log(`Written to: ${OUTPUT}`);
+}
+
+// Auto-run only when executed directly (npm run parse), not when imported by the server.
+if (process.argv[1] && (process.argv[1].endsWith('kb-parser.ts') || process.argv[1].endsWith('kb-parser.js'))) {
+  parseAndWriteKBGraph();
+}

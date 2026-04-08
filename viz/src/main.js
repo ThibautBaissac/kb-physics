@@ -2,6 +2,7 @@ import { renderGraph } from './renderers/graph.js';
 import { renderTimeline } from './renderers/timeline.js';
 import { renderTable } from './renderers/table.js';
 import { initChat, prefillChat } from './chat.js';
+import { initIngest } from './ingest.js';
 import { openReader, initReader, closeReader } from './reader.js';
 import { initPalette, openPalette } from './palette.js';
 import { TYPE_COLORS, TAG_COLORS, escapeHtml, initPanelResize } from './constants.js';
@@ -396,6 +397,18 @@ if (import.meta.hot) {
   });
 }
 
+async function reloadKBData() {
+  try {
+    const res = await fetch('/data/kb-graph.json');
+    if (!res.ok) return;
+    kbData = await res.json();
+    initTypeFilters();
+    switchView(currentView);
+  } catch (err) {
+    console.warn('Failed to reload KB data:', err);
+  }
+}
+
 async function init() {
   try {
     const res = await fetch('/data/kb-graph.json');
@@ -431,6 +444,7 @@ async function init() {
   });
   initViewTabs();
   initChat();
+  initIngest(reloadKBData);
   initArtifactList();
   loadArtifacts();
 

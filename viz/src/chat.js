@@ -23,32 +23,14 @@ export function initChat() {
   renderChatHeader();
   loadChatList();
 
-  async function sendQuery() {
-    const prompt = input.value.trim();
-    if (!prompt) return;
-
-    // Abort any in-flight query
-    if (activeQueryController) activeQueryController.abort();
-    activeQueryController = new AbortController();
-    const { signal } = activeQueryController;
-
-    input.value = '';
-    input.disabled = true;
-    sendBtn.disabled = true;
-
-    // Start new chat if none active
-    if (!currentChatId) {
-      currentChatId = 'chat-' + Date.now();
-      chatMessages = [];
-    }
-
-    chatMessages.push({ role: 'user', content: prompt });
-    renderMessages();
-
+  /**
+   * Stream an SSE response from an API endpoint into the chat messages area.
+   * Returns the accumulated raw text from the agent.
+   */
+  async function streamSSE(endpoint, body, signal) {
     let rawText = '';
     const startTime = Date.now();
 
-    // Add assistant bubble with status bar
     const assistantDiv = document.createElement('div');
     assistantDiv.className = 'chat-msg assistant';
 
@@ -65,7 +47,6 @@ export function initChat() {
     messagesEl.appendChild(assistantDiv);
     messagesEl.scrollTop = messagesEl.scrollHeight;
 
-    // Elapsed time updater
     const elapsedEl = statusBar.querySelector('.agent-elapsed');
     const statusTextEl = statusBar.querySelector('.agent-status-text');
     const timerInterval = setInterval(() => {
@@ -73,16 +54,15 @@ export function initChat() {
       elapsedEl.textContent = secs < 60 ? `${secs}s` : `${Math.floor(secs / 60)}m${String(secs % 60).padStart(2, '0')}s`;
     }, 1000);
 
-    // Tool activity log
     const toolLog = document.createElement('div');
     toolLog.className = 'agent-tool-log';
     statusBar.appendChild(toolLog);
 
     try {
-      const res = await fetch('/api/query', {
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify(body),
         signal,
       });
 
@@ -91,7 +71,7 @@ export function initChat() {
         statusBar.remove();
         assistantBubble.style.display = '';
         assistantBubble.textContent = `Error: ${res.status} ${res.statusText}`;
-        return;
+        return rawText;
       }
 
       statusTextEl.textContent = 'Thinking...';
@@ -124,7 +104,6 @@ export function initChat() {
               messagesEl.scrollTop = messagesEl.scrollHeight;
             } else if (data.type === 'tool') {
               statusTextEl.textContent = `Using ${data.tool}`;
-              // Add to tool log (keep last 4)
               const entry = document.createElement('div');
               entry.className = 'agent-tool-entry';
               entry.textContent = data.detail ? `${data.tool}: ${data.detail}` : data.tool;
@@ -142,9 +121,6 @@ export function initChat() {
       if (rawText) {
         assistantBubble.style.display = '';
         assistantBubble.innerHTML = renderMarkdown(rawText);
-        chatMessages.push({ role: 'assistant', content: rawText });
-        await saveChat();
-        loadChatList();
       } else {
         assistantBubble.style.display = '';
         assistantBubble.innerHTML = '<span style="color:var(--text-muted)">No response received.</span>';
@@ -156,12 +132,42 @@ export function initChat() {
         assistantBubble.style.display = '';
         assistantBubble.textContent = `Connection error: ${err.message}`;
       }
-    } finally {
-      activeQueryController = null;
-      input.disabled = false;
-      sendBtn.disabled = false;
-      input.focus();
     }
+
+    return rawText;
+  }
+
+  async function sendQuery() {
+    const prompt = input.value.trim();
+    if (!prompt) return;
+
+    if (activeQueryController) activeQueryController.abort();
+    activeQueryController = new AbortController();
+
+    input.value = '';
+    input.disabled = true;
+    sendBtn.disabled = true;
+
+    if (!currentChatId) {
+      currentChatId = 'chat-' + Date.now();
+      chatMessages = [];
+    }
+
+    chatMessages.push({ role: 'user', content: prompt });
+    renderMessages();
+
+    const rawText = await streamSSE('/api/query', { prompt }, activeQueryController.signal);
+
+    if (rawText) {
+      chatMessages.push({ role: 'assistant', content: rawText });
+      await saveChat();
+      loadChatList();
+    }
+
+    activeQueryController = null;
+    input.disabled = false;
+    sendBtn.disabled = false;
+    input.focus();
   }
 
   function renderMessages() {

@@ -5,6 +5,7 @@ import { readdir, readFile, writeFile, unlink } from 'fs/promises';
 import { join, resolve } from 'path';
 import { existsSync } from 'fs';
 import { query } from '@anthropic-ai/claude-agent-sdk';
+import { parseAndWriteKBGraph } from './kb-parser.js';
 
 // Minimal types for the SDK stream messages we consume.
 // Importing from the SDK fails tsc due to missing peer dep types
@@ -24,6 +25,57 @@ interface SDKResultMessageError {
 type SDKResultMessage = SDKResultMessageSuccess | SDKResultMessageError;
 
 dotenv.config({ path: resolve(import.meta.dirname, '../../.env') });
+
+type IngestEventType = 'text' | 'tool' | 'error' | 'kb_updated' | 'done';
+interface IngestEvent { type: IngestEventType; content?: string; tool?: string; detail?: string }
+
+/** Extract a human-readable detail string from a tool_use block. */
+function toolEvent(block: ContentBlockToolUse): IngestEvent {
+  const name = block.name || '';
+  const input = (block.input || {}) as Record<string, string>;
+  let detail = '';
+  if (name === 'Read' && input.file_path) detail = input.file_path.replace(/.*\/kb\//, 'kb/');
+  else if (name === 'Glob' && input.pattern) detail = input.pattern;
+  else if (name === 'Grep' && input.pattern) detail = `"${input.pattern}"`;
+  else if ((name === 'Write' || name === 'Edit') && input.file_path) detail = input.file_path.replace(/.*\/kb\//, 'kb/');
+  else if (name === 'WebFetch' && input.url) detail = input.url.slice(0, 80);
+  else if (name === 'Bash' && input.command) detail = input.command.slice(0, 60);
+  return { type: 'tool', tool: name, detail };
+}
+
+/** Process the SDK agent stream, emitting normalized events via the callback. */
+async function processAgentStream(
+  stream: AsyncIterable<any>,
+  emit: (event: IngestEvent) => void,
+) {
+  for await (const message of stream) {
+    if (message.type === 'assistant') {
+      const assistantMsg = message as SDKAssistantMessage;
+      const content = assistantMsg.message?.content;
+      if (Array.isArray(content)) {
+        for (const block of content) {
+          if (block.type === 'text' && block.text) {
+            emit({ type: 'text', content: block.text });
+          } else if (block.type === 'tool_use') {
+            emit(toolEvent(block));
+          }
+        }
+      }
+    } else if (message.type === 'result') {
+      const resultMsg = message as SDKResultMessage;
+      if (resultMsg.subtype === 'success' && resultMsg.result) {
+        emit({ type: 'text', content: resultMsg.result });
+      }
+      if (resultMsg.subtype === 'error_max_turns') {
+        emit({ type: 'error', content: 'Agent reached max turns limit.' });
+      }
+      if ('errors' in resultMsg && resultMsg.errors?.length) {
+        console.error('[agent result errors]', resultMsg.errors);
+        emit({ type: 'error', content: resultMsg.errors.join('\n') });
+      }
+    }
+  }
+}
 
 const __dirname = import.meta.dirname;
 const KB_PATH = resolve(__dirname, '../../kb');
@@ -77,7 +129,8 @@ app.post('/api/query', async (req, res) => {
         abortController,
         cwd: KB_PATH,
         additionalDirectories: [ARTIFACTS_PATH],
-        allowedTools: ['Read', 'Glob', 'Grep', 'Write'],
+        settingSources: ['project'],
+        allowedTools: ['Read', 'Glob', 'Grep', 'Write', 'Skill'],
         permissionMode: 'acceptEdits',
         model: 'claude-sonnet-4-5-20250929',
         maxTurns: 50,
@@ -89,40 +142,9 @@ app.post('/api/query', async (req, res) => {
       },
     });
 
-    for await (const message of stream) {
-      if (message.type === 'assistant') {
-        const assistantMsg = message as SDKAssistantMessage;
-        const content = assistantMsg.message?.content;
-        if (Array.isArray(content)) {
-          for (const block of content) {
-            if (block.type === 'text' && block.text) {
-              res.write(`data: ${JSON.stringify({ type: 'text', content: block.text })}\n\n`);
-            } else if (block.type === 'tool_use') {
-              const name = block.name || '';
-              const input = (block.input || {}) as Record<string, string>;
-              let detail = '';
-              if (name === 'Read' && input.file_path) detail = input.file_path.replace(/.*\/kb\//, 'kb/');
-              else if (name === 'Glob' && input.pattern) detail = input.pattern;
-              else if (name === 'Grep' && input.pattern) detail = `"${input.pattern}"`;
-              else if (name === 'Write' && input.file_path) detail = input.file_path.replace(/.*\/viz\//, 'viz/');
-              res.write(`data: ${JSON.stringify({ type: 'tool', tool: name, detail })}\n\n`);
-            }
-          }
-        }
-      } else if (message.type === 'result') {
-        const resultMsg = message as SDKResultMessage;
-        if (resultMsg.subtype === 'success' && resultMsg.result) {
-          res.write(`data: ${JSON.stringify({ type: 'text', content: resultMsg.result })}\n\n`);
-        }
-        if (resultMsg.subtype === 'error_max_turns') {
-          res.write(`data: ${JSON.stringify({ type: 'error', content: 'Agent reached max turns limit. The task may be too complex for a single query. Try a more specific question.' })}\n\n`);
-        }
-        if ('errors' in resultMsg && resultMsg.errors?.length) {
-          console.error('[result errors]', resultMsg.errors);
-          res.write(`data: ${JSON.stringify({ type: 'error', content: resultMsg.errors.join('\n') })}\n\n`);
-        }
-      }
-    }
+    await processAgentStream(stream, (event) => {
+      res.write(`data: ${JSON.stringify(event)}\n\n`);
+    });
   } catch (err: any) {
     if (err.name !== 'AbortError') {
       console.error('[agent error]', err.message || err);
@@ -132,6 +154,176 @@ app.post('/api/query', async (req, res) => {
     res.write(`data: ${JSON.stringify({ type: 'done' })}\n\n`);
     res.end();
   }
+});
+
+// --- Ingest: background task with reconnectable SSE ---
+
+const INGEST_PROMPT_PATH = resolve(__dirname, 'ingest-prompt.md');
+const ROOT_PATH = resolve(__dirname, '../..');
+
+const BASH_ALLOWLIST = [
+  /^curl\s+-[sS]*L/,        // curl downloads (arXiv PDFs)
+  /^mkdir\s+-p\s/,           // create directories
+  /^ls\b/,                   // list files
+  /^cat\b/,                  // read files
+  /^wc\b/,                   // word count
+  /^head\b/,                 // read file head
+  /^test\b/,                 // file existence checks
+  /^\[\s/,                   // [ -f ... ] checks
+];
+
+async function bashAuditHook(input: any) {
+  if (input.hook_event_name !== 'PreToolUse') return {};
+  const toolInput = input.tool_input as { command?: string };
+  const cmd = (toolInput.command || '').trim();
+
+  if (BASH_ALLOWLIST.some(p => p.test(cmd))) return {};
+
+  console.warn(`[ingest] Bash blocked: ${cmd.slice(0, 120)}`);
+  return {
+    hookSpecificOutput: {
+      hookEventName: 'PreToolUse' as const,
+      permissionDecision: 'deny' as const,
+      permissionDecisionReason: `Bash command not in allowlist for ingest: ${cmd.slice(0, 100)}`,
+    },
+  };
+}
+
+let ingestState: {
+  running: boolean;
+  url: string;
+  startedAt: number;
+  events: IngestEvent[];
+  listeners: Set<(event: IngestEvent) => void>;
+} | null = null;
+
+function emitIngestEvent(event: IngestEvent) {
+  if (!ingestState) return;
+  ingestState.events.push(event);
+  for (const listener of ingestState.listeners) {
+    try { listener(event); } catch { /* client gone */ }
+  }
+}
+
+/** Runs the agent in the background. Not tied to any HTTP request. */
+async function runIngest(url: string, ingestPrompt: string) {
+  try {
+    const stream = query({
+      prompt: `/kb:fetch ${url}`,
+      options: {
+        cwd: ROOT_PATH,
+        additionalDirectories: [KB_PATH],
+        settingSources: ['project'],
+        allowedTools: ['Read', 'Write', 'Edit', 'Glob', 'Grep', 'WebFetch', 'Bash', 'Skill'],
+        permissionMode: 'acceptEdits',
+        model: 'claude-sonnet-4-5-20250929',
+        maxTurns: 80,
+        systemPrompt: {
+          type: 'preset',
+          preset: 'claude_code',
+          append: ingestPrompt,
+        },
+        hooks: {
+          PreToolUse: [{ matcher: 'Bash', hooks: [bashAuditHook] }],
+        },
+      },
+    });
+
+    await processAgentStream(stream, emitIngestEvent);
+
+    // Re-parse KB graph after successful ingestion
+    try {
+      parseAndWriteKBGraph();
+      emitIngestEvent({ type: 'kb_updated' });
+    } catch (parseErr: any) {
+      console.error('[ingest] KB parse failed:', parseErr.message);
+      emitIngestEvent({ type: 'error', content: 'Ingestion succeeded but graph refresh failed. Run npm run parse manually.' });
+    }
+  } catch (err: any) {
+    console.error('[ingest error]', err.message || err);
+    emitIngestEvent({ type: 'error', content: err.message || 'Ingest error' });
+  } finally {
+    emitIngestEvent({ type: 'done' });
+    if (ingestState) ingestState.running = false;
+  }
+}
+
+// POST /api/ingest — start a background ingest
+app.post('/api/ingest', async (req, res) => {
+  const { url } = req.body;
+  if (!url) {
+    res.status(400).json({ error: 'url is required' });
+    return;
+  }
+
+  if (ingestState?.running) {
+    res.status(409).json({ error: 'An ingestion is already in progress' });
+    return;
+  }
+
+  let ingestPrompt: string;
+  try {
+    ingestPrompt = await readFile(INGEST_PROMPT_PATH, 'utf-8');
+  } catch {
+    res.status(500).json({ error: 'Could not read ingest prompt' });
+    return;
+  }
+
+  // Reset state and start background task
+  ingestState = { running: true, url, startedAt: Date.now(), events: [], listeners: new Set() };
+  runIngest(url, ingestPrompt); // fire-and-forget
+
+  res.json({ status: 'started', url });
+});
+
+// GET /api/ingest/status — check current ingest state (for page load)
+app.get('/api/ingest/status', (_req, res) => {
+  if (!ingestState) {
+    res.json({ running: false });
+    return;
+  }
+  res.json({
+    running: ingestState.running,
+    url: ingestState.url,
+    startedAt: ingestState.startedAt,
+    eventCount: ingestState.events.length,
+  });
+});
+
+// GET /api/ingest/events — SSE stream; replays buffered events then streams live
+app.get('/api/ingest/events', (req, res) => {
+  if (!ingestState) {
+    res.status(404).json({ error: 'No ingest in progress or recently completed' });
+    return;
+  }
+
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+
+  // Replay all buffered events so the client catches up
+  for (const event of ingestState.events) {
+    res.write(`data: ${JSON.stringify(event)}\n\n`);
+  }
+
+  // If already done, close immediately
+  if (!ingestState.running) {
+    res.end();
+    return;
+  }
+
+  // Subscribe to live events
+  const listener = (event: IngestEvent) => {
+    try {
+      res.write(`data: ${JSON.stringify(event)}\n\n`);
+      if (event.type === 'done') res.end();
+    } catch { /* client gone */ }
+  };
+
+  ingestState.listeners.add(listener);
+  req.on('close', () => {
+    ingestState?.listeners.delete(listener);
+  });
 });
 
 // GET /api/artifacts — list all saved artifacts (metadata only)

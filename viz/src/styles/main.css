@@ -531,6 +531,167 @@ body {
   align-items: center;
 }
 
+/* Add source button states */
+#btn-add-source {
+  font-weight: 600;
+}
+
+#btn-add-source.ingesting {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+#btn-add-source.ingesting .agent-spinner {
+  width: 10px;
+  height: 10px;
+  border-width: 1.5px;
+}
+
+#btn-add-source.ingest-done {
+  color: #7ee787;
+  border-color: #7ee787;
+  background: rgba(126, 231, 135, 0.1);
+  transition: all 0.3s;
+}
+
+/* Ingest modal */
+.ingest-modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.ingest-modal-backdrop.open {
+  display: flex;
+}
+
+.ingest-modal {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  width: 560px;
+  max-width: 90vw;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+.ingest-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ingest-modal-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.ingest-modal-close {
+  font-size: 16px;
+  padding: 2px 8px;
+}
+
+.ingest-modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.ingest-label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.ingest-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.ingest-input-row input {
+  flex: 1;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.ingest-input-row input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.ingest-input-row input:disabled {
+  opacity: 0.5;
+}
+
+.ingest-input-row button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ingest-input-row button:hover {
+  filter: brightness(1.15);
+}
+
+.ingest-input-row button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ingest-output {
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  max-height: 40vh;
+  overflow-y: auto;
+  color: var(--text-primary);
+}
+
+.ingest-output p { margin-bottom: 8px; }
+.ingest-output code { background: var(--bg-elevated); padding: 1px 4px; border-radius: 3px; font-size: 12px; }
+
+#ingest-progress .agent-status.done {
+  border-color: #7ee787;
+}
+
+#ingest-progress .agent-status.done .agent-status-text {
+  color: #7ee787;
+}
+
+#ingest-progress .agent-status.error {
+  border-color: #ff6b6b;
+}
+
+#ingest-progress .agent-status.error .agent-status-text {
+  color: #ff6b6b;
+}
+
 .chat-messages {
   flex: 1;
   overflow-y: auto;

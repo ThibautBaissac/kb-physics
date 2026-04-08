@@ -35,6 +35,7 @@
         </div>
         <button class="toolbar-btn" id="btn-sidebar">Artifacts</button>
         <button class="toolbar-btn" id="btn-chat">Chat</button>
+        <button class="toolbar-btn" id="btn-add-source">+ Add source</button>
       </div>
     </header>
 
@@ -72,6 +73,33 @@
         <button id="chat-send">Send</button>
       </div>
     </aside>
+  </div>
+
+  <div class="ingest-modal-backdrop" id="ingest-backdrop">
+    <div class="ingest-modal" id="ingest-modal">
+      <div class="ingest-modal-header">
+        <span class="ingest-modal-title">Add source</span>
+        <button class="toolbar-btn ingest-modal-close" id="ingest-close">&times;</button>
+      </div>
+      <div class="ingest-modal-body" id="ingest-body">
+        <div id="ingest-form">
+          <label class="ingest-label" for="ingest-url">Article or paper URL</label>
+          <div class="ingest-input-row">
+            <input type="url" id="ingest-url" placeholder="https://arxiv.org/abs/... or https://quantamagazine.org/...">
+            <button id="ingest-start">Fetch & ingest</button>
+          </div>
+        </div>
+        <div id="ingest-progress" style="display:none">
+          <div class="agent-status" id="ingest-status">
+            <span class="agent-spinner"></span>
+            <span class="agent-status-text" id="ingest-status-text">Starting...</span>
+            <span class="agent-elapsed" id="ingest-elapsed">0s</span>
+          </div>
+          <div class="agent-tool-log" id="ingest-tool-log"></div>
+          <div class="ingest-output" id="ingest-output"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="tooltip" id="tooltip">
