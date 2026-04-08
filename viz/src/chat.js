@@ -207,6 +207,10 @@ function renderChatHeader() {
       listEl.style.display = listEl.style.display === 'none' ? 'block' : 'none';
     }
   });
+
+  document.getElementById('btn-chat-close').addEventListener('click', () => {
+    document.getElementById('app').classList.remove('chat-open');
+  });
 }
 
 async function loadChatList() {
