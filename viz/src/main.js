@@ -3,6 +3,7 @@ import { renderTimeline } from './renderers/timeline.js';
 import { renderTable } from './renderers/table.js';
 import { initChat, prefillChat } from './chat.js';
 import { openReader, initReader } from './reader.js';
+import { initPalette, openPalette } from './palette.js';
 import { TYPE_COLORS, TAG_COLORS, escapeHtml } from './constants.js';
 
 let kbData = null;
@@ -217,6 +218,8 @@ function initSearch() {
       currentRenderer.updateFilter(activeTypes, searchQuery, activeTags);
     }
   });
+
+  document.getElementById('search-shortcut').addEventListener('click', openPalette);
 }
 
 function initChatResize() {
@@ -410,6 +413,20 @@ async function init() {
   initToggles();
   initChatResize();
   initReader(kbData);
+  initPalette(kbData, {
+    onNode: (node) => {
+      showDetail(null, node);
+      if (currentRenderer?.focusNode) {
+        currentRenderer.focusNode(node.id);
+      } else if (currentRenderer?.focusEvent) {
+        currentRenderer.focusEvent(node.id);
+      }
+      if (currentRenderer?.setSelection) {
+        currentRenderer.setSelection(node.id);
+      }
+    },
+    onArticle: (articleId) => openReader(articleId),
+  });
   initViewTabs();
   initChat();
   initArtifactList();

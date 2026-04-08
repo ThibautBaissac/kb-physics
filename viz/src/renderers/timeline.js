@@ -175,7 +175,7 @@ export function renderTimeline(container, data, { selectedNodeId, onArticleClick
       dots.transition().duration(200)
         .attr('opacity', d => {
           const typeOk = activeTypes.has(d.type) || (d.isArticle && activeTypes.size > 0);
-          const searchOk = !sq || d.title.toLowerCase().includes(sq);
+          const searchOk = !sq || d.title.toLowerCase().includes(sq) || (d.description || '').toLowerCase().includes(sq);
           const tagOk = !hasTags || d.isArticle || (d.tags || []).some(t => activeTags.has(t));
           return typeOk && searchOk && tagOk ? 0.85 : 0.05;
         });
@@ -187,6 +187,18 @@ export function renderTimeline(container, data, { selectedNodeId, onArticleClick
         .attr('r', d => d.isArticle ? 6 : (d.id === id ? 7 : 4))
         .attr('stroke', d => d.id === id ? '#fff' : (d.isArticle ? '#fff' : 'none'))
         .attr('stroke-width', d => d.id === id ? 2 : (d.isArticle ? 1.5 : 0));
+    },
+    focusEvent(id) {
+      const target = events.find(e => e.id === id);
+      if (!target) return;
+      const tx = x(target.date);
+      const ty = y(target.type) + y.bandwidth() / 2;
+      const scale = 2;
+      const transform = d3.zoomIdentity
+        .translate(width / 2, height / 2)
+        .scale(scale)
+        .translate(-tx, -ty);
+      svg.transition().duration(600).call(zoom.transform, transform);
     },
     destroy() { container.innerHTML = ''; },
   };

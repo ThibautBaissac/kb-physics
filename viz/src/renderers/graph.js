@@ -443,6 +443,18 @@ export function renderGraph(container, data, {
         .attr('filter', n => n._selected ? 'url(#node-glow)' : null);
     },
 
+    focusNode(id) {
+      const target = allNodes.find(n => n.id === id);
+      if (!target || target.x == null) return;
+      const rect = container.getBoundingClientRect();
+      const scale = 1.5;
+      const transform = d3.zoomIdentity
+        .translate(rect.width / 2, rect.height / 2)
+        .scale(scale)
+        .translate(-target.x, -target.y);
+      svg.transition().duration(600).call(zoom.transform, transform);
+    },
+
     // Rule 9: save positions on destroy
     destroy() {
       allNodes.forEach(n => {
