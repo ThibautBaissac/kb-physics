@@ -5,8 +5,8 @@ type: open-question
 evidence: secondary
 created_at: 2026-04-07
 updated_at: 2026-04-07
-related: [experiments/james-webb-space-telescope.md, concepts/primordial-black-holes.md, concepts/hawking-radiation.md, concepts/cosmic-inflation.md, people/priyamvada-natarajan.md, people/marta-volonteri.md]
-sources: [2025-09-12-naked-black-hole-rewrites-universe.md]
+related: [experiments/james-webb-space-telescope.md, concepts/primordial-black-holes.md, concepts/hawking-radiation.md, concepts/cosmic-inflation.md, concepts/little-red-dots.md, people/priyamvada-natarajan.md, people/marta-volonteri.md, people/jenny-greene.md]
+sources: [2025-09-12-naked-black-hole-rewrites-universe.md, 2025-05-06-the-freckled-universe.md]
 ---
 
 # Supermassive Black Hole Origins
@@ -39,8 +39,13 @@ Gas clouds in the early universe, prevented from cooling and fragmenting by resi
 
 ## Current Status
 
-QSO1 and the 300+ "little red dots" identified by the [James Webb Space Telescope](../experiments/james-webb-space-telescope.md) provide the observational evidence, but no formation model has achieved consensus. As John Regan (Maynooth University) puts it, the situation resembles developing theories about human development by studying only adults and teenagers, then discovering toddlers — "messy new entities that are hard for researchers to interpret based on what they've seen before."
+QSO1 and the 340+ [Little Red Dots](../concepts/little-red-dots.md) identified by the [James Webb Space Telescope](../experiments/james-webb-space-telescope.md) provide the observational evidence, but no formation model has achieved consensus. As John Regan (Maynooth University) puts it, the situation resembles developing theories about human development by studying only adults and teenagers, then discovering toddlers — "messy new entities that are hard for researchers to interpret based on what they've seen before."
+
+[Jenny Greene](../people/jenny-greene.md) (Princeton): "Every time we think we understand something [about LRDs], they surprise us again by not having the properties we expect."
+
+The LRD puzzle adds a specific new challenge: if these objects are AGN, their black hole masses are 10–50% of their host galaxy masses — extreme compared to the local 0.1% ratio. This would imply black hole growth dominated over star formation in the early universe, reversing the sequence seen today.
 
 ## Sources
 
+- [The Freckled Universe](../raw/articles/2025-05-06-the-freckled-universe.md)
 - [A Single, 'Naked' Black Hole Rewrites the History of the Universe](../raw/articles/2025-09-12-naked-black-hole-rewrites-universe.md)

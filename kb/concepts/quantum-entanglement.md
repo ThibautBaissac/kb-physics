@@ -5,8 +5,8 @@ type: concept
 evidence: secondary
 created_at: 2026-04-07
 updated_at: 2026-04-07
-related: [concepts/decoherence.md, concepts/quantum-darwinism.md, concepts/wave-function.md, concepts/magic-states.md, concepts/contextuality.md, concepts/toponium.md, concepts/page-wootters-mechanism.md, concepts/complex-numbers-in-quantum-mechanics.md, concepts/quantum-thermodynamics.md, concepts/quantum-simulation.md, concepts/bells-theorem.md, open-questions/measurement-problem.md, experiments/large-hadron-collider.md]
-sources: [2026-02-13-quantum-mechanics-mysteries-dissolving.md, 2025-11-25-magic-at-lhc.md, 2025-11-07-imaginary-numbers-quantum-mechanics.md, 2025-10-01-thermometer-measuring-quantumness.md, 2025-09-05-analog-vs-digital-quantum-simulation.md, 2025-08-08-quantum-theory-100th-birthday.md]
+related: [concepts/decoherence.md, concepts/quantum-darwinism.md, concepts/wave-function.md, concepts/magic-states.md, concepts/contextuality.md, concepts/toponium.md, concepts/page-wootters-mechanism.md, concepts/complex-numbers-in-quantum-mechanics.md, concepts/quantum-thermodynamics.md, concepts/quantum-simulation.md, concepts/bells-theorem.md, open-questions/measurement-problem.md, experiments/large-hadron-collider.md, concepts/photon.md]
+sources: [2026-02-13-quantum-mechanics-mysteries-dissolving.md, 2025-11-25-magic-at-lhc.md, 2025-11-07-imaginary-numbers-quantum-mechanics.md, 2025-10-01-thermometer-measuring-quantumness.md, 2025-09-05-analog-vs-digital-quantum-simulation.md, 2025-08-08-quantum-theory-100th-birthday.md, 2025-12-01-photons-light-the-way.md]
 ---
 
 # Quantum Entanglement
@@ -47,12 +47,17 @@ Entanglement is the fundamental reason classical computers cannot simulate quant
 
 [Bell's theorem](../concepts/bells-theorem.md), proved by [John Bell](../people/john-bell.md) in 1964, established that no local hidden-variable theory can reproduce all quantum predictions. Entangled particles exhibit correlations that cannot be explained by pre-existing properties — either measurements create outcomes (quantum indeterminism) or distant measurements influence each other instantaneously (nonlocality). This result is central to the [measurement problem](../open-questions/measurement-problem.md): any interpretation must explain or accommodate Bell nonlocality.
 
+## Photon Entanglement and Quantum Information
+
+The earliest entanglement experiments used [photons](../concepts/photon.md), exploiting their polarization states as quantum bits. From the 1970s through the 1990s, a series of photon Bell tests — beginning with Clauser and Freedman (1972), advancing through Aspect's loophole-free tests — progressively ruled out local hidden-variable theories and validated quantum nonlocality. This experimental program catalyzed the quantum information science revolution, directly enabling quantum cryptography, quantum teleportation, and photonic quantum computing.
+
 ## Bell Tests and Complex Numbers
 
 Bell tests — where entangled particles are separated and measured by different participants — are a crucial probe of quantum theory's properties. In 2021, [Nicolas Gisin](../people/nicolas-gisin.md) extended the standard two-participant Bell test to three participants (Alice, Bob, and Charlie) with two entangled-photon sources. This extended test found correlations exceeding limits predicted by real-valued quantum theories, initially suggesting [complex numbers](complex-numbers-in-quantum-mechanics.md) are essential. However, 2025 work showed the test assumed a specific tensor product structure; generalized real-valued theories match all complex-valued predictions.
 
 ## Sources
 
+- [Photons light the way](../raw/articles/2025-12-01-photons-light-the-way.md)
 - [Are the Mysteries of Quantum Mechanics Beginning To Dissolve?](../raw/articles/2026-02-13-quantum-mechanics-mysteries-dissolving.md)
 - [Particle Physicists Detect 'Magic' at the Large Hadron Collider](../raw/articles/2025-11-25-magic-at-lhc.md)
 - [Physicists Take the Imaginary Numbers Out of Quantum Mechanics](../raw/articles/2025-11-07-imaginary-numbers-quantum-mechanics.md)

@@ -6,7 +6,126 @@ created_at: 2026-04-06
 
 # Activity Log
 
+## [2026-04-07] fetch | The Freckled Universe
+Fetched from https://www.symmetrymagazine.org/article/the-freckled-universe
+Raw source: `kb/raw/articles/2025-05-06-the-freckled-universe.md`
+Summary: Symmetry Magazine piece (May 2025) introducing "Little Red Dots" (LRDs) — 340+ compact, luminous early-universe objects at z≈4.2–5.5 discovered by JWST; RUBIES survey shows >70% have rotating gas (AGN signature) yet they emit no X-rays; black hole masses are 10–50% of host galaxy masses, far exceeding the local 0.1% norm; Jenny Greene (Princeton), Anthony Taylor and Hollis Akins (UT Austin) are leading researchers.
+Pages created: concepts/little-red-dots.md, people/jenny-greene.md, people/anthony-taylor.md, people/hollis-akins.md
+Pages updated: experiments/james-webb-space-telescope.md, open-questions/supermassive-black-hole-origins.md, index.md
+
+## [2026-04-07] fetch | When the universe answers with silence
+Fetched from https://www.symmetrymagazine.org/article/when-the-universe-answers-with-silence
+Raw source: `kb/raw/articles/2025-05-27-when-the-universe-answers-with-silence.md`
+Summary: Symmetry Magazine piece (May 2025) drawing a parallel between the SUSY null results at the LHC and the 1887 Michelson-Morley ether experiment — Flip Tanedo, Matthew McCullough, and Maurizio Pierini voice cautious optimism that null results deepen understanding rather than end progress; covers long-lived particles and axions as remaining search targets.
+Pages created: people/flip-tanedo.md, people/matthew-mccullough.md, people/maurizio-pierini.md
+Pages updated: concepts/supersymmetry.md, open-questions/beyond-standard-model.md, index.md
+
+## [2026-04-07] fetch | Muon g-2 Announces Most Precise Measurement of the Magnetic Anomaly of the Muon
+Fetched from https://www.symmetrymagazine.org/article/muon-g-2-announces-most-precise-measurement-of-the-magnetic-anomaly-of-the-muon
+Raw source: `kb/raw/articles/2025-06-03-muon-g2-most-precise-measurement.md`
+Summary: The Muon g-2 experiment at Fermilab released its final result (June 2025) — 127 parts-per-billion precision exceeding the design goal — combining six years of data from 176 scientists; new lattice QCD calculations have narrowed the long-standing ~3–4σ discrepancy with theory, leaving BSM interpretation actively debated.
+Pages created: experiments/muon-g2.md
+Pages updated: concepts/muon.md, open-questions/beyond-standard-model.md, index.md
+
+## [2026-04-07] fetch | Dialing gravitational lensing research up to 11
+Fetched from https://www.symmetrymagazine.org/article/dialing-gravitational-lensing-research-up-to-11
+Raw source: `kb/raw/articles/2025-06-05-dialing-gravitational-lensing-research-up-to-11.md`
+Summary: The Vera C. Rubin Observatory's LSST will scale gravitational lensing from ~1,000 known strong lenses to tens of thousands, and weak lensing from hundreds of millions to billions of galaxies — with lensed supernovae detections increasing 100-fold to ~50/year.
+Pages created: concepts/gravitational-lensing.md, people/simon-birrer.md, people/rachel-mandelbaum.md
+Pages updated: experiments/vera-c-rubin-observatory.md, kb/index.md
+
+## [2026-04-07] fetch | The algorithms that help scientists sort through a universe of change
+Fetched from https://www.symmetrymagazine.org/article/the-algorithms-that-help-scientists-sort-through-a-universe-of-change
+Raw source: `kb/raw/articles/2025-06-10-algorithms-sort-universe-of-change.md`
+Summary: Alert brokers (ALeRCE, Fink, and four others) use machine learning to filter the ZTF's 200K and Rubin's forthcoming 10M nightly alerts, routing transient-event sub-streams to research communities — a "village"-scale infrastructure replacing solo-astronomer sky surveys.
+Pages created: concepts/time-domain-astronomy.md, experiments/zwicky-transient-facility.md, people/ben-rusholme.md, people/guillermo-cabrera-vives.md, people/melissa-graham.md, people/julien-peloton.md
+Pages updated: experiments/vera-c-rubin-observatory.md, kb/index.md
+
+## [2026-04-07] fetch | Ever-changing universe revealed in first imagery from NSF-DOE Vera C. Rubin Observatory
+Fetched from https://www.symmetrymagazine.org/article/ever-changing-universe-revealed-in-first-imagery-from-nsf-doe-vera-c-rubin-observatory
+Raw source: `kb/raw/articles/2025-06-23-vera-c-rubin-observatory-first-imagery.md`
+Summary: Rubin Observatory released its inaugural images on June 23, 2025 — capturing 2,104 new asteroids (including 7 near-Earth) in just over 10 hours of test observations, previewing its 10-year LSST mission to probe dark matter, dark energy, and solar system objects.
+Pages created: none
+Pages updated: experiments/vera-c-rubin-observatory.md, concepts/dark-matter.md, concepts/dark-energy.md, index.md
+
+## [2026-04-07] fetch | Elusive romance of top-quark pairs observed at the LHC
+Fetched from https://www.symmetrymagazine.org/article/elusive-romance-of-top-quark-pairs-observed-at-the-lhc
+Raw source: `kb/raw/articles/2025-07-08-top-quark-pairs-toponium-lhc.md`
+Summary: CMS and ATLAS independently confirmed toponium (top-antitop quasi-bound state) at the LHC — CMS at 5σ (8.8 ± 1.3 pb) and ATLAS at 7.7σ (9.0 ± 1.3 pb) — presented at EPS-HEP 2025 in Marseille, completing the quarkonium family.
+Pages created: none
+Pages updated: concepts/toponium.md, experiments/large-hadron-collider.md, concepts/quantum-chromodynamics.md, index.md
+
+## [2026-04-07] fetch | LHC scientists find relics of early universe living on in particle spins
+Fetched from https://www.symmetrymagazine.org/article/lhc-scientists-find-relics-of-early-universe-living-on-in-particle-spins
+Raw source: `kb/raw/articles/2025-07-22-lhc-relics-early-universe-particle-spins.md`
+Summary: ATLAS physicists (Aram Apyan, Brandeis) used machine-learning techniques to find evidence for W boson pairs with longitudinal polarization at the LHC — a Higgs mechanism probe that traces the polarization state back to when the Higgs field first activated in the early universe.
+Pages created: concepts/w-boson-polarization.md, people/aram-apyan.md
+Pages updated: concepts/higgs-boson.md, experiments/large-hadron-collider.md, kb/index.md
+
+## [2026-04-07] fetch | A quantum leap for antimatter measurements
+Fetched from https://www.symmetrymagazine.org/article/a-quantum-leap-for-antimatter-measurements
+Raw source: `kb/raw/articles/2025-07-23-quantum-leap-antimatter-measurements.md`
+Summary: BASE collaboration at CERN created the first antimatter qubit — an antiproton held in coherent quantum superposition for 50 seconds using Penning traps and coherent quantum transition spectroscopy — opening the path to 10–100× more precise CPT symmetry tests via the upcoming BASE-STEP upgrade.
+Pages created: concepts/antimatter.md, concepts/cpt-symmetry.md, experiments/base-experiment.md, people/stefan-ulmer.md
+Pages updated: open-questions/beyond-standard-model.md, concepts/decoherence.md, index.md
+
+## [2026-04-07] fetch | 'Impossible' Higgs boson measurement within reach, thanks to a detour
+Fetched from https://www.symmetrymagazine.org/article/impossible-higgs-boson-measurement-within-reach-thanks-to-a-detour
+Raw source: `kb/raw/articles/2025-08-05-impossible-higgs-boson-measurement.md`
+Summary: How CMS physicists Huilin Qu and Loukas Gouskos developed a self-driving-car-inspired point-cloud machine-learning jet tagger that improved Higgs-to-charm-quark sensitivity by four orders of magnitude — from ≤10,000× to ~4–5× the Standard Model prediction — ahead of HL-LHC projections.
+Pages created: people/huilin-qu.md, people/loukas-gouskos.md, concepts/higgs-boson.md
+Pages updated: theories/standard-model.md, experiments/large-hadron-collider.md, open-questions/beyond-standard-model.md, index.md
+
+## [2026-04-07] fetch | Into the quantum realm
+Fetched from https://www.symmetrymagazine.org/article/into-the-quantum-realm
+Raw source: `kb/raw/articles/2025-08-19-into-the-quantum-realm.md`
+Summary: Symmetry Magazine overview of quantum simulation for physics — Feynman's 1981 vision, why classical path integral methods fail for real-time quantum dynamics, the shift to Hamiltonian formulations on quantum hardware, cross-platform string-breaking verification, CERN's quantum algorithm work on collider data, and the goal of fault-tolerant quantum computing.
+Pages created: people/zohreh-davoudi.md, people/dorota-grabowska.md, people/sofia-vallecorsa.md
+Pages updated: concepts/quantum-simulation.md (path integral vs Hamiltonian, string breaking, CERN quantum initiative, fault-tolerant goal), index.md
+
+## [2026-04-07] fetch | DUNE experiment prepares for supernova watch
+Fetched from https://www.symmetrymagazine.org/article/dune-experiment-prepares-for-supernova-watch
+Raw source: `kb/raw/articles/2025-09-16-dune-supernova-watch.md`
+Summary: How the Deep Underground Neutrino Experiment at SURF, South Dakota will continuously monitor for galactic supernova neutrino bursts — arriving hours before visible light — and alert global observatories; DUNE's liquid argon detectors can detect both neutrinos and antineutrinos, unlike earlier experiments.
+Pages created: experiments/dune-experiment.md, concepts/supernova.md, concepts/neutrino.md
+Pages updated: experiments/km3net-neutrino-detection.md, index.md
+
+## [2026-04-07] fetch | Remote eyes on the sky: Inside SLAC's Rubin control room
+Fetched from https://www.symmetrymagazine.org/article/remote-eyes-on-the-sky-inside-slacs-rubin-control-room
+Raw source: `kb/raw/articles/2025-09-23-slac-rubin-control-room.md`
+Summary: How SLAC's Rubin Operations Center in Menlo Park trains postdocs and provides remote observing support for the Vera C. Rubin Observatory in Chile — including the "First Photon" milestone in April 2025 and the operations model mirroring LHC-style postdoc programs.
+Pages created: experiments/vera-c-rubin-observatory.md
+Pages updated: experiments/slac-light-sources.md, index.md
+
 Append-only, reverse chronological record of all KB operations.
+
+## [2026-04-07] fetch | Dark Matter: A Worldwide Search
+Fetched from https://www.symmetrymagazine.org/article/dark-matter-a-worldwide-search
+Raw source: `kb/raw/articles/2025-11-19-dark-matter-worldwide-search.md`
+Summary: Symmetry Magazine overview of the four main dark matter detection strategies — indirect detection (energy from interactions), direct detection (nuclear recoils), accelerator-based production (missing momentum at colliders), and self-interaction searches (galaxy density profiles) — emphasizing global scientific collaboration.
+Pages created: none
+Pages updated: concepts/dark-matter.md (stub → full page), open-questions/beyond-standard-model.md, index.md
+
+## [2026-04-07] fetch | Photons light the way
+Fetched from https://www.symmetrymagazine.org/article/photons-light-the-way
+Raw source: `kb/raw/articles/2025-12-01-photons-light-the-way.md`
+Summary: Overview of photons as the massless quanta of light and the electromagnetic force carrier — tracing the history from Newton's corpuscles and Maxwell's spectrum through Einstein's 1905 proposal and de Broglie's wave-particle duality, to modern applications in JWST, SLAC X-ray light sources (SSRL/LCLS), and photon entanglement underpinning the quantum information revolution.
+Pages created: concepts/photon.md, experiments/slac-light-sources.md, people/claudio-pellegrini.md, people/uwe-bergmann.md
+Pages updated: theories/standard-model.md, experiments/james-webb-space-telescope.md, concepts/quantum-entanglement.md, index.md
+
+## [2026-04-07] fetch | Curiouser and curiouser: a riddle at the ALICE detector
+Fetched from https://www.symmetrymagazine.org/article/curiouser-and-curiouser-a-riddle-at-the-alice-detector
+Raw source: `kb/raw/articles/2025-12-09-curiouser-alice-detector.md`
+Summary: How CERN physicists diagnosed and fixed a lead-207 beam contamination that threatened ALICE's 2023 lead-ion run — the contaminated isotopes over-bent in the LHC magnetic lattice, creating a secondary beam that overwhelmed the inner tracker; a phase-shift fix reduced backgrounds by 100× and the run ultimately surpassed all prior heavy-ion datasets combined.
+Pages created: experiments/alice-detector.md, people/sarah-porteboeuf.md, people/roderik-bruce.md
+Pages updated: experiments/large-hadron-collider.md, index.md
+
+## [2026-04-07] fetch | Muons: Emblems of discovery
+Fetched from https://www.symmetrymagazine.org/article/muons-emblems-of-discovery
+Raw source: `kb/raw/articles/2026-01-13-muons-emblems-of-discovery.md`
+Summary: How muons — the first unexpected particle discovered in the 1930s — enabled muography applications (Great Pyramid, Vesuvius) and now drive the muon collider program as the most promising path beyond the LHC.
+Pages created: concepts/muon.md, concepts/muography.md, people/andrea-giammanco.md, people/cristina-carloganu.md, people/sergo-jindariani.md, people/nathaniel-craig.md
+Pages updated: experiments/future-colliders.md, theories/standard-model.md, open-questions/beyond-standard-model.md, people/david-kaiser.md, index.md
 
 ## [2026-04-07] lint | KB Health Check
 Scope: full KB with fix

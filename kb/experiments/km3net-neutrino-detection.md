@@ -5,13 +5,13 @@ type: experiment
 evidence: secondary
 created_at: 2026-04-07
 updated_at: 2026-04-07
-related: [concepts/primordial-black-holes.md, concepts/hawking-radiation.md, theories/standard-model.md, open-questions/beyond-standard-model.md, people/david-kaiser.md]
+related: [concepts/neutrino.md, concepts/primordial-black-holes.md, concepts/hawking-radiation.md, theories/standard-model.md, open-questions/beyond-standard-model.md, people/david-kaiser.md, experiments/dune-experiment.md]
 sources: [2026-01-23-monster-neutrino-primordial-black-holes.md]
 ---
 
 # KM3NET Monster Neutrino Detection
 
-In approximately 2023, an extraordinarily energetic neutrino struck the Mediterranean Sea and activated the partially complete Cubic Kilometer Neutrino Telescope (KM3NET) detector off Sicily's coast. The particle was 35 times more energetic than any previously detected neutrino, including those from the IceCube observatory in Antarctica.
+In approximately 2023, an extraordinarily energetic [neutrino](../concepts/neutrino.md) struck the Mediterranean Sea and activated the partially complete Cubic Kilometer Neutrino Telescope (KM3NET) detector off Sicily's coast. The particle was 35 times more energetic than any previously detected neutrino, including those from the IceCube observatory in Antarctica.
 
 ## Conventional Explanations
 
@@ -40,6 +40,10 @@ Kaiser: "The numbers are outrageously congruent, considering I walked in half-jo
 ## Significance
 
 If confirmed, this would be the first observational evidence for both primordial black holes and [Hawking radiation](../concepts/hawking-radiation.md) — two of the most important unconfirmed predictions in theoretical physics. It would also open a new window onto the earliest moments of the universe and the nature of dark matter.
+
+## Related Detectors
+
+The global [neutrino](../concepts/neutrino.md) detector network includes KM3NET, IceCube (Antarctica), Super-Kamiokande (Japan), and the [DUNE Experiment](../experiments/dune-experiment.md) (South Dakota). Each uses different detection media and techniques, giving complementary sensitivity to different neutrino flavors and energies.
 
 ## Sources
 

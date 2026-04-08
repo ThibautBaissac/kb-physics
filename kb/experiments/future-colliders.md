@@ -5,8 +5,8 @@ type: experiment
 evidence: secondary
 created_at: 2026-04-07
 updated_at: 2026-04-07
-related: [experiments/large-hadron-collider.md, theories/standard-model.md, concepts/scattering-amplitudes.md, open-questions/beyond-standard-model.md]
-sources: [2026-01-26-particle-physics-dead-dying-hard.md]
+related: [experiments/large-hadron-collider.md, theories/standard-model.md, concepts/scattering-amplitudes.md, open-questions/beyond-standard-model.md, concepts/muon.md, people/sergo-jindariani.md, people/nathaniel-craig.md]
+sources: [2026-01-26-particle-physics-dead-dying-hard.md, 2026-01-13-muons-emblems-of-discovery.md]
 ---
 
 # Future Colliders
@@ -24,7 +24,13 @@ Formal approval and funding commitments by CERN member countries are not expecte
 
 ## Muon Collider — United States
 
-A proposed novel machine colliding muons — particles that are elementary like electrons but 200 times heavier, yielding both clean and energetic collisions. The major challenge: muons are highly unstable, requiring acceleration and collision within microseconds of creation.
+A proposed novel machine colliding [muons](../concepts/muon.md) — particles that are elementary like electrons but ~207 times heavier, yielding both clean and energetic collisions. This combination addresses the fundamental trade-off of accelerator design: electron colliders are clean but can't reach high energies; hadron colliders reach high energies but generate messy composite-particle collisions. Muons offer the best of both worlds.
+
+The major challenge: [muons](../concepts/muon.md) decay after just **2.2 microseconds**, requiring production, acceleration, and collision in an extraordinarily short window. A key unsolved engineering problem is **beam cooling** — compressing muon bunches into tight enough packets to maximize collision rates before the muons decay. [Nathaniel Craig](../people/nathaniel-craig.md) (UC Santa Barbara): "Scientists have theorized several possible methods to achieve this goal. Now, it's a practical challenge of, can we do that fast enough?"
+
+[Sergo Jindariani](../people/sergo-jindariani.md) (Fermilab): "The nature of muons makes them perfect candidates for creating particle collisions that go beyond what's achievable at the LHC. A muon collider really seems like the right tool for understanding the questions that are facing particle physics now."
+
+Physics goals include: probing why the Higgs field persists in vacuum, searching for weakly interacting massive particle (WIMP) dark matter candidates, and probing early-universe Standard Model structure.
 
 [Maria Spiropulu](../people/maria-spiropulu.md) (Caltech), co-chair of the committee behind a June 2025 national report endorsing the program: "We have to figure out how to do it in between 10 and 20 billion [dollars]." Demonstration and construction would take ~30 years. The lack of a "discovery guarantee" (unlike the LHC with the Higgs) weakens its funding case.
 
@@ -39,3 +45,4 @@ None of these proposals can guarantee new physics will be found. As [Adam Falkow
 ## Sources
 
 - [Is Particle Physics Dead, Dying, or Just Hard?](../raw/articles/2026-01-26-particle-physics-dead-dying-hard.md)
+- [Muons: Emblems of discovery](../raw/articles/2026-01-13-muons-emblems-of-discovery.md)

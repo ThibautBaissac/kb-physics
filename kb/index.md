@@ -65,9 +65,21 @@ Master index of all compiled wiki pages. Read this first when answering queries.
 - [Black Hole Physics](concepts/black-hole-physics.md) — Overview hub linking thermodynamics, quantum properties, and observational science of black holes
 - [Copenhagen Interpretation](concepts/copenhagen-interpretation.md) — Standard textbook interpretation: wave function collapse upon measurement, no deeper explanation
 - [Dark Energy](concepts/dark-energy.md) — Mysterious force driving accelerating expansion; ~68% of the universe's energy content
-- [Dark Matter](concepts/dark-matter.md) — Invisible mass comprising ~27% of the universe; detected gravitationally but never directly observed
+- [Dark Matter](concepts/dark-matter.md) — Invisible mass (~85% of all matter); sought via indirect detection, direct detection, accelerator searches, and self-interaction studies
 - [Interpretations of Quantum Mechanics](concepts/interpretations-of-quantum-mechanics.md) — Overview of competing frameworks: Copenhagen, Many-Worlds, QBism, Relational QM, Quantum Darwinism
 - [Many-Worlds Interpretation](concepts/many-worlds-interpretation.md) — Everett's interpretation: every quantum measurement branches the universe, all outcomes realized
+- [Muon](concepts/muon.md) — The 1930s unexpected particle (Rabi: "Who ordered that?") that launched the particle zoo; now key to muography and the muon collider program
+- [Muography](concepts/muography.md) — Cosmic-ray muon imaging of volcanoes, pyramids, reactors, and cargo; spinoff of particle physics detector R&D
+- [Neutrino](concepts/neutrino.md) — Nearly massless, weakly-interacting particles; produced in stellar explosions and nuclear reactions; key messengers in astrophysics and supernova detection
+- [Photon](concepts/photon.md) — Massless force carrier of electromagnetism; history from Newton's corpuscles to Einstein's quanta; backbone of X-ray science and quantum information
+- [Supernova](concepts/supernova.md) — Core-collapse explosions of massive stars releasing ~99% of energy as neutrinos; the burst arrives hours before visible light, enabling early-warning astronomy
+- [Higgs Boson](concepts/higgs-boson.md) — Last discovered Standard Model particle; its couplings to second-generation charm quarks remain under active measurement via ML-driven jet tagging
+- [Antimatter](concepts/antimatter.md) — Mirror-image counterpart to ordinary matter; CPT symmetry predicts identical behavior yet matter dominates the universe — one of the deepest unsolved puzzles
+- [CPT Symmetry](concepts/cpt-symmetry.md) — Fundamental QFT symmetry predicting matter/antimatter equivalence; tested to parts-per-billion by antiproton spectroscopy
+- [W Boson Polarization](concepts/w-boson-polarization.md) — Longitudinal W boson spin states encode Higgs field relics from the early universe; probed at ATLAS via ML-assisted WW scattering analysis
+- [Time-Domain Astronomy](concepts/time-domain-astronomy.md) — Studying transient celestial events (supernovae, neutron star mergers) via image differencing and ML-powered alert brokers processing millions of nightly detections
+- [Gravitational Lensing](concepts/gravitational-lensing.md) — Bending of light by massive objects used to map dark matter; LSST will scale strong lens catalog from ~1,000 to tens of thousands and weak lensing from millions to billions
+- [Little Red Dots](concepts/little-red-dots.md) — Compact (≤500 ly), luminous early-universe objects at z≈4–5.5 discovered by JWST; may be supermassive AGN with anomalous BH/galaxy mass ratios, or ultra-dense stellar systems
 
 ## People
 
@@ -131,15 +143,49 @@ Master index of all compiled wiki pages. Read this first when answering queries.
 - [Carlo Rovelli](people/carlo-rovelli.md) — Relational quantum mechanics and loop quantum gravity; properties exist only relative to interactions
 - [John Bell](people/john-bell.md) — Derived Bell's theorem (1964) proving no local hidden-variable theory can match quantum predictions
 - [Stephen Hawking](people/stephen-hawking.md) — British physicist (1942–2018); Hawking radiation, black hole thermodynamics, primordial black holes
+- [Andrea Giammanco](people/andrea-giammanco.md) — UCLouvain; pioneered muography applications from archaeology to cargo scanning
+- [Cristina Carloganu](people/cristina-carloganu.md) — French IN2P3; muography advocate, MURAVES (Vesuvius) project
+- [Sergo Jindariani](people/sergo-jindariani.md) — Fermilab; leading advocate for the muon collider program
+- [Nathaniel Craig](people/nathaniel-craig.md) — UC Santa Barbara; muon collider theory, beam cooling, philosophy of discovery
+- [Sarah Porteboeuf](people/sarah-porteboeuf.md) — ALICE Run Coordinator (2023); diagnosed and coordinated fix for lead-207 beam contamination crisis
+- [Roderik Bruce](people/roderik-bruce.md) — CERN accelerator physicist; identified lead-207 contamination threatening ALICE's 2023 heavy-ion run
+- [Claudio Pellegrini](people/claudio-pellegrini.md) — UCLA distinguished professor emeritus; pioneer of free-electron laser science and the LCLS at SLAC
+- [Uwe Bergmann](people/uwe-bergmann.md) — UW-Madison; recovered Archimedes' texts from a medieval palimpsest using SLAC X-ray fluorescence imaging
+- [Zohreh Davoudi](people/zohreh-davoudi.md) — University of Maryland; quantum simulation of nuclear and particle physics, string breaking benchmarking
+- [Dorota Grabowska](people/dorota-grabowska.md) — University of Washington; quantum algorithms for particle physics, path integral to Hamiltonian translation
+- [Sofia Vallecorsa](people/sofia-vallecorsa.md) — CERN Quantum Technology Initiative; quantum algorithms for collider data analysis
+- [Huilin Qu](people/huilin-qu.md) — CERN/CMS; co-developed point-cloud jet tagger enabling Higgs-to-charm measurement, four orders of magnitude sensitivity gain
+- [Loukas Gouskos](people/loukas-gouskos.md) — CMS; proposed the ML detour that made "impossible" Higgs-charm coupling measurements accessible
+- [Stefan Ulmer](people/stefan-ulmer.md) — BASE spokesperson at CERN; led the 2025 creation of the first antimatter qubit with 50-second coherence time
+- [Aram Apyan](people/aram-apyan.md) — Brandeis University; ATLAS physicist studying longitudinal W boson polarization as a Higgs mechanism probe
+- [Ben Rusholme](people/ben-rusholme.md) — Caltech/IPAC; chief engineer of the Zwicky Transient Facility, architect of nightly 200K-alert pipeline
+- [Guillermo Cabrera-Vives](people/guillermo-cabrera-vives.md) — University of Concepción; co-founded ALeRCE alert broker for real-time ML classification of transient events
+- [Melissa Graham](people/melissa-graham.md) — University of Washington; Rubin Observatory lead community scientist, supernova researcher
+- [Julien Peloton](people/julien-peloton.md) — IJCLab France; technical lead at Fink broker, emphasizes community usability of alert infrastructure
+- [Simon Birrer](people/simon-birrer.md) — Stanford; gravitational lensing and lensed supernovae expert; expects Rubin to be "a game changer" for time-delay cosmology
+- [Rachel Mandelbaum](people/rachel-mandelbaum.md) — Weak lensing expert preparing community software infrastructure for Rubin LSST's billion-galaxy lensing catalog
+- [Flip Tanedo](people/flip-tanedo.md) — Particle physicist drawing parallels between the LHC SUSY null results and the 1887 Michelson-Morley ether experiment
+- [Jenny Greene](people/jenny-greene.md) — Princeton; leads the RUBIES survey of Little Red Dots; key voice on early-universe black hole anomalies
+- [Anthony Taylor](people/anthony-taylor.md) — UT Austin; led kinematic analysis showing >70% of RUBIES LRDs display rotating gas (AGN signature)
+- [Hollis Akins](people/hollis-akins.md) — UT Austin PhD student; exploring ultra-dense stellar density models for Little Red Dots
+- [Matthew McCullough](people/matthew-mccullough.md) — Physicist who frames null results as opportunities that deepen understanding, invoking the Michelson-Morley precedent
+- [Maurizio Pierini](people/maurizio-pierini.md) — CERN physicist; "marathon" metaphor for SUSY searches; Higgs at 125 GeV as "smoking gun of new physics"
 
 ## Experiments
 
+- [ALICE Detector](experiments/alice-detector.md) — CERN's dedicated heavy-ion experiment; recreates quark-gluon plasma via lead-ion collisions
+- [DUNE Experiment](experiments/dune-experiment.md) — Deep Underground Neutrino Experiment at SURF, South Dakota; studies neutrino properties and acts as a galactic supernova early-warning system
 - [Electron Fluid Experiments](experiments/electron-fluid-experiments.md) — Gurzhi effect, electron whirlpools, and supersonic shock waves in graphene (2017–2025)
 - [Large Hadron Collider](experiments/large-hadron-collider.md) — CERN's 27-km supercollider; discovered Higgs (2012), found no new physics beyond SM
 - [Future Colliders](experiments/future-colliders.md) — Proposed FCC, muon collider, and Chinese super-tau-charm facility
 - [James Webb Space Telescope](experiments/james-webb-space-telescope.md) — NASA's infrared observatory revealing unexpectedly massive black holes in the early universe
 - [KM3NET Monster Neutrino Detection](experiments/km3net-neutrino-detection.md) — Record-breaking 2023 neutrino possibly from an exploding primordial black hole
 - [Gravitational Wave Detectors](experiments/gravitational-wave-detectors.md) — LIGO, Virgo, KAGRA network detecting black hole mergers; constrains no-hair conjecture to 40 km from the horizon
+- [SLAC Light Sources](experiments/slac-light-sources.md) — Stanford Synchrotron Radiation Lightsource (SSRL) and LCLS; X-ray facilities enabling molecular imaging, chemical dynamics, and humanities research
+- [Vera C. Rubin Observatory](experiments/vera-c-rubin-observatory.md) — NSF–DOE wide-field survey telescope on Cerro Pachón conducting LSST; 2,104 asteroids found in first 10 hours; key probe of dark matter and dark energy
+- [BASE Experiment](experiments/base-experiment.md) — Baryon Antibaryon Symmetry Experiment at CERN; first antimatter qubit (2025), precision CPT symmetry tests via antiproton magnetic moments
+- [Zwicky Transient Facility](experiments/zwicky-transient-facility.md) — Northern-sky time-domain survey at Palomar Mountain (since 2018); issues ~200,000 nightly alerts and served as the proof-of-concept precursor to Rubin's LSST
+- [Muon g-2 Experiment](experiments/muon-g2.md) — Fermilab precision measurement of the muon's anomalous magnetic moment to 127 ppb; final 2025 result probes BSM physics via the quantum vacuum
 
 ## Open Questions
 
@@ -169,3 +215,20 @@ Master index of all compiled wiki pages. Read this first when answering queries.
 - [Analog vs. Digital: The Race Is On To Simulate Our Quantum Universe](raw/articles/2025-09-05-analog-vs-digital-quantum-simulation.md) — Quanta Magazine, Shalma Wegsman, 2025-09-05
 - [Astrophysicists Find No 'Hair' on Black Holes](raw/articles/2025-08-27-no-hair-black-holes.md) — Quanta Magazine, Matt von Hippel, 2025-08-27
 - ['It's a Mess': A Brain-Bending Trip to Quantum Theory's 100th Birthday Party](raw/articles/2025-08-08-quantum-theory-100th-birthday.md) — Quanta Magazine, Charlie Wood, 2025-08-08
+- [Dark Matter: A Worldwide Search](raw/articles/2025-11-19-dark-matter-worldwide-search.md) — Symmetry Magazine, 2025-11-19
+- [Muons: Emblems of discovery](raw/articles/2026-01-13-muons-emblems-of-discovery.md) — Symmetry Magazine, Diana Kwon, 2026-01-13
+- [Curiouser and curiouser: a riddle at the ALICE detector](raw/articles/2025-12-09-curiouser-alice-detector.md) — Symmetry Magazine, Sarah Charley, 2025-12-09
+- [Photons light the way](raw/articles/2025-12-01-photons-light-the-way.md) — Symmetry Magazine, Emily Ayshford, 2025-12-01
+- [DUNE experiment prepares for supernova watch](raw/articles/2025-09-16-dune-supernova-watch.md) — Symmetry Magazine, Zachary Burton, 2025-09-16
+- [Remote eyes on the sky: Inside SLAC's Rubin control room](raw/articles/2025-09-23-slac-rubin-control-room.md) — Symmetry Magazine, Gaëlle Suter, 2025-09-23
+- [Into the quantum realm](raw/articles/2025-08-19-into-the-quantum-realm.md) — Symmetry Magazine, Diana Kwon, 2025-08-19
+- ['Impossible' Higgs boson measurement within reach, thanks to a detour](raw/articles/2025-08-05-impossible-higgs-boson-measurement.md) — Symmetry Magazine, Sarah Charley, 2025-08-05
+- [LHC scientists find relics of early universe living on in particle spins](raw/articles/2025-07-22-lhc-relics-early-universe-particle-spins.md) — Symmetry Magazine, Sarah Charley, 2025-07-22
+- [Elusive romance of top-quark pairs observed at the LHC](raw/articles/2025-07-08-top-quark-pairs-toponium-lhc.md) — Symmetry Magazine, 2025-07-08
+- [The algorithms that help scientists sort through a universe of change](raw/articles/2025-06-10-algorithms-sort-universe-of-change.md) — Symmetry Magazine, Chris Patrick, 2025-06-10
+- [Dialing gravitational lensing research up to 11](raw/articles/2025-06-05-dialing-gravitational-lensing-research-up-to-11.md) — Symmetry Magazine, Kimberly Hickok, 2025-06-05
+- [Ever-changing universe revealed in first imagery from NSF-DOE Vera C. Rubin Observatory](raw/articles/2025-06-23-vera-c-rubin-observatory-first-imagery.md) — Symmetry Magazine, 2025-06-23
+- [A quantum leap for antimatter measurements](raw/articles/2025-07-23-quantum-leap-antimatter-measurements.md) — Symmetry Magazine, 2025-07-23
+- [Muon g-2 Announces Most Precise Measurement of the Magnetic Anomaly of the Muon](raw/articles/2025-06-03-muon-g2-most-precise-measurement.md) — Symmetry Magazine, 2025-06-03
+- [The Freckled Universe](raw/articles/2025-05-06-the-freckled-universe.md) — Symmetry Magazine, Madeleine O'Keefe, 2025-05-06
+- [When the universe answers with silence](raw/articles/2025-05-27-when-the-universe-answers-with-silence.md) — Symmetry Magazine, Maxwell Bernstein, 2025-05-27

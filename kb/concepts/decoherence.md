@@ -5,8 +5,8 @@ type: concept
 evidence: secondary
 created_at: 2026-04-07
 updated_at: 2026-04-07
-related: [concepts/quantum-entanglement.md, concepts/quantum-darwinism.md, concepts/wave-function.md, open-questions/measurement-problem.md, people/wojciech-zurek.md]
-sources: [2026-02-13-quantum-mechanics-mysteries-dissolving.md]
+related: [concepts/quantum-entanglement.md, concepts/quantum-darwinism.md, concepts/wave-function.md, open-questions/measurement-problem.md, people/wojciech-zurek.md, experiments/base-experiment.md]
+sources: [2026-02-13-quantum-mechanics-mysteries-dissolving.md, 2025-07-23-quantum-leap-antimatter-measurements.md]
 ---
 
 # Decoherence
@@ -27,6 +27,11 @@ Decoherence provides a mechanism for the quantum-to-classical transition without
 
 However, decoherence alone does not fully solve the [measurement problem](../open-questions/measurement-problem.md) — it explains why we don't observe superpositions, but not why a specific outcome is selected. Zurek's [quantum Darwinism](../concepts/quantum-darwinism.md) extends decoherence to address how definite classical outcomes emerge.
 
+## Resisting Decoherence
+
+Controlling decoherence is the central engineering challenge of quantum technologies. The [BASE experiment](../experiments/base-experiment.md) demonstrated this in an extreme context: in 2025, BASE maintained a single antiproton in coherent quantum superposition for 50 seconds — a record for individual nuclear magnetic moments, and the first demonstration of an antimatter qubit. Achieving this required electromagnetic Penning traps isolating the antiproton from magnetic field fluctuations that would otherwise cause rapid decoherence.
+
 ## Sources
 
 - [Are the Mysteries of Quantum Mechanics Beginning To Dissolve?](../raw/articles/2026-02-13-quantum-mechanics-mysteries-dissolving.md)
+- [A quantum leap for antimatter measurements](../raw/articles/2025-07-23-quantum-leap-antimatter-measurements.md)
