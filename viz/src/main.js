@@ -146,10 +146,16 @@ function switchView(view) {
 
 function initTypeFilters() {
   const container = document.getElementById('type-filters');
+  const counts = {};
+  if (kbData?.nodes) {
+    for (const n of kbData.nodes) {
+      counts[n.type] = (counts[n.type] || 0) + 1;
+    }
+  }
   container.innerHTML = Object.entries(TYPE_COLORS).map(([type, color]) =>
     `<span class="type-filter active" data-type="${type}" style="color:${color}">
       <span class="dot" style="background:${color}"></span>
-      ${type}
+      ${type}${counts[type] ? ` <span class="type-count">(${counts[type]})</span>` : ''}
     </span>`
   ).join('');
 

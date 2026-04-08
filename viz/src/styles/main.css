@@ -231,6 +231,11 @@ body {
   border-radius: 50%;
 }
 
+.type-count {
+  opacity: 0.6;
+  font-size: 10px;
+}
+
 /* Tag filter dropdown */
 .tag-filter-wrapper {
   position: relative;
@@ -367,32 +372,6 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* Legend */
-.legend {
-  position: absolute;
-  bottom: 52px;
-  left: 16px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 12px;
-  z-index: 5;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 4px 0;
-  color: var(--text-secondary);
-}
-
-.legend-item .swatch {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
 
 /* Stats badge */
 .stats-badge {
@@ -406,6 +385,24 @@ body {
   font-size: 11px;
   color: var(--text-muted);
   z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stats-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.stats-toggle:hover {
+  background: var(--bg-hover);
 }
 
 /* Sidebar */
@@ -1172,29 +1169,6 @@ body {
   background: var(--text-muted);
 }
 
-/* Rule 2: progressive disclosure legend toggle */
-.legend-divider {
-  height: 1px;
-  background: var(--border);
-  margin: 8px 0;
-}
-
-.legend-toggle-btn {
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--accent);
-  font-size: 11px;
-  padding: 3px 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 100%;
-  text-align: left;
-  transition: background 0.15s;
-}
-
-.legend-toggle-btn:hover {
-  background: var(--bg-hover);
-}
 
 /* Rule 3: Ask AI button in detail panel */
 .detail-ask-ai {

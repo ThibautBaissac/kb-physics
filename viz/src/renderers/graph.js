@@ -256,17 +256,11 @@ export function renderGraph(container, data, {
   // Rule 7: final hull update when simulation ends
   simulation.on('end', updateHulls);
 
-  // Stats badge — Rule 6: live count
+  // Stats badge — Rule 6: live count + show-all toggle
   const statsEl = document.createElement('div');
   statsEl.className = 'stats-badge';
   updateStats();
   container.appendChild(statsEl);
-
-  // Legend — Rule 2: show all toggle
-  const legend = document.createElement('div');
-  legend.className = 'legend';
-  renderLegend();
-  container.appendChild(legend);
 
   // Auto-resize
   const resizeObserver = new ResizeObserver((entries) => {
@@ -332,37 +326,24 @@ export function renderGraph(container, data, {
 
   function updateStats(filteredCount) {
     const visTotal = allNodes.filter(n => showAll || n._top).length;
+    let text;
     if (filteredCount !== undefined) {
-      statsEl.textContent = `${filteredCount} of ${allNodes.length} nodes`;
+      text = `${filteredCount} of ${allNodes.length} nodes`;
     } else if (!showAll && visTotal < allNodes.length) {
-      statsEl.textContent = `${visTotal} of ${allNodes.length} nodes / ${allEdges.length} edges`;
+      text = `${visTotal} of ${allNodes.length} nodes`;
     } else {
-      statsEl.textContent = `${allNodes.length} nodes / ${allEdges.length} edges`;
+      text = `${allNodes.length} nodes / ${allEdges.length} edges`;
     }
-  }
-
-  function renderLegend() {
-    const items = Object.entries(TYPE_COLORS).map(([type, color]) => {
-      const count = allNodes.filter(n => n.type === type).length;
-      return `<div class="legend-item">
-        <span class="swatch" style="background:${color}"></span>
-        <span>${type} (${count})</span>
-      </div>`;
-    }).join('');
 
     if (allNodes.length > TOP_N) {
-      legend.innerHTML = items + `
-        <div class="legend-divider"></div>
-        <button class="legend-toggle-btn" id="btn-graph-show-all">
-          ${showAll ? `Focus top ${TOP_N}` : `Show all ${allNodes.length} nodes`}
-        </button>`;
-      legend.querySelector('#btn-graph-show-all').addEventListener('click', function () {
+      const label = showAll ? `Focus top ${TOP_N}` : `Show all ${allNodes.length}`;
+      statsEl.innerHTML = `${text} <button class="stats-toggle" id="btn-graph-show-all">${label}</button>`;
+      statsEl.querySelector('#btn-graph-show-all').addEventListener('click', () => {
         showAll = !showAll;
-        this.textContent = showAll ? `Focus top ${TOP_N}` : `Show all ${allNodes.length} nodes`;
         applyDisclosure();
       });
     } else {
-      legend.innerHTML = items;
+      statsEl.textContent = text;
     }
   }
 
@@ -375,9 +356,7 @@ export function renderGraph(container, data, {
       .attr('opacity', n => getTextOpacity(n));
     link.transition().duration(350)
       .attr('stroke-opacity', e => {
-        const sv = e.source._visible !== false;
-        const tv = e.target._visible !== false;
-        return isVisible(d.source) && isVisible(d.target) ? 0.45 : 0;
+        return isVisible(e.source) && isVisible(e.target) ? 0.45 : 0;
       });
     updateStats();
     updateHulls();
