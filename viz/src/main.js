@@ -2,7 +2,7 @@ import { renderGraph } from './renderers/graph.js';
 import { renderTimeline } from './renderers/timeline.js';
 import { renderTable } from './renderers/table.js';
 import { initChat, prefillChat } from './chat.js';
-import { openReader, initReader } from './reader.js';
+import { openReader, initReader, closeReader } from './reader.js';
 import { initPalette, openPalette } from './palette.js';
 import { TYPE_COLORS, TAG_COLORS, escapeHtml } from './constants.js';
 
@@ -136,7 +136,7 @@ function switchView(view) {
       onArticleClick: (event, d) => openReader(d.id),
     });
   } else if (view === 'table' && kbData) {
-    currentRenderer = renderTable(viewer, kbData, { selectedNodeId });
+    currentRenderer = renderTable(viewer, kbData, { selectedNodeId, onRowClick: (node) => showDetail(null, node) });
   } else {
     viewer.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted)">
       <p>Select a view or load an artifact</p>
@@ -268,6 +268,20 @@ function initToggles() {
 
   document.getElementById('btn-chat-close').addEventListener('click', () => {
     document.getElementById('app').classList.remove('chat-open');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    // Don't intercept Escape when typing in inputs
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    const detailPanel = document.querySelector('.detail-panel.open');
+    if (detailPanel) {
+      detailPanel.classList.remove('open');
+      return;
+    }
+    if (document.getElementById('app').classList.contains('reader-open')) {
+      closeReader();
+    }
   });
 }
 

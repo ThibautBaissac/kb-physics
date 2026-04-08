@@ -1,6 +1,6 @@
 import { TYPE_COLORS } from '../constants.js';
 
-export function renderTable(container, data, { selectedNodeId } = {}) {
+export function renderTable(container, data, { selectedNodeId, onRowClick } = {}) {
   container.innerHTML = '';
 
   let columns, rowsWithMeta;
@@ -38,11 +38,18 @@ export function renderTable(container, data, { selectedNodeId } = {}) {
   const typeColIdx = columns.indexOf('Type');
   const titleColIdx = columns.indexOf('Title');
 
+  // Two-section layout: sticky filter bar on top, scrollable table below
   const wrapper = document.createElement('div');
-  wrapper.style.cssText = 'height:100%;overflow:auto;padding:16px;';
+  wrapper.style.cssText = 'display:flex;flex-direction:column;height:100%;overflow:hidden;';
+
+  const filterSection = document.createElement('div');
+  filterSection.style.cssText = 'flex-shrink:0;padding:10px 16px 8px;border-bottom:1px solid #30363d;background:var(--bg-primary);';
+
+  const scrollSection = document.createElement('div');
+  scrollSection.style.cssText = 'flex:1;overflow-y:auto;padding:0 16px 16px;';
 
   const filterRow = document.createElement('div');
-  filterRow.style.cssText = 'display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;';
+  filterRow.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap;';
 
   const filters = columns.map((col) => {
     const input = document.createElement('input');
@@ -74,6 +81,10 @@ export function renderTable(container, data, { selectedNodeId } = {}) {
     const th = document.createElement('th');
     th.textContent = col;
     th.style.cssText = `
+      position: sticky;
+      top: 0;
+      background: var(--bg-primary);
+      z-index: 1;
       text-align: left;
       padding: 8px 12px;
       border-bottom: 2px solid #30363d;
@@ -147,6 +158,13 @@ export function renderTable(container, data, { selectedNodeId } = {}) {
         tr.classList.add('row--selected');
         selectedTr = tr;
       }
+      if (onRowClick && id) {
+        tr.style.cursor = 'pointer';
+        tr.addEventListener('click', () => {
+          const node = data.nodes?.find(n => n.id === id);
+          if (node) onRowClick(node);
+        });
+      }
       tr.addEventListener('mouseenter', () => {
         if (!isSelected) tr.style.background = '#161b22';
       });
@@ -184,7 +202,10 @@ export function renderTable(container, data, { selectedNodeId } = {}) {
     statsEl.textContent = `${filtered.length} of ${rowsWithMeta.length} rows`;
   }
 
-  wrapper.appendChild(table);
+  filterSection.appendChild(filterRow);
+  wrapper.appendChild(filterSection);
+  scrollSection.appendChild(table);
+  wrapper.appendChild(scrollSection);
   container.appendChild(wrapper);
   statsEl.textContent = `${rowsWithMeta.length} rows / ${columns.length} columns`;
   container.appendChild(statsEl);
