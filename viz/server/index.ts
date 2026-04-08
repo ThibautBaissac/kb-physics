@@ -193,6 +193,7 @@ let ingestState: {
   running: boolean;
   url: string;
   startedAt: number;
+  abortController: AbortController;
   events: IngestEvent[];
   listeners: Set<(event: IngestEvent) => void>;
 } | null = null;
@@ -207,10 +208,13 @@ function emitIngestEvent(event: IngestEvent) {
 
 /** Runs the agent in the background. Not tied to any HTTP request. */
 async function runIngest(url: string, ingestPrompt: string) {
+  const cancelled = () => ingestState?.abortController.signal.aborted;
+
   try {
     const stream = query({
       prompt: `/kb:fetch ${url}`,
       options: {
+        abortController: ingestState!.abortController,
         cwd: ROOT_PATH,
         additionalDirectories: [KB_PATH],
         settingSources: ['project'],
@@ -230,19 +234,22 @@ async function runIngest(url: string, ingestPrompt: string) {
     });
 
     await processAgentStream(stream, emitIngestEvent);
-
-    // Re-parse KB graph after successful ingestion
+  } catch (err: any) {
+    if (err.name === 'AbortError' || cancelled()) {
+      console.log('[ingest] Cancelled by user');
+      emitIngestEvent({ type: 'error', content: 'Ingestion cancelled. The raw source file (if created) is kept — you can re-run /kb:ingest on it later.' });
+    } else {
+      console.error('[ingest error]', err.message || err);
+      emitIngestEvent({ type: 'error', content: err.message || 'Ingest error' });
+    }
+  } finally {
+    // Re-parse graph to reflect any changes (including partial ones from cancellation)
     try {
       parseAndWriteKBGraph();
       emitIngestEvent({ type: 'kb_updated' });
     } catch (parseErr: any) {
       console.error('[ingest] KB parse failed:', parseErr.message);
-      emitIngestEvent({ type: 'error', content: 'Ingestion succeeded but graph refresh failed. Run npm run parse manually.' });
     }
-  } catch (err: any) {
-    console.error('[ingest error]', err.message || err);
-    emitIngestEvent({ type: 'error', content: err.message || 'Ingest error' });
-  } finally {
     emitIngestEvent({ type: 'done' });
     if (ingestState) ingestState.running = false;
   }
@@ -270,10 +277,20 @@ app.post('/api/ingest', async (req, res) => {
   }
 
   // Reset state and start background task
-  ingestState = { running: true, url, startedAt: Date.now(), events: [], listeners: new Set() };
+  ingestState = { running: true, url, startedAt: Date.now(), abortController: new AbortController(), events: [], listeners: new Set() };
   runIngest(url, ingestPrompt); // fire-and-forget
 
   res.json({ status: 'started', url });
+});
+
+// POST /api/ingest/cancel — abort a running ingest
+app.post('/api/ingest/cancel', (_req, res) => {
+  if (!ingestState?.running) {
+    res.status(404).json({ error: 'No ingestion in progress' });
+    return;
+  }
+  ingestState.abortController.abort();
+  res.json({ status: 'cancelled' });
 });
 
 // GET /api/ingest/status — check current ingest state (for page load)

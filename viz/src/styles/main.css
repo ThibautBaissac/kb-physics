@@ -676,6 +676,22 @@ body {
 .ingest-output p { margin-bottom: 8px; }
 .ingest-output code { background: var(--bg-elevated); padding: 1px 4px; border-radius: 3px; font-size: 12px; }
 
+.ingest-stop-btn {
+  background: transparent;
+  border: 1px solid #ff6b6b;
+  color: #ff6b6b;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.ingest-stop-btn:hover {
+  background: rgba(255, 107, 107, 0.1);
+}
+
 #ingest-progress .agent-status.done {
   border-color: #7ee787;
 }

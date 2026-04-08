@@ -23,6 +23,7 @@ export function initIngest(reloadKBData) {
   els.toolLog = document.getElementById('ingest-tool-log');
   els.output = document.getElementById('ingest-output');
   els.status = document.getElementById('ingest-status');
+  els.stopBtn = document.getElementById('ingest-stop');
 
   els.btn.addEventListener('click', openModal);
   els.close.addEventListener('click', closeModal);
@@ -33,6 +34,7 @@ export function initIngest(reloadKBData) {
   els.urlInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') { e.preventDefault(); startIngest(); }
   });
+  els.stopBtn.addEventListener('click', cancelIngest);
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && els.backdrop.classList.contains('open')) closeModal();
@@ -68,6 +70,8 @@ function showProgress() {
   els.toolLog.innerHTML = '';
   els.statusText.textContent = 'Starting...';
   els.status.classList.remove('done', 'error');
+  els.stopBtn.style.display = '';
+  els.stopBtn.disabled = false;
 }
 
 function setButtonRunning(running) {
@@ -107,6 +111,13 @@ function stopTimer() {
   if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
 }
 
+async function cancelIngest() {
+  els.stopBtn.disabled = true;
+  try {
+    await fetch('/api/ingest/cancel', { method: 'POST' });
+  } catch { /* server handles cleanup */ }
+}
+
 async function startIngest() {
   const url = els.urlInput.value.trim();
   if (!url) return;
@@ -143,6 +154,7 @@ async function startIngest() {
 
 async function streamEvents() {
   let rawText = '';
+  let hadError = false;
 
   try {
     const res = await fetch('/api/ingest/events');
@@ -179,6 +191,7 @@ async function streamEvents() {
               });
             }
           } else if (data.type === 'error') {
+            hadError = true;
             els.output.innerHTML += `<div style="color:#ff6b6b;margin-top:8px">Error: ${escapeHtml(data.content)}</div>`;
             els.output.scrollTop = els.output.scrollHeight;
           } else if (data.type === 'tool') {
@@ -191,15 +204,14 @@ async function streamEvents() {
           } else if (data.type === 'kb_updated') {
             if (onKBUpdated) onKBUpdated();
           } else if (data.type === 'done') {
-            onFinish(true);
+            onFinish(!hadError);
             return;
           }
         } catch { /* skip malformed */ }
       }
     }
 
-    // Stream ended without explicit done
-    onFinish(!!rawText);
+    onFinish(!hadError && !!rawText);
   } catch (err) {
     if (err.name !== 'AbortError') {
       els.output.innerHTML += `<div style="color:#ff6b6b;margin-top:8px">Connection lost: ${escapeHtml(err.message)}</div>`;
@@ -214,6 +226,7 @@ function onFinish(success) {
   els.status.classList.add(success ? 'done' : 'error');
   els.statusText.textContent = success ? 'Done' : 'Failed';
   els.status.querySelector('.agent-spinner')?.remove();
+  els.stopBtn.style.display = 'none';
   setButtonDone(success);
 }
 
