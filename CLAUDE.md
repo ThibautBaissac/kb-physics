@@ -49,6 +49,18 @@ Supporting files:
 - **`kb/index.md`** — Master hub linking to section indexes (`kb/index-theories.md`, `kb/index-concepts.md`, `kb/index-people.md`, `kb/index-experiments.md`, `kb/index-open-questions.md`). Read the hub first, then drill into the relevant section.
 - **`kb/log.md`** — Append-only reverse-chronological activity log.
 
+## Viz Development
+
+The `viz/` app is a Vite + D3 frontend with an Express + TypeScript backend. All commands run from `viz/`:
+
+```bash
+cd viz
+npm run dev      # dev server (Vite + Express + file watcher)
+npm run build    # parse KB + production build
+npm run parse    # regenerate src/data/kb-graph.json from KB
+npm run server   # Express API only
+```
+
 ## Key Rules
 
 1. `kb/raw/` is immutable — never modify source files after adding them
