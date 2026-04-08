@@ -13,6 +13,7 @@ export function renderTable(container, data, { selectedNodeId, onRowClick } = {}
     id: n.id,
     tags: n.tags || [],
     description: n.description || '',
+    sources: n.sources || [],
     row: [
       n.title,
       n.type,
@@ -118,13 +119,14 @@ export function renderTable(container, data, { selectedNodeId, onRowClick } = {}
   function renderRows() {
     const filterValues = filters.map(f => f.value.toLowerCase());
 
-    const filtered = rowsWithMeta.filter(({ row, tags, description }) => {
+    const filtered = rowsWithMeta.filter(({ row, tags, description, sources }) => {
       const colMatch = row.every((cell, i) => !filterValues[i] || (cell || '').toLowerCase().includes(filterValues[i]));
       if (!colMatch) return false;
       if (currentActiveTypes && typeColIdx >= 0 && !currentActiveTypes.has(row[typeColIdx])) return false;
       if (currentSearchQuery && titleColIdx >= 0
         && !(row[titleColIdx] || '').toLowerCase().includes(currentSearchQuery)
-        && !(description || '').toLowerCase().includes(currentSearchQuery)) return false;
+        && !(description || '').toLowerCase().includes(currentSearchQuery)
+        && !(sources || []).some(s => s.toLowerCase().includes(currentSearchQuery))) return false;
       if (currentActiveTags && currentActiveTags.size > 0) {
         const rowTags = tags || [];
         if (!rowTags.some(t => currentActiveTags.has(t))) return false;

@@ -74,7 +74,8 @@ export async function openReader(articleId, { breadcrumb } = {}) {
   contentEl.style.display = 'none';
 
   try {
-    const res = await fetch(`/api/page/raw/articles/${articleId}`);
+    const category = meta?.category || 'articles';
+    const res = await fetch(`/api/page/raw/${category}/${articleId}`);
     if (!res.ok) throw new Error(`${res.status}`);
     const { content } = await res.json();
     // Strip YAML frontmatter

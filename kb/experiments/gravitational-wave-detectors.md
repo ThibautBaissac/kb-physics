@@ -4,9 +4,9 @@ description: Interferometric observatories (LIGO, Virgo, KAGRA) detecting spacet
 type: experiment
 evidence: secondary
 created_at: 2026-04-07
-updated_at: 2026-04-07
-related: [concepts/no-hair-theorem.md, concepts/black-hole-entropy.md, concepts/hawking-radiation.md, people/vitor-cardoso.md, people/gregorio-carullo.md]
-sources: [2025-08-27-no-hair-black-holes.md]
+updated_at: 2026-04-08
+related: [concepts/no-hair-theorem.md, concepts/black-hole-entropy.md, concepts/hawking-radiation.md, concepts/massive-black-hole-binaries.md, experiments/lisa.md, people/vitor-cardoso.md, people/gregorio-carullo.md]
+sources: [2025-08-27-no-hair-black-holes.md, 2026-04-03-fluxmc-gravitational-wave-inference.md]
 tags: [general-relativity, black-holes, experimental-methods]
 ---
 
@@ -65,6 +65,11 @@ The Einstein Telescope will be able to detect deviations at the scale of a footb
 
 Gregorio Carullo: "The Einstein Telescope will basically observe all the black holes in the universe of a certain mass range … which is incredible."
 
+## Space-Based Gravitational-Wave Detection
+
+Ground-based detectors are limited to frequencies above ~10 Hz by seismic noise. The **millihertz band** (0.1–100 mHz) — where [massive black hole binary](../concepts/massive-black-hole-binaries.md) mergers radiate — requires space-based observatories. [LISA, Taiji, and TianQin](../experiments/lisa.md) are planned for the 2030s and will detect the most energetic astrophysical events since the Big Bang, enabling precision cosmology via standard sirens and strong-field tests of GR.
+
 ## Sources
 
 - [Astrophysicists Find No 'Hair' on Black Holes](../raw/articles/2025-08-27-no-hair-black-holes.md)
+- [FluxMC: Rapid and High-Fidelity Inference for Space-Based Gravitational-Wave Observations](../raw/papers/2026-04-03-fluxmc-gravitational-wave-inference.md)

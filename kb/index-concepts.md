@@ -41,6 +41,7 @@ updated_at: 2026-04-08
 - [Little Red Dots](concepts/little-red-dots.md) — Compact (≤500 ly), luminous early-universe objects at z≈4–5.5 discovered by JWST; may be supermassive AGN with anomalous BH/galaxy mass ratios, or ultra-dense stellar systems
 - [Magic States](concepts/magic-states.md) — Quantum states enabling true quantum advantage; first detected in top quark entanglement at the LHC
 - [Many-Worlds Interpretation](concepts/many-worlds-interpretation.md) — Everett's interpretation: every quantum measurement branches the universe, all outcomes realized
+- [Massive Black Hole Binaries](concepts/massive-black-hole-binaries.md) — Pairs of supermassive black holes (10⁵–10⁸ M☉) that merge emitting millihertz gravitational waves; flagship science target for LISA and Taiji
 - [Muography](concepts/muography.md) — Cosmic-ray muon imaging of volcanoes, pyramids, reactors, and cargo; spinoff of particle physics detector R&D
 - [Muon](concepts/muon.md) — The 1930s unexpected particle (Rabi: "Who ordered that?") that launched the particle zoo; now key to muography and the muon collider program
 - [Neutrino](concepts/neutrino.md) — Nearly massless, weakly-interacting particles; produced in stellar explosions and nuclear reactions; key messengers in astrophysics and supernova detection

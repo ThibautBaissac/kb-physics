@@ -12,9 +12,9 @@ Master hub for the physics knowledge base. Start here, then drill into the relev
 | Section | Pages | Index |
 |---------|------:|-------|
 | Theories | 5 | [index-theories.md](index-theories.md) |
-| Concepts | 61 | [index-concepts.md](index-concepts.md) |
+| Concepts | 62 | [index-concepts.md](index-concepts.md) |
 | People | 87 | [index-people.md](index-people.md) |
-| Experiments | 13 | [index-experiments.md](index-experiments.md) |
+| Experiments | 14 | [index-experiments.md](index-experiments.md) |
 | Open Questions | 6 | [index-open-questions.md](index-open-questions.md) |
 
 ## Raw Sources
@@ -53,3 +53,4 @@ Master hub for the physics knowledge base. Start here, then drill into the relev
 - [Muon g-2 Announces Most Precise Measurement of the Magnetic Anomaly of the Muon](raw/articles/2025-06-03-muon-g2-most-precise-measurement.md) — Symmetry Magazine, 2025-06-03
 - [The Freckled Universe](raw/articles/2025-05-06-the-freckled-universe.md) — Symmetry Magazine, Madeleine O'Keefe, 2025-05-06
 - [When the universe answers with silence](raw/articles/2025-05-27-when-the-universe-answers-with-silence.md) — Symmetry Magazine, Maxwell Bernstein, 2025-05-27
+- [FluxMC: Rapid and High-Fidelity Inference for Space-Based Gravitational-Wave Observations](raw/papers/2026-04-03-fluxmc-gravitational-wave-inference.md) — arXiv, Bo Liang et al., 2026-04-03

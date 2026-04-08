@@ -390,7 +390,7 @@ export function renderGraph(container, data, {
       const hasTags = activeTags && activeTags.size > 0;
       allNodes.forEach(d => {
         const typeMatch = !activeTypes || activeTypes.has(d.type);
-        const searchMatch = !sq || d.title.toLowerCase().includes(sq) || (d.description || '').toLowerCase().includes(sq);
+        const searchMatch = !sq || d.title.toLowerCase().includes(sq) || (d.description || '').toLowerCase().includes(sq) || (d.sources || []).some(s => s.toLowerCase().includes(sq));
         const tagMatch = !hasTags || (d.tags || []).some(t => activeTags.has(t));
         d._visible = typeMatch && searchMatch && tagMatch;
       });

@@ -1,13 +1,82 @@
 ---
 description: Fetch an article from a URL, create a raw source file, and ingest it into the KB
 argument-hint: "<url>"
-allowed-tools: Read, Write, Edit, Glob, Grep, WebFetch
+allowed-tools: Read, Write, Edit, Glob, Grep, WebFetch, Bash
 effort: high
 ---
 
 Fetch an article from a URL and ingest it into the knowledge base. The URL is: $ARGUMENTS
 
 Follow these steps exactly in order. Do NOT skip any step.
+
+## Step 0: Detect arXiv URLs
+
+Check if the URL matches `arxiv.org`. If it contains `arxiv.org/abs/` or `arxiv.org/pdf/`, this is an arXiv paper — follow the **arXiv path** below, then skip to Step 4.
+
+If the URL is NOT an arXiv link, skip this step and continue to Step 1.
+
+### arXiv path
+
+#### (a) Normalize the URL
+
+Extract the arXiv ID from the URL. Handle all variants:
+- `https://arxiv.org/abs/2411.17893` → ID is `2411.17893`
+- `https://arxiv.org/pdf/2411.17893` → ID is `2411.17893`
+- Version suffixes like `2411.17893v2` → keep the version in the ID
+- Old-format IDs like `hep-th/9905111` → ID is `hep-th/9905111`
+- With or without `www.` prefix
+
+Derive both URLs:
+- Abstract page: `https://arxiv.org/abs/<id>`
+- PDF: `https://arxiv.org/pdf/<id>`
+
+#### (b) Download the PDF
+
+Use Bash to download the PDF to the local originals cache:
+
+```bash
+mkdir -p kb/raw/_originals
+curl -sL -o "kb/raw/_originals/<id>.pdf" "https://arxiv.org/pdf/<id>"
+```
+
+For old-format IDs containing `/` (e.g., `hep-th/9905111`), replace the `/` with `-` in the filename (e.g., `hep-th-9905111.pdf`).
+
+Verify the download succeeded: the file must exist and have nonzero size. If it fails, stop and tell the user.
+
+#### (c) Fetch metadata and create raw source
+
+Use WebFetch on the abstract page (`https://arxiv.org/abs/<id>`) to extract:
+- **Title** of the paper
+- **Authors** (full list)
+- **Submission date** (original submission, not latest revision)
+- **Abstract** text
+
+Create the raw source file at `kb/raw/papers/YYYY-MM-DD-short-title.md` (date is the original submission date) with this frontmatter:
+
+```yaml
+---
+title: "<paper title>"
+description: "<one-line summary derived from the abstract>"
+created_at: YYYY-MM-DD
+source: external
+type: paper
+url: https://arxiv.org/abs/<id>
+author: "<First Author et al.>"
+publication: arXiv
+arxiv_id: "<id>"
+original: _originals/<id>.pdf
+---
+```
+
+Use "First Author et al." when there are more than 3 authors. Use the full author list when there are 3 or fewer.
+
+For old-format IDs, use the `-` form in the `original:` field to match the downloaded filename (e.g., `_originals/hep-th-9905111.pdf`).
+
+Below the frontmatter, write the full abstract as the body content. This is the raw source text — the full paper content will be read from the PDF during ingestion via the `original:` field.
+
+**After creating the raw source file, skip to Step 4.**
+
+---
 
 ## Step 1: Fetch the article
 

@@ -103,7 +103,7 @@ for i in "${!urls[@]}"; do
     --verbose \
     --output-format stream-json \
     --include-partial-messages \
-    --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch" \
+    --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,Bash" \
     --append-system-prompt "This is an automated batch operation. Do NOT ask the user for confirmation at any step — proceed directly through ALL steps including ingestion. Auto-confirm everything. Never pause or wait for user input." \
     2>/dev/null | stream_filter
 

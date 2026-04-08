@@ -6,6 +6,13 @@ created_at: 2026-04-06
 
 # Activity Log
 
+## [2026-04-08] fetch | FluxMC: Rapid and High-Fidelity Inference for Space-Based Gravitational-Wave Observations
+Fetched from https://arxiv.org/abs/2604.04957
+Raw source: `kb/raw/papers/2026-04-03-fluxmc-gravitational-wave-inference.md`
+Summary: arXiv preprint (April 2026) by Bo Liang et al. introducing FluxMC, a machine learning framework combining Flow Matching with Parallel Tempering MCMC for Bayesian parameter estimation of massive black hole binary signals in space-based gravitational-wave observatories (LISA, Taiji); achieves convergence in <5 hours where traditional PTMCMC fails after hundreds of hours, reducing distributional error by ~180×.
+Pages created: experiments/lisa.md, concepts/massive-black-hole-binaries.md
+Pages updated: experiments/gravitational-wave-detectors.md, concepts/black-hole-physics.md
+
 ## [2026-04-07] fetch | The Freckled Universe
 Fetched from https://www.symmetrymagazine.org/article/the-freckled-universe
 Raw source: `kb/raw/articles/2025-05-06-the-freckled-universe.md`

@@ -175,7 +175,7 @@ export function renderTimeline(container, data, { selectedNodeId, onArticleClick
       dots.transition().duration(200)
         .attr('opacity', d => {
           const typeOk = activeTypes.has(d.type) || (d.isArticle && activeTypes.size > 0);
-          const searchOk = !sq || d.title.toLowerCase().includes(sq) || (d.description || '').toLowerCase().includes(sq);
+          const searchOk = !sq || d.title.toLowerCase().includes(sq) || (d.description || '').toLowerCase().includes(sq) || (d.sources || []).some(s => s.toLowerCase().includes(sq));
           const tagOk = !hasTags || d.isArticle || (d.tags || []).some(t => activeTags.has(t));
           return typeOk && searchOk && tagOk ? 0.85 : 0.05;
         });
