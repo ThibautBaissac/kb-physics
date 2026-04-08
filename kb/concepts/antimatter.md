@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/cpt-symmetry.md, open-questions/beyond-standard-model.md, experiments/base-experiment.md, theories/standard-model.md, concepts/quantum-entanglement.md]
 sources: [2025-07-23-quantum-leap-antimatter-measurements.md]
+tags: [nuclear-and-subatomic, particle-physics]
 ---
 
 # Antimatter

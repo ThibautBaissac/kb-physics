@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/wave-function.md, concepts/holography.md, open-questions/quantum-gravity-in-de-sitter-space.md, open-questions/measurement-problem.md, people/rob-myers.md]
 sources: [2025-11-19-observer-free-universe-paradox.md]
+tags: [mathematical-physics, quantum-mechanics]
 ---
 
 # Hilbert Space

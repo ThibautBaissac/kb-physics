@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/black-hole-entropy.md, concepts/hawking-radiation.md, concepts/no-hair-theorem.md, concepts/primordial-black-holes.md, concepts/holography.md, concepts/island-formula.md, open-questions/black-hole-information-paradox.md, open-questions/supermassive-black-hole-origins.md, experiments/gravitational-wave-detectors.md, experiments/james-webb-space-telescope.md, people/stephen-hawking.md, theories/general-relativity.md, theories/string-theory.md]
 sources: []
+tags: [black-holes, general-relativity, quantum-gravity]
 ---
 
 # Black Hole Physics

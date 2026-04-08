@@ -7,6 +7,7 @@ created_at: 2026-04-06
 updated_at: 2026-04-07
 related: [concepts/supersymmetry.md, concepts/scattering-amplitudes.md, concepts/string-landscape.md, concepts/extra-dimensions.md, concepts/uv-completion.md, concepts/bootstrap-method.md, concepts/black-hole-entropy.md, concepts/de-sitter-space.md, concepts/holography.md, concepts/compactification.md, open-questions/testability-of-string-theory.md, open-questions/quantum-gravity-in-de-sitter-space.md, theories/quantum-field-theory.md, theories/quadratic-gravity.md]
 sources: [2026-03-23-strings-theory-of-everything.md, 2026-03-30-de-sitter-space-quantum-mechanics.md, 2026-01-14-string-theory-dark-energy.md, 2025-11-17-ghost-theory-quantum-gravity-comeback.md]
+tags: [string-theory, quantum-gravity, cosmology, mathematical-physics]
 ---
 
 # String Theory

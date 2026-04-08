@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/black-hole-entropy.md, concepts/de-sitter-space.md, concepts/anti-de-sitter-space.md, concepts/island-formula.md, concepts/hilbert-space.md, open-questions/quantum-gravity-in-de-sitter-space.md, theories/string-theory.md]
 sources: [2026-03-30-de-sitter-space-quantum-mechanics.md, 2025-11-19-observer-free-universe-paradox.md]
+tags: [quantum-gravity, black-holes, mathematical-physics]
 ---
 
 # Holography

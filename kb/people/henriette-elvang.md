@@ -7,6 +7,7 @@ created_at: 2026-04-06
 updated_at: 2026-04-06
 related: [theories/string-theory.md, concepts/supersymmetry.md, concepts/uv-completion.md, concepts/bootstrap-method.md, theories/quantum-field-theory.md]
 sources: [2026-03-23-strings-theory-of-everything.md]
+tags: [string-theory, quantum-field-theory]
 ---
 
 # Henriette Elvang

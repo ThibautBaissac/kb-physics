@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/supernova.md, experiments/dune-experiment.md, experiments/km3net-neutrino-detection.md, theories/standard-model.md, concepts/quantum-chromodynamics.md]
 sources: [2025-09-16-dune-supernova-watch.md, 2026-01-23-monster-neutrino-primordial-black-holes.md]
+tags: [particle-physics, astrophysics]
 ---
 
 # Neutrino

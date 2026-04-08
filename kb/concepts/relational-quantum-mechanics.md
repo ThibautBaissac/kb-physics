@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/wave-function.md, open-questions/measurement-problem.md, concepts/quantum-entanglement.md, people/carlo-rovelli.md]
 sources: [2025-08-08-quantum-theory-100th-birthday.md]
+tags: [quantum-mechanics, foundations]
 ---
 
 # Relational Quantum Mechanics

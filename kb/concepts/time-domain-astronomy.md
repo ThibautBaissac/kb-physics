@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [experiments/vera-c-rubin-observatory.md, experiments/zwicky-transient-facility.md, concepts/supernova.md, concepts/dark-matter.md, concepts/dark-energy.md]
 sources: [2025-06-10-algorithms-sort-universe-of-change.md, 2025-06-23-vera-c-rubin-observatory-first-imagery.md]
+tags: [astrophysics, experimental-methods]
 ---
 
 # Time-Domain Astronomy

@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/wave-function.md, concepts/decoherence.md, concepts/many-worlds-interpretation.md, concepts/qbism.md, concepts/relational-quantum-mechanics.md, open-questions/measurement-problem.md, people/werner-heisenberg.md]
 sources: []
+tags: [quantum-mechanics, foundations]
 ---
 
 # Copenhagen Interpretation

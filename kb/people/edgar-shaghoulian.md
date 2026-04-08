@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/hilbert-space.md, concepts/island-formula.md, open-questions/quantum-gravity-in-de-sitter-space.md]
 sources: [2025-11-19-observer-free-universe-paradox.md]
+tags: [quantum-gravity, mathematical-physics]
 ---
 
 # Edgar Shaghoulian

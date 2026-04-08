@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/hawking-radiation.md, concepts/black-hole-entropy.md, concepts/primordial-black-holes.md, open-questions/black-hole-information-paradox.md, open-questions/supermassive-black-hole-origins.md]
 sources: []
+tags: [black-holes, general-relativity, cosmology, quantum-gravity]
 ---
 
 # Stephen Hawking

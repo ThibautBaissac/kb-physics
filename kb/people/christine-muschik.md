@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [people/martin-ringbauer.md, concepts/quantum-simulation.md, concepts/qudits.md, concepts/quantum-chromodynamics.md]
 sources: [2025-09-05-analog-vs-digital-quantum-simulation.md]
+tags: [quantum-information, quantum-field-theory]
 ---
 
 # Christine Muschik

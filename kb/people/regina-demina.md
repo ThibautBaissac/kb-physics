@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/magic-states.md, concepts/toponium.md, concepts/page-wootters-mechanism.md, experiments/large-hadron-collider.md, people/martin-white.md, people/chris-white.md]
 sources: [2025-11-25-magic-at-lhc.md]
+tags: [particle-physics, quantum-information, experimental-methods]
 ---
 
 # Regina Demina

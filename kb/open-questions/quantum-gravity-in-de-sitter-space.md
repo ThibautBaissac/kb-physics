@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/de-sitter-space.md, concepts/anti-de-sitter-space.md, concepts/holography.md, concepts/cosmological-horizon.md, concepts/hilbert-space.md, concepts/island-formula.md, theories/quantum-field-theory.md, theories/string-theory.md, open-questions/testability-of-string-theory.md, open-questions/measurement-problem.md]
 sources: [2026-03-30-de-sitter-space-quantum-mechanics.md, 2025-11-19-observer-free-universe-paradox.md]
+tags: [quantum-gravity, cosmology, mathematical-physics]
 ---
 
 # Quantum Gravity in de Sitter Space

@@ -7,6 +7,7 @@ created_at: 2026-04-06
 updated_at: 2026-04-06
 related: [theories/string-theory.md, concepts/scattering-amplitudes.md, concepts/bootstrap-method.md]
 sources: [2026-03-23-strings-theory-of-everything.md]
+tags: [string-theory, mathematical-physics]
 ---
 
 # Ultrasoftness

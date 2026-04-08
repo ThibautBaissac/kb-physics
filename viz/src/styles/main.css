@@ -187,6 +187,80 @@ body {
   border-radius: 50%;
 }
 
+/* Tag filter dropdown */
+.tag-filter-wrapper {
+  position: relative;
+}
+
+.tag-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  z-index: 50;
+  width: 260px;
+  max-height: 360px;
+  overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  display: none;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tag-dropdown.open {
+  display: flex;
+}
+
+.tag-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+  user-select: none;
+  opacity: 0.5;
+}
+
+.tag-filter.active {
+  border-color: currentColor;
+  opacity: 1;
+}
+
+.tag-filter:hover {
+  opacity: 0.8;
+}
+
+.tag-filter .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Tag badges in detail panel */
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.tag-badge {
+  display: inline-block;
+  font-size: 10px;
+  padding: 1px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
 /* Viewer */
 #viewer {
   position: relative;

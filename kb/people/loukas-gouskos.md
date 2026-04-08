@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [people/huilin-qu.md, experiments/large-hadron-collider.md, concepts/higgs-boson.md, theories/standard-model.md]
 sources: [2025-08-05-impossible-higgs-boson-measurement.md]
+tags: [particle-physics, experimental-methods]
 ---
 
 # Loukas Gouskos

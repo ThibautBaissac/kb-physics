@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/magic-states.md, concepts/quantum-entanglement.md, concepts/quantum-chromodynamics.md, theories/standard-model.md, experiments/large-hadron-collider.md]
 sources: [2025-11-25-magic-at-lhc.md, 2025-07-08-top-quark-pairs-toponium-lhc.md]
+tags: [particle-physics, nuclear-and-subatomic]
 ---
 
 # Toponium

@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [theories/standard-model.md, experiments/large-hadron-collider.md, concepts/hierarchy-problem.md, open-questions/beyond-standard-model.md, people/huilin-qu.md, people/loukas-gouskos.md, concepts/w-boson-polarization.md, people/aram-apyan.md]
 sources: [2025-08-05-impossible-higgs-boson-measurement.md, 2026-01-26-particle-physics-dead-dying-hard.md, 2025-07-22-lhc-relics-early-universe-particle-spins.md]
+tags: [particle-physics]
 ---
 
 # Higgs Boson

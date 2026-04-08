@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/primordial-black-holes.md, concepts/black-hole-entropy.md, experiments/km3net-neutrino-detection.md, open-questions/supermassive-black-hole-origins.md, concepts/no-hair-theorem.md, open-questions/black-hole-information-paradox.md]
 sources: [2026-01-23-monster-neutrino-primordial-black-holes.md, 2025-09-12-naked-black-hole-rewrites-universe.md, 2025-08-27-no-hair-black-holes.md]
+tags: [black-holes, quantum-mechanics, thermodynamics]
 ---
 
 # Hawking Radiation

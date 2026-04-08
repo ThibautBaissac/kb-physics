@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [experiments/future-colliders.md, open-questions/beyond-standard-model.md]
 sources: [2026-01-26-particle-physics-dead-dying-hard.md]
+tags: [particle-physics, experimental-methods]
 ---
 
 # Maria Spiropulu

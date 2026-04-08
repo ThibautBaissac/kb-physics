@@ -7,6 +7,7 @@ created_at: 2026-04-06
 updated_at: 2026-04-07
 related: [theories/string-theory.md, concepts/holography.md, concepts/island-formula.md, concepts/de-sitter-space.md, concepts/cosmological-horizon.md, concepts/hawking-radiation.md, concepts/primordial-black-holes.md, concepts/no-hair-theorem.md, open-questions/black-hole-information-paradox.md]
 sources: [2026-03-23-strings-theory-of-everything.md, 2026-03-30-de-sitter-space-quantum-mechanics.md, 2026-01-23-monster-neutrino-primordial-black-holes.md, 2025-11-19-observer-free-universe-paradox.md, 2025-08-27-no-hair-black-holes.md]
+tags: [black-holes, thermodynamics, quantum-gravity]
 ---
 
 # Black Hole Entropy

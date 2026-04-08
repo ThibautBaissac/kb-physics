@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [people/bing-yang.md, people/martin-ringbauer.md, people/christine-muschik.md, concepts/quantum-simulation.md, concepts/quantum-chromodynamics.md]
 sources: [2025-09-05-analog-vs-digital-quantum-simulation.md]
+tags: [quantum-information, nuclear-and-subatomic]
 ---
 
 # Jad Halimeh

@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/muon.md, people/andrea-giammanco.md, people/cristina-carloganu.md]
 sources: [2026-01-13-muons-emblems-of-discovery.md]
+tags: [experimental-methods, particle-physics]
 ---
 
 # Muography

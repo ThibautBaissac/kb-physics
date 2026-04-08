@@ -7,6 +7,7 @@ created_at: 2026-04-06
 updated_at: 2026-04-07
 related: [theories/string-theory.md, theories/quadratic-gravity.md, concepts/supersymmetry.md, concepts/scattering-amplitudes.md, concepts/uv-completion.md, concepts/renormalization.md, concepts/de-sitter-space.md, concepts/anti-de-sitter-space.md, concepts/quantum-simulation.md, concepts/quantum-chromodynamics.md, concepts/qudits.md]
 sources: [2026-03-23-strings-theory-of-everything.md, 2026-03-30-de-sitter-space-quantum-mechanics.md, 2025-11-17-ghost-theory-quantum-gravity-comeback.md, 2025-09-05-analog-vs-digital-quantum-simulation.md]
+tags: [quantum-field-theory, quantum-gravity, quantum-information]
 ---
 
 # Quantum Field Theory

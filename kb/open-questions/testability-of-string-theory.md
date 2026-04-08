@@ -7,6 +7,7 @@ created_at: 2026-04-06
 updated_at: 2026-04-07
 related: [theories/string-theory.md, concepts/string-landscape.md, concepts/extra-dimensions.md, concepts/bootstrap-method.md, open-questions/beyond-standard-model.md, experiments/large-hadron-collider.md]
 sources: [2026-03-23-strings-theory-of-everything.md, 2026-01-26-particle-physics-dead-dying-hard.md]
+tags: [string-theory, particle-physics, history-and-philosophy]
 ---
 
 # Testability of String Theory

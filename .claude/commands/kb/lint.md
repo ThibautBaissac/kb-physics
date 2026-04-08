@@ -13,7 +13,7 @@ Follow these steps exactly in order.
 
 ## Step 1: Read the KB state
 
-- Read `kb/index.md` to get the full page inventory.
+- Read `kb/index.md` (master hub) and all section indexes (`kb/index-theories.md`, `kb/index-concepts.md`, `kb/index-people.md`, `kb/index-experiments.md`, `kb/index-open-questions.md`) to get the full page inventory.
 - Read all compiled pages in `kb/theories/`, `kb/concepts/`, `kb/people/`, `kb/experiments/`, and `kb/open-questions/`.
 
 ## Step 2: Check for issues
@@ -26,7 +26,7 @@ Scan for each of these issue types:
 
 ### Orphan pages
 - Are there pages with no incoming links from other pages?
-- Are there pages not listed in `kb/index.md`?
+- Are there pages not listed in their section index?
 
 ### Stale content
 - Are there pages with `updated_at` dates older than 30 days?
@@ -47,6 +47,10 @@ Scan for each of these issue types:
 ### Related field format
 - Are there pages where the `related` frontmatter uses bare filenames instead of relative paths from `kb/` (e.g., `file.md` instead of `concepts/file.md`)?
 
+### Invalid tags
+- Are there compiled pages with `tags` values not in the controlled vocabulary defined in `kb/CLAUDE.md`?
+- Flag any unrecognized tags. (Note: the `tags` field is optional — pages without `tags` are not an error, but pages with invalid tags are.)
+
 ### Source metadata gaps
 - Are there raw sources missing required fields (`url`, `author`, `publication`)?
 
@@ -55,7 +59,7 @@ Scan for named entities referenced across 2+ compiled pages that lack their own 
 - **Missing theory pages**: Named physics theories or frameworks referenced 2+ times but no `kb/theories/` page exists (e.g., "Loop Quantum Gravity" mentioned in 5 concept pages but no theory page)
 - **Missing experiment pages**: Named experiments, observatories, or instruments referenced 2+ times but no `kb/experiments/` page exists
 - **Missing concept pages**: Terms frequently cross-referenced but no `kb/concepts/` page exists
-- **Missing people pages**: Named physicists mentioned 2+ times but no `kb/people/` page exists
+- **Missing people pages**: Named physicists with 3+ source appearances across the KB, or who made a foundational contribution (Nobel Prize, named theorem/effect, founded a subfield), but no `kb/people/` page exists. Do NOT flag people with fewer than 3 appearances unless they meet the foundational contribution criterion.
 - **Missing overview pages**: 4+ pages sharing a common parent theme with no hub linking them (e.g., multiple QM interpretation pages but no "Interpretations of Quantum Mechanics" overview)
 - **Uningested sources**: Raw sources present in `kb/raw/` but not referenced in any compiled page's `sources` frontmatter
 
@@ -63,8 +67,10 @@ Scan for named entities referenced across 2+ compiled pages that lack their own 
 - Do all relative markdown links point to files that actually exist?
 
 ### Index consistency
-- Does `kb/index.md` list every compiled page?
-- Does `kb/index.md` reference any pages that don't exist?
+- Does every section index list every compiled page in its category?
+- Does any section index reference a page that doesn't exist?
+- Does the master hub (`kb/index.md`) link to all five section indexes?
+- Does the Raw Sources section in `kb/index.md` list all raw sources?
 
 ## Step 3: Report findings
 
@@ -93,6 +99,9 @@ Print a structured report:
 
 ### Related Field Format Issues (X found)
 - <page path> — uses bare filenames instead of relative paths
+
+### Invalid Tags (X found)
+- <page path> — unrecognized tag(s): <list>
 
 ### Source Metadata Gaps (X found)
 - <raw source path> — missing: <list of missing fields>
@@ -131,10 +140,11 @@ git add kb/ && git commit -m "pre-lint snapshot (auto)"
 ```
 
 Then automatically fix:
-- Add orphan pages to `kb/index.md`
-- Remove index entries for deleted pages
+- Add orphan pages to the relevant section index (`kb/index-theories.md`, `kb/index-concepts.md`, `kb/index-people.md`, `kb/index-experiments.md`, or `kb/index-open-questions.md`)
+- Remove entries from section indexes for deleted pages
 - Fix broken links where the target can be inferred
-- Create stub pages for all category gaps: concept stubs in `kb/concepts/`, theory stubs in `kb/theories/`, experiment stubs in `kb/experiments/`, people stubs in `kb/people/`. Stubs must have valid frontmatter (title, description, type, evidence, created_at, updated_at, related, sources) and a single paragraph summarizing what the page should cover — marked with a `<!-- stub: needs enrichment via kb:ingest -->` comment so future ingestions know to expand them
+- Remove unrecognized `tags` values from pages (replace with nearest valid tag or remove entirely)
+- Create stub pages for all category gaps: concept stubs in `kb/concepts/`, theory stubs in `kb/theories/`, experiment stubs in `kb/experiments/`, people stubs in `kb/people/` (only when the 3+ source / foundational contribution threshold is met). Stubs must have valid frontmatter (title, description, type, evidence, created_at, updated_at, related, sources, tags) and a single paragraph summarizing what the page should cover — marked with a `<!-- stub: needs enrichment via kb:ingest -->` comment so future ingestions know to expand them
 - Update `updated_at` on pages you touch
 - Generate `description` for pages that are missing one
 - Add missing `evidence` fields (infer from source type — raw articles → `secondary`, raw papers → `primary`, raw talks → `community`)

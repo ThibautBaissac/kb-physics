@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [theories/quantum-field-theory.md, theories/quadratic-gravity.md, concepts/uv-completion.md, concepts/asymptotic-freedom.md]
 sources: [2025-11-17-ghost-theory-quantum-gravity-comeback.md]
+tags: [quantum-field-theory]
 ---
 
 # Renormalization

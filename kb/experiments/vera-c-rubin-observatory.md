@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [experiments/slac-light-sources.md, experiments/large-hadron-collider.md, concepts/dark-matter.md, concepts/dark-energy.md, concepts/time-domain-astronomy.md, experiments/zwicky-transient-facility.md, concepts/gravitational-lensing.md]
 sources: [2025-09-23-slac-rubin-control-room.md, 2025-06-23-vera-c-rubin-observatory-first-imagery.md, 2025-06-10-algorithms-sort-universe-of-change.md, 2025-06-05-dialing-gravitational-lensing-research-up-to-11.md]
+tags: [astrophysics, cosmology, experimental-methods]
 ---
 
 # Vera C. Rubin Observatory

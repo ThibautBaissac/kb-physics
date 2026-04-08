@@ -406,12 +406,14 @@ export function renderGraph(container, data, {
     simulation,
 
     // Rule 6: live count update
-    updateFilter(activeTypes, searchQuery) {
+    updateFilter(activeTypes, searchQuery, activeTags) {
       const sq = (searchQuery || '').toLowerCase();
+      const hasTags = activeTags && activeTags.size > 0;
       allNodes.forEach(d => {
         const typeMatch = !activeTypes || activeTypes.has(d.type);
         const searchMatch = !sq || d.title.toLowerCase().includes(sq) || (d.description || '').toLowerCase().includes(sq);
-        d._visible = typeMatch && searchMatch;
+        const tagMatch = !hasTags || (d.tags || []).some(t => activeTags.has(t));
+        d._visible = typeMatch && searchMatch && tagMatch;
       });
 
       const filteredCount = allNodes.filter(n => n._visible && (showAll || n._top)).length;

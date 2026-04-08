@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [experiments/vera-c-rubin-observatory.md, concepts/time-domain-astronomy.md, concepts/supernova.md]
 sources: [2025-06-10-algorithms-sort-universe-of-change.md]
+tags: [astrophysics, experimental-methods]
 ---
 
 # Zwicky Transient Facility (ZTF)

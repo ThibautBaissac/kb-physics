@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/photon.md, people/claudio-pellegrini.md, people/uwe-bergmann.md, experiments/james-webb-space-telescope.md, experiments/vera-c-rubin-observatory.md]
 sources: [2025-12-01-photons-light-the-way.md, 2025-09-23-slac-rubin-control-room.md]
+tags: [experimental-methods]
 ---
 
 # SLAC Light Sources

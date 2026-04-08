@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [experiments/james-webb-space-telescope.md, concepts/primordial-black-holes.md, concepts/hawking-radiation.md, concepts/cosmic-inflation.md, concepts/little-red-dots.md, people/priyamvada-natarajan.md, people/marta-volonteri.md, people/jenny-greene.md]
 sources: [2025-09-12-naked-black-hole-rewrites-universe.md, 2025-05-06-the-freckled-universe.md]
+tags: [black-holes, astrophysics, cosmology]
 ---
 
 # Supermassive Black Hole Origins

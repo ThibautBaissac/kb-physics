@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [theories/standard-model.md, concepts/hierarchy-problem.md, concepts/supersymmetry.md, concepts/scattering-amplitudes.md, concepts/primordial-black-holes.md, experiments/large-hadron-collider.md, experiments/future-colliders.md, experiments/km3net-neutrino-detection.md, open-questions/testability-of-string-theory.md, concepts/muon.md, concepts/dark-matter.md, concepts/higgs-boson.md, concepts/antimatter.md, concepts/cpt-symmetry.md, experiments/base-experiment.md, experiments/muon-g2.md, people/flip-tanedo.md, people/matthew-mccullough.md, people/maurizio-pierini.md]
 sources: [2026-01-26-particle-physics-dead-dying-hard.md, 2026-01-23-monster-neutrino-primordial-black-holes.md, 2026-01-13-muons-emblems-of-discovery.md, 2025-11-19-dark-matter-worldwide-search.md, 2025-08-05-impossible-higgs-boson-measurement.md, 2025-07-23-quantum-leap-antimatter-measurements.md, 2025-06-03-muon-g2-most-precise-measurement.md, 2025-05-27-when-the-universe-answers-with-silence.md]
+tags: [particle-physics, cosmology, experimental-methods]
 ---
 
 # Beyond the Standard Model

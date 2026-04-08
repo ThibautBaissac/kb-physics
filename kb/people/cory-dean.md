@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/electron-hydrodynamics.md, concepts/graphene.md, experiments/electron-fluid-experiments.md]
 sources: [2026-02-11-electrons-flow-like-water.md]
+tags: [condensed-matter, experimental-methods]
 ---
 
 # Cory Dean

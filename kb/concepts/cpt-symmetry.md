@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/antimatter.md, open-questions/beyond-standard-model.md, experiments/base-experiment.md, theories/standard-model.md, theories/quantum-field-theory.md]
 sources: [2025-07-23-quantum-leap-antimatter-measurements.md]
+tags: [quantum-field-theory, nuclear-and-subatomic]
 ---
 
 # CPT Symmetry

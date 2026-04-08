@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [open-questions/supermassive-black-hole-origins.md, experiments/james-webb-space-telescope.md, people/priyamvada-natarajan.md]
 sources: [2025-09-12-naked-black-hole-rewrites-universe.md]
+tags: [astrophysics, black-holes, cosmology]
 ---
 
 # Marta Volonteri

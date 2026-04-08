@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/wave-function.md, concepts/hilbert-space.md, concepts/quantum-entanglement.md, open-questions/measurement-problem.md]
 sources: [2025-11-07-imaginary-numbers-quantum-mechanics.md]
+tags: [quantum-mechanics, mathematical-physics, foundations]
 ---
 
 # Complex Numbers in Quantum Mechanics

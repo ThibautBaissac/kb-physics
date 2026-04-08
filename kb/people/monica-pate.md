@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/de-sitter-space.md, concepts/anti-de-sitter-space.md, concepts/cosmological-horizon.md]
 sources: [2026-03-30-de-sitter-space-quantum-mechanics.md]
+tags: [cosmology, general-relativity]
 ---
 
 # Monica Pate

@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/complex-numbers-in-quantum-mechanics.md]
 sources: [2025-11-07-imaginary-numbers-quantum-mechanics.md]
+tags: [quantum-information, mathematical-physics]
 ---
 
 # Craig Gidney

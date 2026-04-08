@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/extra-dimensions.md, concepts/string-landscape.md, concepts/de-sitter-space.md, concepts/cosmological-constant.md, concepts/zero-point-energy.md, theories/string-theory.md, people/bruno-bento.md, people/miguel-montero.md]
 sources: [2026-01-14-string-theory-dark-energy.md, 2026-01-05-quantum-nothingness-zero-point-energy.md]
+tags: [string-theory, cosmology]
 ---
 
 # Compactification

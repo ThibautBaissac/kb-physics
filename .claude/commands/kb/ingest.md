@@ -18,7 +18,8 @@ Follow these steps exactly in order. Do NOT skip any step.
 
 ## Step 2: Read the current state of the KB and check for prior ingestion
 
-- Read `kb/index.md` to understand what pages already exist.
+- Read `kb/index.md` (master hub) to understand the KB structure.
+- Read the relevant section indexes (`kb/index-theories.md`, `kb/index-concepts.md`, `kb/index-people.md`, `kb/index-experiments.md`, `kb/index-open-questions.md`) to understand what pages already exist. You may skip section indexes clearly irrelevant to the source content.
 - Read `kb/log.md` to see recent activity.
 - **Idempotency check**: Grep all compiled pages for the source filename in their `sources:` frontmatter. If this source has already been ingested, warn the user and ask whether to **update** existing pages with any new information, or **abort**. Do not create duplicate pages.
 - Scan existing pages in `kb/theories/`, `kb/concepts/`, `kb/people/`, `kb/experiments/`, and `kb/open-questions/` that might be related to this source.
@@ -55,8 +56,10 @@ Apply these thresholds independently for each category. Prefer fewer, richer pag
 - The experiment has a distinct status (ongoing, proposed, completed) and unique scientific goals
 
 **People page** (`kb/people/`) — create when at least one is true:
-- A physicist is a named contributor to results described in this source
-- They are referenced in 2+ existing KB pages but have no dedicated people page yet
+- The person has 3+ source appearances across the KB (check existing page `sources:` fields and the current source)
+- They made a foundational contribution: Nobel Prize, named theorem/effect (e.g., "Hawking radiation," "Bell's theorem"), or founded a recognized subfield
+
+Otherwise, mention the person inline in the relevant concept, theory, or experiment page. Do not create a standalone `kb/people/` page for minor contributors or single-source mentions.
 
 **Overview page** (`kb/concepts/` or `kb/theories/`) — create when:
 - 4+ existing pages share a common parent theme with no hub linking them (e.g., multiple QM interpretation pages with no "Interpretations of Quantum Mechanics" overview)
@@ -77,17 +80,20 @@ For each page you create or update:
 - Use the standard page format from kb/CLAUDE.md (frontmatter with title, description, type, evidence, created_at, updated_at, related, sources).
 - Write a concise `description` that helps the LLM decide if this page is relevant when scanning the KB.
 - Set the `evidence` tier (`primary`, `secondary`, or `community`) based on the source material. See kb/CLAUDE.md for tier definitions. When mixing tiers, use the lowest.
+- Add relevant `tags` from the controlled vocabulary in `kb/CLAUDE.md`. Use 1-4 tags per page. Only use recognized tags.
 - Set `created_at` to today's date for new pages. Set `updated_at` to today's date for both new and updated pages.
 - Use **relative paths from `kb/`** in the `related` frontmatter field (e.g., `related: [theories/string-theory.md, concepts/supersymmetry.md]`), not bare filenames.
 - Add backlinks to related pages using relative markdown links.
 - Add a Sources section at the bottom linking to the raw source file.
 - For existing pages: add the new source to frontmatter `sources:` list, update content to reflect new information, add backlinks to new pages, bump `updated_at`.
 
-## Step 5: Update kb/index.md
+## Step 5: Update section indexes and master hub
 
-- Add entries for every new page created, in the correct section (Theories, Concepts, People, Experiments, Open Questions).
-- Each entry: `- [Page Title](path/to/page.md) — one-line description`
-- Keep entries sorted alphabetically within each section.
+- For each new page created, add an entry to the **relevant section index** (`kb/index-theories.md`, `kb/index-concepts.md`, `kb/index-people.md`, `kb/index-experiments.md`, or `kb/index-open-questions.md`).
+- Each entry: `- [Page Title](category/filename.md) — one-line description`
+- Keep entries sorted alphabetically within each section index.
+- Add any new raw sources to the Raw Sources section in `kb/index.md`.
+- Update the page counts in the `kb/index.md` master hub table if they've changed.
 
 ## Step 6: Update kb/log.md
 

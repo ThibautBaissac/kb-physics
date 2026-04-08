@@ -81,6 +81,7 @@ created_at: YYYY-MM-DD
 updated_at: YYYY-MM-DD
 related: [path/to/page.md, path/to/other.md]
 sources: [list, of, raw, source, filenames]
+tags: [tag1, tag2]
 ---
 
 # Page Title
@@ -117,12 +118,38 @@ When a page draws from multiple sources at different tiers, use the **lowest** (
 | `principle` | Fundamental principle or law | `kb/concepts/` |
 | `overview` | High-level orientation page | any compiled folder |
 
+> **Person page threshold**: Only create a `person` page when the individual has 3+ source appearances across the KB, or made a foundational contribution (Nobel Prize, named theorem/effect, founded a subfield). Otherwise, mention the person inline in the relevant concept/theory/experiment page.
+
 ### Linking Conventions
 
 - Always use relative markdown links: `[Link Text](../path/to/page.md)`
 - The `related` frontmatter field uses **relative paths from `kb/`** (e.g., `related: [theories/string-theory.md, concepts/supersymmetry.md]`), not bare filenames
 - Every page should link to at least one other page (no orphans)
 - When a concept spans multiple theories, create a shared page in `kb/concepts/` and link from theory pages
+
+### Tags
+
+The `tags` frontmatter field is optional. Use only tags from the vocabulary below. Assign 1-4 tags per page.
+
+| Tag | Covers |
+|-----|--------|
+| `quantum-mechanics` | Wave function, measurement, entanglement, decoherence |
+| `quantum-field-theory` | QFT formalism, renormalization, scattering amplitudes |
+| `quantum-information` | Qubits, qudits, magic states, quantum computation, quantum simulation |
+| `quantum-gravity` | Approaches to quantizing gravity: string theory, quadratic gravity, loops |
+| `string-theory` | String-specific: landscape, compactification, extra dimensions, bootstrap |
+| `general-relativity` | Spacetime curvature, gravitational waves, cosmological solutions |
+| `cosmology` | Inflation, dark energy, dark matter, cosmological constant, early universe |
+| `black-holes` | Entropy, information paradox, Hawking radiation, no-hair, PBH |
+| `particle-physics` | Standard Model, Higgs, collider results, BSM searches |
+| `nuclear-and-subatomic` | Strong force, QCD, quarks, antimatter, CPT |
+| `astrophysics` | Supernovae, neutrinos, gravitational lensing, time-domain astronomy |
+| `condensed-matter` | Electron hydrodynamics, graphene, quantum materials |
+| `thermodynamics` | Quantum thermodynamics, zero-point energy, entropy |
+| `mathematical-physics` | Hilbert space, complex numbers, holography, bootstrap formalism |
+| `experimental-methods` | Detectors, observatories, colliders, muography, simulation techniques |
+| `foundations` | Interpretations, measurement problem, Bell's theorem, contextuality |
+| `history-and-philosophy` | Historical context, paradigm shifts, philosophy of science |
 
 ## Operations
 
@@ -151,7 +178,7 @@ When given a URL to an article or paper:
 
 When answering questions against the KB:
 
-1. Read `kb/index.md` to find relevant pages
+1. Read `kb/index.md` (master hub) and relevant section indexes to find pages
 2. Read the relevant pages
 3. Synthesize an answer with citations to specific pages
 4. If the answer is substantial and reusable, file it as a new wiki page
@@ -177,26 +204,25 @@ On request, generate derived artifacts from wiki content:
 
 ## Index and Log
 
-### `kb/index.md`
+### `kb/index.md` (Master Hub)
 
-The master index is organized by section:
+The master index is a slim hub linking to section indexes:
+
+- `kb/index-theories.md` — all theory entries
+- `kb/index-concepts.md` — all concept entries
+- `kb/index-people.md` — all people entries
+- `kb/index-experiments.md` — all experiment entries
+- `kb/index-open-questions.md` — all open question entries
+
+The master hub also contains the Raw Sources listing directly.
+
+Each section index follows the format:
 
 ```markdown
-## Theories
-- [Page Title](theories/filename.md) — one-line description
-
-## Concepts
-- [Page Title](concepts/filename.md) — one-line description
-
-## People
-- [Page Title](people/filename.md) — one-line description
-
-## Experiments
-- [Page Title](experiments/filename.md) — one-line description
-
-## Open Questions
-- [Page Title](open-questions/filename.md) — one-line description
+- [Page Title](category/filename.md) — one-line description
 ```
+
+Entries are sorted alphabetically within each section index. Update page counts in the master hub table when adding or removing pages.
 
 ### `kb/log.md`
 

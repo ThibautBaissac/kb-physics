@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/wave-function.md, concepts/decoherence.md, concepts/quantum-darwinism.md, concepts/qbism.md, concepts/relational-quantum-mechanics.md, concepts/copenhagen-interpretation.md, open-questions/measurement-problem.md]
 sources: []
+tags: [quantum-mechanics, foundations]
 ---
 
 # Many-Worlds Interpretation

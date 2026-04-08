@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/compactification.md, concepts/de-sitter-space.md, theories/string-theory.md, people/miguel-montero.md]
 sources: [2026-01-14-string-theory-dark-energy.md]
+tags: [string-theory, cosmology]
 ---
 
 # Bruno Bento

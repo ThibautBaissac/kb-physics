@@ -7,15 +7,17 @@ export function renderTable(container, data, { selectedNodeId } = {}) {
 
   if (data.columns && data.rows) {
     columns = data.columns;
-    rowsWithMeta = data.rows.map(r => ({ row: [...r], id: null }));
+    rowsWithMeta = data.rows.map(r => ({ row: [...r], id: null, tags: [] }));
   } else if (data.nodes) {
-    columns = ['Title', 'Type', 'Evidence', 'Connections', 'Sources', 'Created'];
+    columns = ['Title', 'Type', 'Evidence', 'Tags', 'Connections', 'Sources', 'Created'];
     rowsWithMeta = data.nodes.map(n => ({
       id: n.id,
+      tags: n.tags || [],
       row: [
         n.title,
         n.type,
         n.evidence,
+        (n.tags || []).join(', '),
         String(n.connections),
         String(n.sources?.length || 0),
         n.created_at,
@@ -29,6 +31,7 @@ export function renderTable(container, data, { selectedNodeId } = {}) {
   let sortCol = -1;
   let sortAsc = true;
   let currentActiveTypes = null;
+  let currentActiveTags = null;
   let currentSearchQuery = '';
   let currentSelectedId = selectedNodeId || null;
   const typeColIdx = columns.indexOf('Type');
@@ -108,11 +111,15 @@ export function renderTable(container, data, { selectedNodeId } = {}) {
   function renderRows() {
     const filterValues = filters.map(f => f.value.toLowerCase());
 
-    const filtered = rowsWithMeta.filter(({ row }) => {
+    const filtered = rowsWithMeta.filter(({ row, tags }) => {
       const colMatch = row.every((cell, i) => !filterValues[i] || (cell || '').toLowerCase().includes(filterValues[i]));
       if (!colMatch) return false;
       if (currentActiveTypes && typeColIdx >= 0 && !currentActiveTypes.has(row[typeColIdx])) return false;
       if (currentSearchQuery && titleColIdx >= 0 && !(row[titleColIdx] || '').toLowerCase().includes(currentSearchQuery)) return false;
+      if (currentActiveTags && currentActiveTags.size > 0) {
+        const rowTags = tags || [];
+        if (!rowTags.some(t => currentActiveTags.has(t))) return false;
+      }
       return true;
     });
 
@@ -182,9 +189,10 @@ export function renderTable(container, data, { selectedNodeId } = {}) {
   renderRows();
 
   return {
-    updateFilter(activeTypes, searchQuery) {
+    updateFilter(activeTypes, searchQuery, activeTags) {
       currentActiveTypes = activeTypes;
       currentSearchQuery = (searchQuery || '').toLowerCase();
+      currentActiveTags = activeTags || null;
       renderRows();
     },
     // Rule 4: external selection

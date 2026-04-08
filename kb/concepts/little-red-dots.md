@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [experiments/james-webb-space-telescope.md, open-questions/supermassive-black-hole-origins.md, concepts/black-hole-physics.md, people/jenny-greene.md, people/anthony-taylor.md, people/hollis-akins.md]
 sources: [2025-05-06-the-freckled-universe.md, 2025-09-12-naked-black-hole-rewrites-universe.md]
+tags: [astrophysics, cosmology]
 ---
 
 # Little Red Dots

@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [theories/quantum-field-theory.md, theories/string-theory.md, concepts/scattering-amplitudes.md, concepts/hierarchy-problem.md, concepts/supersymmetry.md, experiments/large-hadron-collider.md, open-questions/beyond-standard-model.md, concepts/muon.md, concepts/photon.md, concepts/higgs-boson.md]
 sources: [2026-01-26-particle-physics-dead-dying-hard.md, 2026-01-13-muons-emblems-of-discovery.md, 2025-12-01-photons-light-the-way.md, 2025-08-05-impossible-higgs-boson-measurement.md]
+tags: [particle-physics, quantum-field-theory, experimental-methods]
 ---
 
 # Standard Model

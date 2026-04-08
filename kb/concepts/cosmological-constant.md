@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/de-sitter-space.md, concepts/anti-de-sitter-space.md, concepts/cosmic-inflation.md, concepts/compactification.md, concepts/zero-point-energy.md, theories/string-theory.md]
 sources: [2026-03-30-de-sitter-space-quantum-mechanics.md, 2026-01-14-string-theory-dark-energy.md, 2026-01-05-quantum-nothingness-zero-point-energy.md]
+tags: [cosmology, general-relativity]
 ---
 
 # Cosmological Constant

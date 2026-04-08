@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/quantum-entanglement.md, concepts/qudits.md, concepts/quantum-chromodynamics.md, theories/quantum-field-theory.md]
 sources: [2025-09-05-analog-vs-digital-quantum-simulation.md, 2025-08-19-into-the-quantum-realm.md]
+tags: [quantum-information, quantum-field-theory]
 ---
 
 # Quantum Simulation

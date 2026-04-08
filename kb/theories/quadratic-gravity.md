@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [theories/quantum-field-theory.md, concepts/renormalization.md, concepts/ghost-particles.md, concepts/asymptotic-freedom.md, concepts/cosmic-inflation.md, concepts/hierarchy-problem.md, concepts/uv-completion.md, theories/string-theory.md]
 sources: [2025-11-17-ghost-theory-quantum-gravity-comeback.md]
+tags: [quantum-gravity, quantum-field-theory, cosmology]
 ---
 
 # Quadratic Gravity

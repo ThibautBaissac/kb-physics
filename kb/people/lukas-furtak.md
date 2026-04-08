@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [experiments/james-webb-space-telescope.md, open-questions/supermassive-black-hole-origins.md, people/roberto-maiolino.md]
 sources: [2025-09-12-naked-black-hole-rewrites-universe.md]
+tags: [astrophysics, black-holes]
 ---
 
 # Lukas Furtak

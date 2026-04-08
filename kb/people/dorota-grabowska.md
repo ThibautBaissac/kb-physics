@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/quantum-simulation.md, theories/quantum-field-theory.md, concepts/quantum-chromodynamics.md]
 sources: [2025-08-19-into-the-quantum-realm.md]
+tags: [quantum-information, quantum-field-theory]
 ---
 
 # Dorota Grabowska

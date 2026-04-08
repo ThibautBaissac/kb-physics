@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/cosmological-constant.md, concepts/compactification.md, concepts/wave-function.md, theories/quantum-field-theory.md]
 sources: [2026-01-05-quantum-nothingness-zero-point-energy.md]
+tags: [quantum-field-theory, thermodynamics]
 ---
 
 # Zero-Point Energy

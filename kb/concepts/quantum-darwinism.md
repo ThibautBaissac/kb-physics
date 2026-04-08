@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/decoherence.md, concepts/quantum-entanglement.md, concepts/wave-function.md, open-questions/measurement-problem.md, people/wojciech-zurek.md]
 sources: [2026-02-13-quantum-mechanics-mysteries-dissolving.md]
+tags: [quantum-mechanics, foundations]
 ---
 
 # Quantum Darwinism

@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/quantum-entanglement.md, concepts/quantum-darwinism.md, concepts/wave-function.md, open-questions/measurement-problem.md, people/wojciech-zurek.md, experiments/base-experiment.md]
 sources: [2026-02-13-quantum-mechanics-mysteries-dissolving.md, 2025-07-23-quantum-leap-antimatter-measurements.md]
+tags: [quantum-mechanics, foundations]
 ---
 
 # Decoherence

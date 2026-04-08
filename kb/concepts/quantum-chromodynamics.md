@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [theories/quantum-field-theory.md, concepts/quantum-simulation.md, concepts/qudits.md, concepts/renormalization.md, concepts/asymptotic-freedom.md, theories/standard-model.md, concepts/toponium.md]
 sources: [2025-09-05-analog-vs-digital-quantum-simulation.md, 2025-07-08-top-quark-pairs-toponium-lhc.md]
+tags: [nuclear-and-subatomic, quantum-field-theory]
 ---
 
 # Quantum Chromodynamics

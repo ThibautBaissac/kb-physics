@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/antimatter.md, concepts/cpt-symmetry.md, concepts/decoherence.md, people/stefan-ulmer.md, experiments/large-hadron-collider.md, open-questions/beyond-standard-model.md]
 sources: [2025-07-23-quantum-leap-antimatter-measurements.md]
+tags: [nuclear-and-subatomic, quantum-information, particle-physics]
 ---
 
 # BASE Experiment

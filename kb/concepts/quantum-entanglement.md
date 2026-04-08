@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/decoherence.md, concepts/quantum-darwinism.md, concepts/wave-function.md, concepts/magic-states.md, concepts/contextuality.md, concepts/toponium.md, concepts/page-wootters-mechanism.md, concepts/complex-numbers-in-quantum-mechanics.md, concepts/quantum-thermodynamics.md, concepts/quantum-simulation.md, concepts/bells-theorem.md, open-questions/measurement-problem.md, experiments/large-hadron-collider.md, concepts/photon.md]
 sources: [2026-02-13-quantum-mechanics-mysteries-dissolving.md, 2025-11-25-magic-at-lhc.md, 2025-11-07-imaginary-numbers-quantum-mechanics.md, 2025-10-01-thermometer-measuring-quantumness.md, 2025-09-05-analog-vs-digital-quantum-simulation.md, 2025-08-08-quantum-theory-100th-birthday.md, 2025-12-01-photons-light-the-way.md]
+tags: [quantum-mechanics, foundations]
 ---
 
 # Quantum Entanglement

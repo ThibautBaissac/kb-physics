@@ -7,6 +7,7 @@ created_at: 2026-04-06
 updated_at: 2026-04-07
 related: [theories/string-theory.md, concepts/string-landscape.md, concepts/compactification.md]
 sources: [2026-03-23-strings-theory-of-everything.md, 2026-01-14-string-theory-dark-energy.md]
+tags: [string-theory]
 ---
 
 # Extra Dimensions

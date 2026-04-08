@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/neutrino.md, concepts/primordial-black-holes.md, concepts/hawking-radiation.md, theories/standard-model.md, open-questions/beyond-standard-model.md, people/david-kaiser.md, experiments/dune-experiment.md]
 sources: [2026-01-23-monster-neutrino-primordial-black-holes.md]
+tags: [particle-physics, black-holes, astrophysics, experimental-methods]
 ---
 
 # KM3NET Monster Neutrino Detection

@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/quantum-entanglement.md, concepts/wave-function.md, concepts/black-hole-entropy.md, open-questions/measurement-problem.md]
 sources: [2025-10-01-thermometer-measuring-quantumness.md]
+tags: [thermodynamics, quantum-mechanics]
 ---
 
 # Quantum Thermodynamics

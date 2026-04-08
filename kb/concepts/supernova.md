@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/neutrino.md, experiments/dune-experiment.md, experiments/km3net-neutrino-detection.md, concepts/hawking-radiation.md]
 sources: [2025-09-16-dune-supernova-watch.md]
+tags: [astrophysics]
 ---
 
 # Supernova

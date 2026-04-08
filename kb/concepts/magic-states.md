@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/quantum-entanglement.md, concepts/contextuality.md, concepts/toponium.md, experiments/large-hadron-collider.md, open-questions/measurement-problem.md]
 sources: [2025-11-25-magic-at-lhc.md]
+tags: [quantum-information, particle-physics]
 ---
 
 # Magic States

@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/little-red-dots.md, people/jenny-greene.md, people/hollis-akins.md, experiments/james-webb-space-telescope.md]
 sources: [2025-05-06-the-freckled-universe.md]
+tags: [astrophysics, black-holes]
 ---
 
 # Anthony Taylor

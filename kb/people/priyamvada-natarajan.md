@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [open-questions/supermassive-black-hole-origins.md, concepts/primordial-black-holes.md, people/marta-volonteri.md]
 sources: [2025-09-12-naked-black-hole-rewrites-universe.md, 2026-01-23-monster-neutrino-primordial-black-holes.md]
+tags: [astrophysics, black-holes, cosmology]
 ---
 
 # Priyamvada Natarajan

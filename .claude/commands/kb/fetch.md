@@ -56,8 +56,8 @@ publication: <publication name>
 - If the user confirms, proceed with the full ingestion process (same as `/kb:ingest`):
   1. Read KB state and check for prior ingestion
   2. Identify pages to create or update
-  3. Write/update pages with proper frontmatter, backlinks, evidence tiers
-  4. Update `kb/index.md`
+  3. Write/update pages with proper frontmatter, backlinks, evidence tiers, tags
+  4. Update the relevant section indexes and `kb/index.md` Raw Sources section
   5. Update `kb/log.md`
   6. Report summary
 

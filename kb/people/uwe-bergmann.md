@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [experiments/slac-light-sources.md, concepts/photon.md]
 sources: [2025-12-01-photons-light-the-way.md]
+tags: [experimental-methods]
 ---
 
 # Uwe Bergmann

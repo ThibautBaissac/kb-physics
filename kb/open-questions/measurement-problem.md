@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/decoherence.md, concepts/quantum-darwinism.md, concepts/quantum-entanglement.md, concepts/wave-function.md, concepts/hilbert-space.md, concepts/magic-states.md, concepts/page-wootters-mechanism.md, concepts/qbism.md, concepts/relational-quantum-mechanics.md, concepts/bells-theorem.md, open-questions/quantum-gravity-in-de-sitter-space.md, experiments/large-hadron-collider.md]
 sources: [2026-02-13-quantum-mechanics-mysteries-dissolving.md, 2025-11-25-magic-at-lhc.md, 2025-11-19-observer-free-universe-paradox.md, 2025-08-08-quantum-theory-100th-birthday.md]
+tags: [quantum-mechanics, foundations]
 ---
 
 # Measurement Problem

@@ -2,12 +2,13 @@ import { renderGraph } from './renderers/graph.js';
 import { renderTimeline } from './renderers/timeline.js';
 import { renderTable } from './renderers/table.js';
 import { initChat, prefillChat } from './chat.js';
-import { TYPE_COLORS, escapeHtml } from './constants.js';
+import { TYPE_COLORS, TAG_COLORS, escapeHtml } from './constants.js';
 
 let kbData = null;
 let currentView = 'graph';
 let currentRenderer = null;
 let activeTypes = new Set(Object.keys(TYPE_COLORS));
+let activeTags = new Set();
 let searchQuery = '';
 // Rule 4: shared selection state across views
 let selectedNodeId = null;
@@ -52,6 +53,10 @@ function showDetail(event, d) {
   const safeType = escapeHtml(d.type);
   const safeEvidence = d.evidence ? escapeHtml(d.evidence) : '';
   const safeSources = d.sources?.length ? escapeHtml(d.sources.join(', ')) : '';
+  const tagsHtml = (d.tags || []).map(t => {
+    const color = TAG_COLORS[t] || '#888';
+    return `<span class="tag-badge" style="background:${color}22;color:${color};border:1px solid ${color}44">${escapeHtml(t)}</span>`;
+  }).join('');
 
   panel.innerHTML = `
     <button class="detail-close" onclick="this.parentElement.classList.remove('open')">&times;</button>
@@ -60,6 +65,7 @@ function showDetail(event, d) {
       <span class="artifact-badge" style="background:${TYPE_COLORS[d.type]}33;color:${TYPE_COLORS[d.type]}">${safeType}</span>
       ${safeEvidence ? `<span style="color:var(--text-muted)">evidence: ${safeEvidence}</span>` : ''}
     </div>
+    ${tagsHtml ? `<div class="detail-tags">${tagsHtml}</div>` : ''}
     <div class="detail-body">
       <p>${safeDesc}</p>
       ${d.connections ? `<p style="margin-top:12px;color:var(--text-muted)">${d.connections} connections</p>` : ''}
@@ -141,7 +147,48 @@ function initTypeFilters() {
       activeTypes.delete(type);
     }
     if (currentRenderer?.updateFilter) {
-      currentRenderer.updateFilter(activeTypes, searchQuery);
+      currentRenderer.updateFilter(activeTypes, searchQuery, activeTags);
+    }
+  });
+}
+
+function initTagFilters() {
+  const btn = document.getElementById('btn-tags');
+  const dropdown = document.getElementById('tag-dropdown');
+  if (!btn || !dropdown) return;
+
+  dropdown.innerHTML = Object.entries(TAG_COLORS).map(([tag, color]) =>
+    `<span class="tag-filter" data-tag="${tag}" style="color:${color}">
+      <span class="dot" style="background:${color}"></span>
+      ${tag}
+    </span>`
+  ).join('');
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle('open');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target) && e.target !== btn) {
+      dropdown.classList.remove('open');
+    }
+  });
+
+  dropdown.addEventListener('click', (e) => {
+    const filter = e.target.closest('.tag-filter');
+    if (!filter) return;
+    e.stopPropagation();
+    const tag = filter.dataset.tag;
+    filter.classList.toggle('active');
+    if (filter.classList.contains('active')) {
+      activeTags.add(tag);
+    } else {
+      activeTags.delete(tag);
+    }
+    btn.textContent = activeTags.size ? `Tags (${activeTags.size})` : 'Tags';
+    if (currentRenderer?.updateFilter) {
+      currentRenderer.updateFilter(activeTypes, searchQuery, activeTags);
     }
   });
 }
@@ -151,7 +198,7 @@ function initSearch() {
   input.addEventListener('input', () => {
     searchQuery = input.value;
     if (currentRenderer?.updateFilter) {
-      currentRenderer.updateFilter(activeTypes, searchQuery);
+      currentRenderer.updateFilter(activeTypes, searchQuery, activeTags);
     }
   });
 }
@@ -342,6 +389,7 @@ async function init() {
   }
 
   initTypeFilters();
+  initTagFilters();
   initSearch();
   initToggles();
   initChatResize();

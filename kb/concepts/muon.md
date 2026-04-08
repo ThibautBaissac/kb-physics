@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [theories/standard-model.md, concepts/muography.md, experiments/future-colliders.md, open-questions/beyond-standard-model.md, concepts/dark-matter.md, concepts/hierarchy-problem.md, experiments/muon-g2.md]
 sources: [2026-01-13-muons-emblems-of-discovery.md, 2025-06-03-muon-g2-most-precise-measurement.md]
+tags: [particle-physics, experimental-methods]
 ---
 
 # Muon

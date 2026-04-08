@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [theories/standard-model.md, concepts/hierarchy-problem.md, open-questions/beyond-standard-model.md, experiments/large-hadron-collider.md]
 sources: [2026-01-26-particle-physics-dead-dying-hard.md]
+tags: [particle-physics]
 ---
 
 # Cari Cesarotti

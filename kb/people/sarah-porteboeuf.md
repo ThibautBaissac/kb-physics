@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [experiments/alice-detector.md, experiments/large-hadron-collider.md, people/roderik-bruce.md]
 sources: [2025-12-09-curiouser-alice-detector.md]
+tags: [particle-physics, experimental-methods]
 ---
 
 # Sarah Porteboeuf

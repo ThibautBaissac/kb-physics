@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/de-sitter-space.md, concepts/cosmological-constant.md, concepts/holography.md, concepts/island-formula.md, theories/string-theory.md]
 sources: [2026-03-30-de-sitter-space-quantum-mechanics.md, 2025-11-19-observer-free-universe-paradox.md]
+tags: [general-relativity, quantum-gravity, mathematical-physics]
 ---
 
 # Anti-de Sitter Space

@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [theories/standard-model.md, concepts/supersymmetry.md, experiments/large-hadron-collider.md, open-questions/beyond-standard-model.md, concepts/scattering-amplitudes.md, theories/quadratic-gravity.md]
 sources: [2026-01-26-particle-physics-dead-dying-hard.md, 2025-11-17-ghost-theory-quantum-gravity-comeback.md]
+tags: [particle-physics, quantum-field-theory]
 ---
 
 # Hierarchy Problem

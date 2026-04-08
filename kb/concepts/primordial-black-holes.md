@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/hawking-radiation.md, concepts/black-hole-entropy.md, concepts/cosmic-inflation.md, theories/standard-model.md, experiments/km3net-neutrino-detection.md, experiments/james-webb-space-telescope.md, open-questions/beyond-standard-model.md, open-questions/supermassive-black-hole-origins.md]
 sources: [2026-01-23-monster-neutrino-primordial-black-holes.md, 2025-09-12-naked-black-hole-rewrites-universe.md]
+tags: [black-holes, cosmology]
 ---
 
 # Primordial Black Holes

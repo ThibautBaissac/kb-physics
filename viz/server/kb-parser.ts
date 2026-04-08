@@ -17,6 +17,7 @@ interface KBNode {
   created_at: string;
   updated_at: string;
   sources: string[];
+  tags: string[];
   connections: number;
 }
 
@@ -58,20 +59,27 @@ function parseWikiPages(): { nodes: KBNode[]; edges: KBEdge[] } {
     for (const file of files) {
       const filePath = path.join(dirPath, file);
       const content = fs.readFileSync(filePath, 'utf-8');
-      const { data } = matter(content);
+      let data: Record<string, unknown>;
+      try {
+        ({ data } = matter(content));
+      } catch (e) {
+        console.warn(`Skipping ${dir}/${file}: YAML parse error`);
+        continue;
+      }
 
       const id = `${dir}/${file}`;
       nodeIds.add(id);
 
       nodes.push({
         id,
-        title: data.title || file.replace('.md', ''),
-        type: data.type || dir.replace(/s$/, ''),
-        evidence: data.evidence || 'secondary',
-        description: data.description || '',
+        title: (data.title as string) || file.replace('.md', ''),
+        type: (data.type as string) || dir.replace(/s$/, ''),
+        evidence: (data.evidence as string) || 'secondary',
+        description: (data.description as string) || '',
         created_at: formatDate(data.created_at),
         updated_at: formatDate(data.updated_at),
         sources: Array.isArray(data.sources) ? data.sources : [],
+        tags: Array.isArray(data.tags) ? data.tags : [],
         connections: 0,
       });
 
@@ -118,16 +126,22 @@ function parseRawArticles(): RawArticle[] {
 
   for (const file of files) {
     const content = fs.readFileSync(path.join(RAW_DIR, file), 'utf-8');
-    const { data } = matter(content);
+    let data: Record<string, unknown>;
+    try {
+      ({ data } = matter(content));
+    } catch (e) {
+      console.warn(`Skipping raw/${file}: YAML parse error`);
+      continue;
+    }
 
     articles.push({
       id: file,
-      title: data.title || file.replace('.md', ''),
+      title: (data.title as string) || file.replace('.md', ''),
       created_at: formatDate(data.created_at),
-      url: data.url || '',
-      author: data.author || '',
-      publication: data.publication || '',
-      description: data.description || '',
+      url: (data.url as string) || '',
+      author: (data.author as string) || '',
+      publication: (data.publication as string) || '',
+      description: (data.description as string) || '',
     });
   }
 

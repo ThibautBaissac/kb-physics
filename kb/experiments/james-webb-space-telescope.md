@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [open-questions/supermassive-black-hole-origins.md, concepts/primordial-black-holes.md, concepts/cosmic-inflation.md, concepts/photon.md, concepts/little-red-dots.md]
 sources: [2025-09-12-naked-black-hole-rewrites-universe.md, 2025-12-01-photons-light-the-way.md, 2025-05-06-the-freckled-universe.md]
+tags: [cosmology, black-holes, astrophysics, experimental-methods]
 ---
 
 # James Webb Space Telescope

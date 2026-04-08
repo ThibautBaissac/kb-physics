@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/time-domain-astronomy.md, experiments/zwicky-transient-facility.md, experiments/vera-c-rubin-observatory.md, concepts/supernova.md]
 sources: [2025-06-10-algorithms-sort-universe-of-change.md]
+tags: [astrophysics, experimental-methods]
 ---
 
 # Guillermo Cabrera-Vives

@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/quantum-simulation.md, concepts/quantum-chromodynamics.md, theories/quantum-field-theory.md]
 sources: [2025-08-19-into-the-quantum-realm.md]
+tags: [quantum-information, nuclear-and-subatomic]
 ---
 
 # Zohreh Davoudi

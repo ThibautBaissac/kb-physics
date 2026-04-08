@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/de-sitter-space.md, open-questions/quantum-gravity-in-de-sitter-space.md, theories/quantum-field-theory.md]
 sources: [2026-03-30-de-sitter-space-quantum-mechanics.md]
+tags: [cosmology, quantum-gravity]
 ---
 
 # Daniel Green

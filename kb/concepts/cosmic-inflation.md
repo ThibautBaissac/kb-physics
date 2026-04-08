@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/de-sitter-space.md, concepts/cosmological-constant.md, theories/quadratic-gravity.md, concepts/renormalization.md, concepts/primordial-black-holes.md, open-questions/supermassive-black-hole-origins.md]
 sources: [2026-03-30-de-sitter-space-quantum-mechanics.md, 2025-11-17-ghost-theory-quantum-gravity-comeback.md, 2025-09-12-naked-black-hole-rewrites-universe.md]
+tags: [cosmology, general-relativity]
 ---
 
 # Cosmic Inflation

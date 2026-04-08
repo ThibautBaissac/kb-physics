@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/cosmological-constant.md, concepts/de-sitter-space.md, concepts/compactification.md, concepts/zero-point-energy.md, theories/string-theory.md, experiments/vera-c-rubin-observatory.md]
 sources: [2025-06-23-vera-c-rubin-observatory-first-imagery.md]
+tags: [cosmology]
 ---
 
 # Dark Energy

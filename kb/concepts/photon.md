@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [theories/standard-model.md, theories/quantum-field-theory.md, concepts/quantum-entanglement.md, concepts/wave-function.md, experiments/slac-light-sources.md, experiments/james-webb-space-telescope.md]
 sources: [2025-12-01-photons-light-the-way.md]
+tags: [quantum-mechanics, particle-physics]
 ---
 
 # Photon

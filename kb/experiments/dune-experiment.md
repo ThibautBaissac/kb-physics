@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/neutrino.md, concepts/supernova.md, experiments/km3net-neutrino-detection.md, theories/standard-model.md, open-questions/beyond-standard-model.md]
 sources: [2025-09-16-dune-supernova-watch.md]
+tags: [particle-physics, astrophysics, experimental-methods]
 ---
 
 # DUNE Experiment

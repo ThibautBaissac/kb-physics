@@ -1,0 +1,96 @@
+---
+title: People Index
+description: Index of all physicist and contributor pages in the KB
+created_at: 2026-04-08
+updated_at: 2026-04-08
+---
+
+# People
+
+- [Adam Falkowski](people/adam-falkowski.md) — Paris; amplitudeology, predicted particle physics decline
+- [Alan Barr](people/alan-barr.md) — Oxford; frames the LHC as a quantum processor
+- [Alexssandre de Oliveira Jr.](people/alexssandre-de-oliveira.md) — Brazilian physicist; proposed thermodynamic measurements as non-destructive entanglement detector
+- [Andrea Giammanco](people/andrea-giammanco.md) — UCLouvain; pioneered muography applications from archaeology to cargo scanning
+- [Andrew Lucas](people/andrew-lucas.md) — Colorado Boulder; electron hydrodynamics theory
+- [Anthony Taylor](people/anthony-taylor.md) — UT Austin; led kinematic analysis showing >70% of RUBIES LRDs display rotating gas (AGN signature)
+- [Aram Apyan](people/aram-apyan.md) — Brandeis University; ATLAS physicist studying longitudinal W boson polarization as a Higgs mechanism probe
+- [Astrid Eichhorn](people/astrid-eichhorn.md) — Heidelberg; questions flat-space assumptions in UV regime
+- [Ben Rusholme](people/ben-rusholme.md) — Caltech/IPAC; chief engineer of the Zwicky Transient Facility, architect of nightly 200K-alert pipeline
+- [Bill Wootters](people/bill-wootters.md) — Williams College; quantum information theorist, complex numbers debate
+- [Bing Yang](people/bing-yang.md) — Shenzhen; analog quantum simulation with ultracold rubidium atoms
+- [Bruno Bento](people/bruno-bento.md) — Madrid; co-derived first explicit de Sitter solution from string theory
+- [Cari Cesarotti](people/cari-cesarotti.md) — CERN; particle physics advocate, hierarchy problem
+- [Carlo Rovelli](people/carlo-rovelli.md) — Relational quantum mechanics and loop quantum gravity; properties exist only relative to interactions
+- [Chris Fuchs](people/chris-fuchs.md) — Creator of QBism; interprets quantum mechanics as a user's manual for agents navigating the world
+- [Chris White](people/chris-white.md) — Queen Mary London; co-proposed magic measurement at the LHC (with twin Martin White)
+- [Christine Muschik](people/christine-muschik.md) — Waterloo; qudit algorithms for quantum simulation of electromagnetic fields
+- [Claudio Pellegrini](people/claudio-pellegrini.md) — UCLA distinguished professor emeritus; pioneer of free-electron laser science and the LCLS at SLAC
+- [Cliff Cheung](people/cliff-cheung.md) — Caltech; bootstrap derivation of string theory from ultrasoftness
+- [Cory Dean](people/cory-dean.md) — Columbia; graphene experiments, supersonic electron shock waves
+- [Craig Gidney](people/craig-gidney.md) — Google Quantum AI; proved quantum computing doesn't require complex numbers
+- [Cristina Carloganu](people/cristina-carloganu.md) — French IN2P3; muography advocate, MURAVES (Vesuvius) project
+- [Daniel Green](people/daniel-green.md) — UCSD; quantum mechanics in de Sitter space
+- [Daniel Harlow](people/daniel-harlow.md) — MIT; co-developed observer-boundary framework for closed universes
+- [David Kaiser](people/david-kaiser.md) — MIT; primordial black hole origin hypothesis for KM3NET neutrino
+- [Dorota Grabowska](people/dorota-grabowska.md) — University of Washington; quantum algorithms for particle physics, path integral to Hamiltonian translation
+- [Edgar Shaghoulian](people/edgar-shaghoulian.md) — UC Santa Cruz; proposed observer-dependence resolves closed universe Hilbert space paradox
+- [Flip Tanedo](people/flip-tanedo.md) — Particle physicist drawing parallels between the LHC SUSY null results and the 1887 Michelson-Morley ether experiment
+- [Gregorio Carullo](people/gregorio-carullo.md) — University of Birmingham; co-analyzed 22 black hole mergers constraining horizon-scale GR deviations
+- [Guillermo Cabrera-Vives](people/guillermo-cabrera-vives.md) — University of Concepción; co-founded ALeRCE alert broker for real-time ML classification of transient events
+- [Henriette Elvang](people/henriette-elvang.md) — Michigan; derived string theory as unique UV completion of N=4 SUSY
+- [Hollis Akins](people/hollis-akins.md) — UT Austin PhD student; exploring ultra-dense stellar density models for Little Red Dots
+- [Huilin Qu](people/huilin-qu.md) — CERN/CMS; co-developed point-cloud jet tagger enabling Higgs-to-charm measurement, four orders of magnitude sensitivity gain
+- [Jad Halimeh](people/jad-halimeh.md) — Munich; analog and digital quantum simulation of QED and QCD
+- [Jenny Greene](people/jenny-greene.md) — Princeton; leads the RUBIES survey of Little Red Dots; key voice on early-universe black hole anomalies
+- [João Penedones](people/joao-penedones.md) — EPFL; particle physics in de Sitter space, massive photon composition
+- [John Bell](people/john-bell.md) — Derived Bell's theorem (1964) proving no local hidden-variable theory can match quantum predictions
+- [John Donoghue](people/john-donoghue.md) — UMass Amherst; Sakurai Prize winner, leading quadratic gravity revival
+- [Juan Maldacena](people/juan-maldacena.md) — IAS Princeton; pioneer of AdS/CFT holography, co-developed island formula
+- [Julien Peloton](people/julien-peloton.md) — IJCLab France; technical lead at Fink broker, emphasizes community usability of alert infrastructure
+- [Kellogg Stelle](people/kellogg-stelle.md) — Imperial College London (deceased 2025); discovered quadratic gravity (1977)
+- [Latham Boyle](people/latham-boyle.md) — Edinburgh; string theory as exceptional mathematical structure
+- [Loukas Gouskos](people/loukas-gouskos.md) — CMS; proposed the ML detour that made "impossible" Higgs-charm coupling measurements accessible
+- [Luca Buoninfante](people/luca-buoninfante.md) — Radboud University; calculations supporting quadratic gravity consistency
+- [Lukas Furtak](people/lukas-furtak.md) — Ben-Gurion University; discovered QSO1 naked black hole via JWST gravitational lensing
+- [Manuel Loparco](people/manuel-loparco.md) — Turin; massive photon composition in de Sitter space with Penedones
+- [Marcel Vos](people/marcel-vos.md) — ATLAS; top quark research leader, toponium measurements
+- [Maria Spiropulu](people/maria-spiropulu.md) — Caltech; muon collider program
+- [Martin Ringbauer](people/martin-ringbauer.md) — Innsbruck; built qudit quantum computer for quantum field simulation
+- [Martin White](people/martin-white.md) — Adelaide; co-proposed magic measurement at the LHC (with twin Chris White)
+- [Marta Volonteri](people/marta-volonteri.md) — Paris Institute of Astrophysics; argues black holes preceded galaxies
+- [Matt Strassler](people/matt-strassler.md) — Harvard; hidden valley searches at the LHC
+- [Matthew McCullough](people/matthew-mccullough.md) — Physicist who frames null results as opportunities that deepen understanding, invoking the Michelson-Morley precedent
+- [Maurizio Pierini](people/maurizio-pierini.md) — CERN physicist; "marathon" metaphor for SUSY searches; Higgs at 125 GeV as "smoking gun of new physics"
+- [Melissa Graham](people/melissa-graham.md) — University of Washington; Rubin Observatory lead community scientist, supernova researcher
+- [Miguel Montero](people/miguel-montero.md) — Madrid; co-derived first explicit de Sitter solution from string theory
+- [Mikhail Lukin](people/mikhail-lukin.md) — Harvard; leader in quantum simulation efforts
+- [Monica Pate](people/monica-pate.md) — NYU; de Sitter space and cosmological horizons
+- [Nathaniel Craig](people/nathaniel-craig.md) — UC Santa Barbara; muon collider theory, beam cooling, philosophy of discovery
+- [Niayesh Afshordi](people/niayesh-afshordi.md) — University of Waterloo; observational tests of quantum gravity near black hole horizons
+- [Nicolas Gisin](people/nicolas-gisin.md) — Constructor University / Geneva; designed the 2021 Bell test protocol for complex numbers
+- [Nicole Yunger Halpern](people/nicole-yunger-halpern.md) — Quantum thermodynamics; entanglement correlations as fuel for anomalous heat flow
+- [Patryk Lipka-Bartosik](people/patryk-lipka-bartosik.md) — Polish Academy of Sciences; quantum Maxwell's demon as catalyst for entanglement witnesses
+- [Pedro Vieira](people/pedro-vieira.md) — Perimeter Institute; bootstrap methods, extended objects in QFT
+- [Priyamvada Natarajan](people/priyamvada-natarajan.md) — Yale; runaway growth model for early supermassive black holes
+- [Rachel Mandelbaum](people/rachel-mandelbaum.md) — Weak lensing expert preparing community software infrastructure for Rubin LSST's billion-galaxy lensing catalog
+- [Regina Demina](people/regina-demina.md) — Rochester; proposed and led CMS measurement of quantum magic in top quarks
+- [Renato Renner](people/renato-renner.md) — ETH Zurich; quantum information, observer disagreement scenarios
+- [Rob Myers](people/rob-myers.md) — Perimeter Institute; quantum gravity researcher
+- [Roberto Maiolino](people/roberto-maiolino.md) — Cambridge; confirmed QSO1's 50-million-solar-mass and galaxy-free nature
+- [Roderik Bruce](people/roderik-bruce.md) — CERN accelerator physicist; identified lead-207 contamination threatening ALICE's 2023 heavy-ion run
+- [Sally Shrapnel](people/sally-shrapnel.md) — Queensland; quantum foundations, cautious support for decoherence program
+- [Sarah Porteboeuf](people/sarah-porteboeuf.md) — ALICE Run Coordinator (2023); diagnosed and coordinated fix for lead-207 beam contamination crisis
+- [Sergo Jindariani](people/sergo-jindariani.md) — Fermilab; leading advocate for the muon collider program
+- [Simon Birrer](people/simon-birrer.md) — Stanford; gravitational lensing and lensed supernovae expert; expects Rubin to be "a game changer" for time-delay cosmology
+- [Sofia Vallecorsa](people/sofia-vallecorsa.md) — CERN Quantum Technology Initiative; quantum algorithms for collider data analysis
+- [Stefan Ulmer](people/stefan-ulmer.md) — BASE spokesperson at CERN; led the 2025 creation of the first antimatter qubit with 50-second coherence time
+- [Stephen Hawking](people/stephen-hawking.md) — British physicist (1942–2018); Hawking radiation, black hole thermodynamics, primordial black holes
+- [Thomas Scaffidi](people/thomas-scaffidi.md) — UC Irvine; electron fluid theory, hydrodynamic approaches to quantum materials
+- [Tom Hartman](people/tom-hartman.md) — Stanford; black hole holography applied to de Sitter cosmology
+- [Uwe Bergmann](people/uwe-bergmann.md) — UW-Madison; recovered Archimedes' texts from a medieval palimpsest using SLAC X-ray fluorescence imaging
+- [Vitor Cardoso](people/vitor-cardoso.md) — Niels Bohr Institute; led gravitational wave tests of the no-hair conjecture
+- [Vlatko Vedral](people/vlatko-vedral.md) — Oxford; thermodynamic entanglement witnesses, simpler axioms for quantum mechanics
+- [Werner Heisenberg](people/werner-heisenberg.md) — Founded quantum mechanics in 1925 on Helgoland; introduced matrix mechanics and the uncertainty principle
+- [Wojciech Zurek](people/wojciech-zurek.md) — Los Alamos; decoherence theory and quantum Darwinism
+- [Ying Zhao](people/ying-zhao.md) — MIT; showed classical observers restore complexity in closed universes
+- [Zohreh Davoudi](people/zohreh-davoudi.md) — University of Maryland; quantum simulation of nuclear and particle physics, string breaking benchmarking

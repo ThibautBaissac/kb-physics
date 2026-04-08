@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/copenhagen-interpretation.md, concepts/many-worlds-interpretation.md, concepts/qbism.md, concepts/relational-quantum-mechanics.md, concepts/quantum-darwinism.md, concepts/decoherence.md, concepts/wave-function.md, concepts/bells-theorem.md, open-questions/measurement-problem.md]
 sources: []
+tags: [quantum-mechanics, foundations]
 ---
 
 # Interpretations of Quantum Mechanics

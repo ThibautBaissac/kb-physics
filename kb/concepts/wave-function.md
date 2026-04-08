@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/quantum-entanglement.md, concepts/decoherence.md, concepts/quantum-darwinism.md, concepts/hilbert-space.md, concepts/complex-numbers-in-quantum-mechanics.md, concepts/qbism.md, concepts/relational-quantum-mechanics.md, open-questions/measurement-problem.md]
 sources: [2026-02-13-quantum-mechanics-mysteries-dissolving.md, 2025-11-07-imaginary-numbers-quantum-mechanics.md, 2025-08-08-quantum-theory-100th-birthday.md]
+tags: [quantum-mechanics, foundations]
 ---
 
 # Wave Function

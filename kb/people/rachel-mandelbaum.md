@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/gravitational-lensing.md, experiments/vera-c-rubin-observatory.md, concepts/dark-matter.md]
 sources: [2025-06-05-dialing-gravitational-lensing-research-up-to-11.md]
+tags: [astrophysics, cosmology]
 ---
 
 # Rachel Mandelbaum

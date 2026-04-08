@@ -7,6 +7,7 @@ created_at: 2026-04-06
 updated_at: 2026-04-07
 related: [theories/string-theory.md, theories/quantum-field-theory.md, concepts/bootstrap-method.md, concepts/uv-completion.md, concepts/hierarchy-problem.md, experiments/large-hadron-collider.md, open-questions/beyond-standard-model.md, concepts/dark-matter.md, people/maurizio-pierini.md]
 sources: [2026-03-23-strings-theory-of-everything.md, 2025-05-27-when-the-universe-answers-with-silence.md]
+tags: [particle-physics, string-theory]
 ---
 
 # Supersymmetry

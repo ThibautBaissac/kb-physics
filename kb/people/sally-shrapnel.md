@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/decoherence.md, concepts/quantum-darwinism.md, open-questions/measurement-problem.md]
 sources: [2026-02-13-quantum-mechanics-mysteries-dissolving.md]
+tags: [foundations, quantum-mechanics]
 ---
 
 # Sally Shrapnel

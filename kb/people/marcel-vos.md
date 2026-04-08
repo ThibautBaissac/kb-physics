@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/toponium.md, concepts/magic-states.md, concepts/quantum-entanglement.md, experiments/large-hadron-collider.md]
 sources: [2025-11-25-magic-at-lhc.md]
+tags: [particle-physics, quantum-information]
 ---
 
 # Marcel Vos

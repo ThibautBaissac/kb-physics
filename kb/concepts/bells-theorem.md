@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/quantum-entanglement.md, concepts/wave-function.md, open-questions/measurement-problem.md, people/john-bell.md, concepts/complex-numbers-in-quantum-mechanics.md]
 sources: [2025-08-08-quantum-theory-100th-birthday.md, 2025-11-07-imaginary-numbers-quantum-mechanics.md]
+tags: [quantum-mechanics, foundations]
 ---
 
 # Bell's Theorem

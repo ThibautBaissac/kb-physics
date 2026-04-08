@@ -7,6 +7,7 @@ created_at: 2026-04-06
 updated_at: 2026-04-07
 related: [theories/string-theory.md, theories/quantum-field-theory.md, theories/standard-model.md, concepts/bootstrap-method.md, concepts/ultrasoftness.md, concepts/hierarchy-problem.md, experiments/large-hadron-collider.md, open-questions/beyond-standard-model.md]
 sources: [2026-03-23-strings-theory-of-everything.md, 2026-01-26-particle-physics-dead-dying-hard.md]
+tags: [quantum-field-theory, mathematical-physics, particle-physics]
 ---
 
 # Scattering Amplitudes

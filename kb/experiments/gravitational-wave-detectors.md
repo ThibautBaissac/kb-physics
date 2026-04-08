@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/no-hair-theorem.md, concepts/black-hole-entropy.md, concepts/hawking-radiation.md, people/vitor-cardoso.md, people/gregorio-carullo.md]
 sources: [2025-08-27-no-hair-black-holes.md]
+tags: [general-relativity, black-holes, experimental-methods]
 ---
 
 # Gravitational Wave Detectors

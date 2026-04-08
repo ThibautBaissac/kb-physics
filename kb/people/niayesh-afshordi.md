@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/no-hair-theorem.md, experiments/gravitational-wave-detectors.md, open-questions/black-hole-information-paradox.md]
 sources: [2025-08-27-no-hair-black-holes.md]
+tags: [black-holes, quantum-gravity, general-relativity]
 ---
 
 # Niayesh Afshordi

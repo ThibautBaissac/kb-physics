@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/dark-matter.md, concepts/dark-energy.md, experiments/vera-c-rubin-observatory.md, theories/general-relativity.md, concepts/supernova.md]
 sources: [2025-06-05-dialing-gravitational-lensing-research-up-to-11.md]
+tags: [astrophysics, general-relativity, cosmology]
 ---
 
 # Gravitational Lensing

@@ -38,6 +38,7 @@ export function renderTimeline(container, data, { selectedNodeId } = {}) {
       type: n.type,
       description: n.description,
       id: n.id,
+      tags: n.tags || [],
       isArticle: false,
     });
   }
@@ -164,13 +165,15 @@ export function renderTimeline(container, data, { selectedNodeId } = {}) {
   container.appendChild(stats);
 
   return {
-    updateFilter(activeTypes, searchQuery) {
+    updateFilter(activeTypes, searchQuery, activeTags) {
       const sq = (searchQuery || '').toLowerCase();
+      const hasTags = activeTags && activeTags.size > 0;
       dots.transition().duration(200)
         .attr('opacity', d => {
           const typeOk = activeTypes.has(d.type) || (d.isArticle && activeTypes.size > 0);
           const searchOk = !sq || d.title.toLowerCase().includes(sq);
-          return typeOk && searchOk ? 0.85 : 0.05;
+          const tagOk = !hasTags || d.isArticle || (d.tags || []).some(t => activeTags.has(t));
+          return typeOk && searchOk && tagOk ? 0.85 : 0.05;
         });
     },
     // Rule 4: external selection

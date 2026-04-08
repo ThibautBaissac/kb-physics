@@ -18,8 +18,10 @@ Follow these steps exactly in order.
 
 ## Step 1: Navigate the KB
 
-- Read `kb/index.md` to identify which pages are relevant to the question.
-- Read those pages. If they reference other pages that seem relevant, read those too.
+- Read `kb/index.md` (master hub) to identify which sections are relevant to the question.
+- Read the relevant section index(es) (e.g., `kb/index-concepts.md`, `kb/index-theories.md`) to find specific pages.
+- When the question targets a specific domain, use `tags` in page frontmatter to narrow your search (e.g., for a cosmology question, prioritize pages tagged `cosmology`).
+- Read the relevant pages. If they reference other pages that seem relevant, read those too.
 - Do NOT read raw sources unless the compiled pages are insufficient.
 
 ## Step 2: Synthesize an answer
@@ -37,8 +39,9 @@ If the answer is substantial, reusable, and not already covered by an existing p
 - Create a new page in the most appropriate location (`kb/theories/`, `kb/concepts/`, `kb/people/`, `kb/experiments/`, or `kb/open-questions/`).
 - Use standard page format from kb/CLAUDE.md.
 - Set `type: summary` or `type: concept` as appropriate.
+- Add relevant `tags` from the controlled vocabulary in `kb/CLAUDE.md`. Use 1-4 tags per page.
 - Link to the pages that informed the answer in the Sources section.
-- Update `kb/index.md` with the new page.
+- Update the relevant section index (`kb/index-theories.md`, `kb/index-concepts.md`, etc.) and the page counts in `kb/index.md`.
 - Prepend to `kb/log.md`:
 
 ```

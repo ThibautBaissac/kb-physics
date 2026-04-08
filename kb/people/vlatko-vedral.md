@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/complex-numbers-in-quantum-mechanics.md, concepts/quantum-thermodynamics.md, concepts/quantum-entanglement.md, open-questions/measurement-problem.md]
 sources: [2025-11-07-imaginary-numbers-quantum-mechanics.md, 2025-10-01-thermometer-measuring-quantumness.md]
+tags: [foundations, quantum-information, thermodynamics]
 ---
 
 # Vlatko Vedral

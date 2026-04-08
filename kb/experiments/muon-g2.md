@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/muon.md, theories/standard-model.md, open-questions/beyond-standard-model.md, concepts/quantum-chromodynamics.md]
 sources: [2025-06-03-muon-g2-most-precise-measurement.md]
+tags: [particle-physics, quantum-field-theory, experimental-methods]
 ---
 
 # Muon g-2 Experiment

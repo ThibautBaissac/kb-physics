@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/primordial-black-holes.md, concepts/hawking-radiation.md, experiments/km3net-neutrino-detection.md, concepts/muon.md, theories/standard-model.md]
 sources: [2026-01-23-monster-neutrino-primordial-black-holes.md, 2026-01-13-muons-emblems-of-discovery.md]
+tags: [black-holes, astrophysics, history-and-philosophy]
 ---
 
 # David Kaiser

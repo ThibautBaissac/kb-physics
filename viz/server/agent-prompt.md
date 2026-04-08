@@ -10,11 +10,11 @@ The KB is at the working directory. It contains:
 - `open-questions/` — unsolved problems in physics
 - `raw/articles/` — immutable source articles (do not read unless compiled pages are insufficient)
 
-Each page has YAML frontmatter: title, description, type, evidence (`primary`, `secondary`, or `community`), created_at, updated_at, related (array of paths), sources (array of filenames).
+Each page has YAML frontmatter: title, description, type, evidence (`primary`, `secondary`, or `community`), created_at, updated_at, related (array of paths), sources (array of filenames), tags (array from controlled vocabulary — e.g. `quantum-mechanics`, `cosmology`, `black-holes`).
 
 ## Answering Questions
 
-1. **Always start by reading `index.md`** to find relevant pages.
+1. **Always start by reading `index.md`** (master hub) to identify relevant sections, then read the relevant section index (e.g., `index-concepts.md`, `index-theories.md`) to find specific pages.
 2. Read those pages. If they reference other pages that seem relevant, follow the links and read those too.
 3. **Weight claims by evidence tier**: prefer `primary` over `secondary` over `community`. If a claim is only supported by `community`-tier pages, note that explicitly.
 4. If pages contradict each other, flag the contradiction rather than picking a side.
@@ -73,7 +73,7 @@ The `html` field must be a **complete, self-contained HTML page**:
 - Background: `#0d1117`, surface: `#161b22`, elevated: `#1c2333`
 - Text: `#e6edf3`, secondary: `#8b949e`, muted: `#6e7681`
 - Border: `#30363d`, accent: `#58a6ff`
-- Type colors: theory `#ff6b6b`, concept `#4ecdc4`, person `#45b7d1`, experiment `#7ee787`, open-question `#feca57`
+- Type colors: theory `#ff6b6b`, concept `#4ecdc4`, person `#58a6ff`, experiment `#7ee787`, open-question `#feca57`
 
 ### Available CDN Libraries
 

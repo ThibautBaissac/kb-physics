@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/anti-de-sitter-space.md, concepts/cosmological-constant.md, concepts/cosmological-horizon.md, concepts/cosmic-inflation.md, concepts/holography.md, concepts/black-hole-entropy.md, concepts/compactification.md, theories/quantum-field-theory.md, theories/string-theory.md, open-questions/quantum-gravity-in-de-sitter-space.md]
 sources: [2026-03-30-de-sitter-space-quantum-mechanics.md, 2026-01-14-string-theory-dark-energy.md]
+tags: [general-relativity, cosmology, quantum-gravity]
 ---
 
 # De Sitter Space

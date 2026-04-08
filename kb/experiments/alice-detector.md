@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [experiments/large-hadron-collider.md, concepts/quantum-chromodynamics.md, people/sarah-porteboeuf.md, people/roderik-bruce.md]
 sources: [2025-12-09-curiouser-alice-detector.md]
+tags: [nuclear-and-subatomic, particle-physics, experimental-methods]
 ---
 
 # ALICE Detector

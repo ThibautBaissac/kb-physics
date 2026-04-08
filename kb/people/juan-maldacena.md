@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/holography.md, concepts/anti-de-sitter-space.md, concepts/island-formula.md, concepts/hilbert-space.md, theories/string-theory.md]
 sources: [2025-11-19-observer-free-universe-paradox.md]
+tags: [string-theory, quantum-gravity, mathematical-physics]
 ---
 
 # Juan Maldacena

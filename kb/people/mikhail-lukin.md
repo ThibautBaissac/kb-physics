@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/quantum-simulation.md, concepts/quantum-entanglement.md]
 sources: [2025-09-05-analog-vs-digital-quantum-simulation.md]
+tags: [quantum-information]
 ---
 
 # Mikhail Lukin

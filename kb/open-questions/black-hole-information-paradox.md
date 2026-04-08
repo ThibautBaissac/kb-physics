@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/no-hair-theorem.md, concepts/black-hole-entropy.md, concepts/hawking-radiation.md, concepts/holography.md, concepts/island-formula.md, theories/string-theory.md, experiments/gravitational-wave-detectors.md]
 sources: [2025-08-27-no-hair-black-holes.md, 2026-03-23-strings-theory-of-everything.md, 2025-11-19-observer-free-universe-paradox.md]
+tags: [black-holes, quantum-gravity, quantum-mechanics]
 ---
 
 # Black Hole Information Paradox

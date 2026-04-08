@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/primordial-black-holes.md, concepts/dark-energy.md, theories/standard-model.md, open-questions/beyond-standard-model.md, experiments/large-hadron-collider.md, experiments/future-colliders.md, experiments/km3net-neutrino-detection.md, experiments/vera-c-rubin-observatory.md]
 sources: [2025-11-19-dark-matter-worldwide-search.md, 2025-06-23-vera-c-rubin-observatory-first-imagery.md]
+tags: [cosmology, particle-physics]
 ---
 
 # Dark Matter

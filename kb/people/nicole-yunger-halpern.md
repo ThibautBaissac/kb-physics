@@ -7,6 +7,7 @@ created_at: 2026-04-07
 updated_at: 2026-04-07
 related: [concepts/quantum-thermodynamics.md, concepts/quantum-entanglement.md]
 sources: [2025-10-01-thermometer-measuring-quantumness.md]
+tags: [thermodynamics, quantum-mechanics]
 ---
 
 # Nicole Yunger Halpern
