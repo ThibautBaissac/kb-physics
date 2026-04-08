@@ -3,31 +3,26 @@ import { TYPE_COLORS } from '../constants.js';
 export function renderTable(container, data, { selectedNodeId, onRowClick } = {}) {
   container.innerHTML = '';
 
-  let columns, rowsWithMeta;
-
-  if (data.columns && data.rows) {
-    columns = data.columns;
-    rowsWithMeta = data.rows.map(r => ({ row: [...r], id: null, tags: [] }));
-  } else if (data.nodes) {
-    columns = ['Title', 'Type', 'Evidence', 'Tags', 'Connections', 'Sources', 'Created'];
-    rowsWithMeta = data.nodes.map(n => ({
-      id: n.id,
-      tags: n.tags || [],
-      description: n.description || '',
-      row: [
-        n.title,
-        n.type,
-        n.evidence,
-        (n.tags || []).join(', '),
-        String(n.connections),
-        String(n.sources?.length || 0),
-        n.created_at,
-      ],
-    }));
-  } else {
+  if (!data.nodes) {
     container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted)">No table data</div>';
     return { destroy() { container.innerHTML = ''; } };
   }
+
+  const columns = ['Title', 'Type', 'Evidence', 'Tags', 'Connections', 'Sources', 'Created'];
+  const rowsWithMeta = data.nodes.map(n => ({
+    id: n.id,
+    tags: n.tags || [],
+    description: n.description || '',
+    row: [
+      n.title,
+      n.type,
+      n.evidence,
+      (n.tags || []).join(', '),
+      String(n.connections),
+      String(n.sources?.length || 0),
+      n.created_at,
+    ],
+  }));
 
   let sortCol = -1;
   let sortAsc = true;

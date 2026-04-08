@@ -4,7 +4,7 @@ import { renderTable } from './renderers/table.js';
 import { initChat, prefillChat } from './chat.js';
 import { openReader, initReader, closeReader } from './reader.js';
 import { initPalette, openPalette } from './palette.js';
-import { TYPE_COLORS, TAG_COLORS, escapeHtml } from './constants.js';
+import { TYPE_COLORS, TAG_COLORS, escapeHtml, initPanelResize } from './constants.js';
 
 let kbData = null;
 let currentView = 'graph';
@@ -229,31 +229,13 @@ function initSearch() {
 }
 
 function initChatResize() {
-  const handle = document.getElementById('chat-resize');
   const app = document.getElementById('app');
-  let dragging = false;
-
-  handle.addEventListener('mousedown', (e) => {
-    e.preventDefault();
-    dragging = true;
-    handle.classList.add('dragging');
-    document.body.style.cursor = 'col-resize';
-    document.body.style.userSelect = 'none';
-  });
-
-  window.addEventListener('mousemove', (e) => {
-    if (!dragging) return;
-    const appRect = app.getBoundingClientRect();
-    const newWidth = Math.max(280, Math.min(appRect.width * 0.7, appRect.right - e.clientX));
-    app.style.setProperty('--chat-width', newWidth + 'px');
-  });
-
-  window.addEventListener('mouseup', () => {
-    if (!dragging) return;
-    dragging = false;
-    handle.classList.remove('dragging');
-    document.body.style.cursor = '';
-    document.body.style.userSelect = '';
+  initPanelResize(document.getElementById('chat-resize'), {
+    onDrag(e) {
+      const appRect = app.getBoundingClientRect();
+      const newWidth = Math.max(280, Math.min(appRect.width * 0.7, appRect.right - e.clientX));
+      app.style.setProperty('--chat-width', newWidth + 'px');
+    },
   });
 }
 

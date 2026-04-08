@@ -41,3 +41,29 @@ export function escapeHtml(text) {
   div.textContent = text;
   return div.innerHTML;
 }
+
+/** Shared draggable resize handle for side panels. */
+export function initPanelResize(handleEl, { onDrag }) {
+  let dragging = false;
+
+  handleEl.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    dragging = true;
+    handleEl.classList.add('dragging');
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!dragging) return;
+    onDrag(e);
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    handleEl.classList.remove('dragging');
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  });
+}

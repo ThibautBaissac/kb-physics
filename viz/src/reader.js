@@ -1,4 +1,4 @@
-import { renderMarkdown, escapeHtml, TYPE_COLORS } from './constants.js';
+import { renderMarkdown, escapeHtml, TYPE_COLORS, initPanelResize } from './constants.js';
 
 let articles = [];
 let articleCache = new Map();
@@ -9,35 +9,16 @@ export function initReader(kbData) {
 
   document.getElementById('btn-reader-close').addEventListener('click', closeReader);
 
-  // Resize handle — mirrors initChatResize() in main.js
-  const handle = document.getElementById('reader-resize');
   const app = document.getElementById('app');
-  let dragging = false;
-
-  handle.addEventListener('mousedown', (e) => {
-    e.preventDefault();
-    dragging = true;
-    handle.classList.add('dragging');
-    document.body.style.cursor = 'col-resize';
-    document.body.style.userSelect = 'none';
-  });
-
-  window.addEventListener('mousemove', (e) => {
-    if (!dragging) return;
-    const appRect = app.getBoundingClientRect();
-    const chatWidth = app.classList.contains('chat-open')
-      ? parseFloat(getComputedStyle(app).getPropertyValue('--chat-width')) || 0
-      : 0;
-    const newWidth = Math.max(300, Math.min(appRect.width * 0.75, appRect.right - chatWidth - e.clientX));
-    app.style.setProperty('--reader-width', newWidth + 'px');
-  });
-
-  window.addEventListener('mouseup', () => {
-    if (!dragging) return;
-    dragging = false;
-    handle.classList.remove('dragging');
-    document.body.style.cursor = '';
-    document.body.style.userSelect = '';
+  initPanelResize(document.getElementById('reader-resize'), {
+    onDrag(e) {
+      const appRect = app.getBoundingClientRect();
+      const chatWidth = app.classList.contains('chat-open')
+        ? parseFloat(getComputedStyle(app).getPropertyValue('--chat-width')) || 0
+        : 0;
+      const newWidth = Math.max(300, Math.min(appRect.width * 0.75, appRect.right - chatWidth - e.clientX));
+      app.style.setProperty('--reader-width', newWidth + 'px');
+    },
   });
 }
 
