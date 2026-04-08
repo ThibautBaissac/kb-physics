@@ -2,6 +2,7 @@ import { renderGraph } from './renderers/graph.js';
 import { renderTimeline } from './renderers/timeline.js';
 import { renderTable } from './renderers/table.js';
 import { initChat, prefillChat } from './chat.js';
+import { openReader, initReader } from './reader.js';
 import { TYPE_COLORS, TAG_COLORS, escapeHtml } from './constants.js';
 
 let kbData = null;
@@ -52,7 +53,11 @@ function showDetail(event, d) {
   const safeDesc = escapeHtml(d.description || 'No description available.');
   const safeType = escapeHtml(d.type);
   const safeEvidence = d.evidence ? escapeHtml(d.evidence) : '';
-  const safeSources = d.sources?.length ? escapeHtml(d.sources.join(', ')) : '';
+  const sourcesHtml = d.sources?.length
+    ? d.sources.map(s =>
+        `<a href="#" class="source-link" data-article-id="${escapeHtml(s)}">${escapeHtml(s.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '').replace(/-/g, ' '))}</a>`
+      ).join(', ')
+    : '';
   const tagsHtml = (d.tags || []).map(t => {
     const color = TAG_COLORS[t] || '#888';
     return `<span class="tag-badge" style="background:${color}22;color:${color};border:1px solid ${color}44">${escapeHtml(t)}</span>`;
@@ -69,7 +74,7 @@ function showDetail(event, d) {
     <div class="detail-body">
       <p>${safeDesc}</p>
       ${d.connections ? `<p style="margin-top:12px;color:var(--text-muted)">${d.connections} connections</p>` : ''}
-      ${safeSources ? `<p style="margin-top:8px;color:var(--text-muted)">Sources: ${safeSources}</p>` : ''}
+      ${sourcesHtml ? `<p style="margin-top:8px;color:var(--text-muted)">Sources: ${sourcesHtml}</p>` : ''}
     </div>
     <button class="detail-ask-ai">Ask AI about this</button>
   `;
@@ -79,6 +84,14 @@ function showDetail(event, d) {
     document.getElementById('app').classList.add('chat-open');
     updateChatContext(d);
     prefillChat(`Tell me about ${d.title}`);
+  });
+
+  // Source links open reader panel
+  panel.addEventListener('click', (e) => {
+    const link = e.target.closest('.source-link');
+    if (!link) return;
+    e.preventDefault();
+    openReader(link.dataset.articleId, { breadcrumb: { title: d.title, type: d.type } });
   });
 
   requestAnimationFrame(() => panel.classList.add('open'));
@@ -117,7 +130,10 @@ function switchView(view) {
       selectedNodeId,
     });
   } else if (view === 'timeline' && kbData) {
-    currentRenderer = renderTimeline(viewer, kbData, { selectedNodeId });
+    currentRenderer = renderTimeline(viewer, kbData, {
+      selectedNodeId,
+      onArticleClick: (event, d) => openReader(d.id),
+    });
   } else if (view === 'table' && kbData) {
     currentRenderer = renderTable(viewer, kbData, { selectedNodeId });
   } else {
@@ -393,6 +409,7 @@ async function init() {
   initSearch();
   initToggles();
   initChatResize();
+  initReader(kbData);
   initViewTabs();
   initChat();
   initArtifactList();

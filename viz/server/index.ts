@@ -251,7 +251,7 @@ app.delete('/api/chats/:id', async (req, res) => {
 // GET /api/page/:path — get raw page content from KB
 app.get('/api/page/*path', async (req, res) => {
   try {
-    const pagePath = req.params.path;
+    const pagePath = Array.isArray(req.params.path) ? req.params.path.join('/') : req.params.path;
     const filePath = join(KB_PATH, pagePath);
 
     // Prevent directory traversal

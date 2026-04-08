@@ -3,7 +3,7 @@ import { TYPE_COLORS as BASE_TYPE_COLORS } from '../constants.js';
 
 const TYPE_COLORS = { ...BASE_TYPE_COLORS, article: '#c9d1d9' };
 
-export function renderTimeline(container, data, { selectedNodeId } = {}) {
+export function renderTimeline(container, data, { selectedNodeId, onArticleClick } = {}) {
   container.innerHTML = '';
 
   const rect = container.getBoundingClientRect();
@@ -156,6 +156,10 @@ export function renderTimeline(container, data, { selectedNodeId } = {}) {
       .attr('r', d.isArticle ? 6 : (isSelected ? 7 : 4))
       .attr('opacity', 0.85);
     tooltip.classed('visible', false);
+  });
+
+  dots.on('click', (event, d) => {
+    if (d.isArticle && onArticleClick) onArticleClick(event, d);
   });
 
   // Stats
