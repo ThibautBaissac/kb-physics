@@ -32,6 +32,10 @@ export async function processAgentStream(
           }
         }
       }
+      const usage = assistantMsg.message?.usage;
+      if (usage) {
+        emit({ type: 'usage', usage: { input_tokens: usage.input_tokens, output_tokens: usage.output_tokens } });
+      }
     } else if (message.type === 'result') {
       const resultMsg = message as SDKResultMessage;
       if (resultMsg.subtype === 'success' && resultMsg.result) {
@@ -43,6 +47,10 @@ export async function processAgentStream(
       if ('errors' in resultMsg && resultMsg.errors?.length) {
         console.error('[agent result errors]', resultMsg.errors);
         emit({ type: 'error', content: resultMsg.errors.join('\n') });
+      }
+      const resultUsage = (resultMsg as any).usage;
+      if (resultUsage) {
+        emit({ type: 'usage', usage: { input_tokens: resultUsage.input_tokens, output_tokens: resultUsage.output_tokens } });
       }
     }
   }

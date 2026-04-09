@@ -3,6 +3,34 @@ import { escapeHtml, renderMarkdown } from './constants.js';
 let currentChatId = null;
 let chatMessages = []; // { role: 'user'|'assistant', content: string }
 let activeQueryController = null;
+let contextUsage = { input_tokens: 0, output_tokens: 0 };
+
+const MAX_CONTEXT = 200_000;
+const GAUGE_CIRCUMFERENCE = 2 * Math.PI * 6; // ~37.7
+
+function updateContextGauge(usage) {
+  contextUsage = usage;
+  const arc = document.getElementById('context-gauge-arc');
+  const tip = document.getElementById('context-gauge-tooltip');
+  if (!arc) return;
+
+  const total = usage.input_tokens + usage.output_tokens;
+  const pct = Math.min(total / MAX_CONTEXT, 1);
+
+  arc.setAttribute('stroke-dashoffset', String(GAUGE_CIRCUMFERENCE * (1 - pct)));
+
+  let color = '#58a6ff';
+  if (pct >= 0.9) color = '#f85149';
+  else if (pct >= 0.75) color = '#d29922';
+  arc.setAttribute('stroke', color);
+
+  arc.style.opacity = String(Math.max(0.15, pct));
+
+  if (tip) {
+    const fmt = (n) => n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n);
+    tip.textContent = `${fmt(total)} / ${fmt(MAX_CONTEXT)} tokens (${Math.round(pct * 100)}%)`;
+  }
+}
 
 // Rule 3: pre-fill chat input from external callers
 export function prefillChat(text) {
@@ -110,6 +138,8 @@ export function initChat() {
               toolLog.appendChild(entry);
               while (toolLog.children.length > 4) toolLog.removeChild(toolLog.firstChild);
               messagesEl.scrollTop = messagesEl.scrollHeight;
+            } else if (data.type === 'usage' && data.usage) {
+              updateContextGauge(data.usage);
             }
           } catch { /* skip */ }
         }
@@ -186,7 +216,18 @@ export function initChat() {
 function renderChatHeader() {
   const header = document.querySelector('.chat-header');
   header.innerHTML = `
-    <span>Ask the KB</span>
+    <span style="display:flex;align-items:center;gap:6px">
+      Ask the KB
+      <span class="context-gauge-wrap">
+        <svg width="16" height="16" viewBox="0 0 16 16">
+          <circle cx="8" cy="8" r="6" fill="none" stroke="var(--border)" stroke-width="2.5" opacity="0.3"/>
+          <circle cx="8" cy="8" r="6" fill="none" stroke="#58a6ff" stroke-width="2.5"
+            stroke-dasharray="${GAUGE_CIRCUMFERENCE} ${GAUGE_CIRCUMFERENCE}" stroke-dashoffset="${GAUGE_CIRCUMFERENCE}"
+            stroke-linecap="round" transform="rotate(-90 8 8)" id="context-gauge-arc" style="opacity:0.15"/>
+        </svg>
+        <div class="context-gauge-tooltip" id="context-gauge-tooltip">0 / 200k tokens (0%)</div>
+      </span>
+    </span>
     <div style="display:flex;gap:4px;align-items:center">
       <button class="toolbar-btn" id="btn-new-chat" title="New chat">+</button>
       <button class="toolbar-btn" id="btn-chat-history" title="Chat history">&#9776;</button>
@@ -198,6 +239,7 @@ function renderChatHeader() {
     currentChatId = null;
     chatMessages = [];
     document.getElementById('chat-messages').innerHTML = '';
+    updateContextGauge({ input_tokens: 0, output_tokens: 0 });
     hideChatList();
   });
 
@@ -268,6 +310,7 @@ async function loadChatList() {
       currentChatId = chat.id;
       chatMessages = chat.messages || [];
       renderChatMessages();
+      updateContextGauge({ input_tokens: 0, output_tokens: 0 });
       hideChatList();
     };
   } catch { /* server not running */ }
