@@ -43,13 +43,21 @@ For old-format IDs containing `/` (e.g., `hep-th/9905111`), replace the `/` with
 
 Verify the download succeeded: the file must exist and have nonzero size. If it fails, stop and tell the user.
 
-#### (c) Fetch metadata and create raw source
+#### (c) Fetch metadata
 
 Use WebFetch on the abstract page (`https://arxiv.org/abs/<id>`) to extract:
 - **Title** of the paper
 - **Authors** (full list)
 - **Submission date** (original submission, not latest revision)
 - **Abstract** text
+
+#### (d) Read the full PDF
+
+Use the Read tool to read the downloaded PDF at `kb/raw/_originals/<id>.pdf`. Extract the full paper content: abstract, all sections, key equations, figures/tables descriptions, and references.
+
+If the PDF cannot be read (too large, corrupted, etc.), fall back to using only the abstract and note this limitation in the raw source file.
+
+#### (e) Create the raw source file
 
 Create the raw source file at `kb/raw/papers/YYYY-MM-DD-short-title.md` (date is the original submission date) with this frontmatter:
 
@@ -72,7 +80,7 @@ Use "First Author et al." when there are more than 3 authors. Use the full autho
 
 For old-format IDs, use the `-` form in the `original:` field to match the downloaded filename (e.g., `_originals/hep-th-9905111.pdf`).
 
-Below the frontmatter, write the full abstract as the body content. This is the raw source text — the full paper content will be read from the PDF during ingestion via the `original:` field.
+Below the frontmatter, write the **full paper content** in markdown — faithful to the original, not summarized. Include all sections, key arguments, equations (in LaTeX), and results. Keep the article text faithful to the original — do not summarize or editorialize in the raw file.
 
 **After creating the raw source file, skip to Step 4.**
 
