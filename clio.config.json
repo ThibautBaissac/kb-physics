@@ -1,0 +1,7 @@
+{
+  "baseBranch": "main",
+  "checks": [
+    { "id": "tests", "command": "npm test", "required": true, "workdir": "viz" },
+    { "id": "build", "command": "npm run build", "required": true, "workdir": "viz" }
+  ]
+}
